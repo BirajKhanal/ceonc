@@ -1,0 +1,76 @@
+:root {
+    --primary: #2e3035;
+    --secondary: #393c45;
+    --white: #ffffff;
+    --side-nav-width: 15%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.mainContainer {
+    display: flex;
+}
+
+/* side navigation and top bar design starts */
+.navContainer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: var(--side-nav-width);
+    height: 100vh;
+    color: var(--white);
+    background-color: var(--primary);
+}
+.navItems {
+    width: 100%;
+}
+.navItem {
+    padding: 1.5rem 1.2rem;
+}
+.navItem:hover {
+    background-color: var(--secondary);
+}
+.navBarContainer {
+    display: flex;
+}
+.navItem button {
+    color: var(--white);
+    background-color: var(--primary);
+    border: none;
+    font-size: 16px;
+}
+/* side navigation and top bar design ends */
+
+/* main body styles starts */
+.mainBodyContainer {
+    width: calc(100% - var(--side-nav-width));
+    padding: 2rem;
+}
+/* graphs layout design starts */
+.graphItems {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5rem 0;
+}
+.graphItem {
+    width: 10rem;
+    height: 10rem;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    color: var(--white);
+    background-color: var(--primary);
+    box-shadow:  -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
+}
+/* graphs layout design ends */
+/* main body styles ends */
