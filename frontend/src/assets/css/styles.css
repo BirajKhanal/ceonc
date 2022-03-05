@@ -17,23 +17,21 @@ ul {
     list-style-type: none;
 }
 
-.mainContainer {
-    display: flex;
-}
-
 /* side navigation and top bar design starts */
 .navContainer {
-    display: flex;
-    flex-grow: 1;
+    /* display: flex;
+    flex-grow: 1; */
     justify-content: flex-start;
     align-items: center;
-    max-width: var(--side-nav-width);
-    height: 100vh;
+    /* max-width: var(--side-nav-width); */
+    /* height: 100vh; */
     color: var(--white);
     background-color: var(--primary);
 }
 .navItems {
-    width: 100%;
+    display: flex;
+    /* width: 100%; */
+    justify-content: center;
 }
 .navItem {
     padding: 1.5rem 1.2rem;
@@ -41,9 +39,9 @@ ul {
 .navItem:hover {
     background-color: var(--secondary);
 }
-.navBarContainer {
+/* .navBarContainer {
     display: flex;
-}
+} */
 .navItem button {
     color: var(--white);
     background-color: var(--primary);
@@ -54,19 +52,19 @@ ul {
 
 /* main body styles starts */
 .mainBodyContainer {
-    width: calc(100% - var(--side-nav-width));
     padding: 2rem;
 }
 /* graphs layout design starts */
 .graphItems {
     display: flex;
     flex-wrap: wrap;
-    margin: 5rem 0;
+    justify-content: space-around;
+    margin: 2rem 0;
 }
 .graphItem {
-    width: 10rem;
-    height: 10rem;
+    margin: 1rem;
     padding: 2rem;
+    padding-left: 0.1rem;
     border-radius: 1.2rem;
     color: var(--white);
     background-color: var(--primary);
@@ -74,3 +72,9 @@ ul {
 }
 /* graphs layout design ends */
 /* main body styles ends */
+
+/* general styles */
+.text-center {
+    text-align: center;
+    margin-bottom: 0.2rem;
+}

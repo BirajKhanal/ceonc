@@ -1,11 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const quality = require('./quality')
 const coaching = require('./coaching')
 
 const app = express()
-const port = 3001
+app.use(cors())
+const port = 4000
 
 app.use(bodyParser.json())
 app.use(

@@ -1,6 +1,11 @@
 require('dotenv').config()
 const Pool = require('pg').Pool
 
+const sort1 = require('./bcqualitydomain')
+const sort2 = require('./bcsignalfunction')
+const sort3 = require('./ceoncqualitydomain')
+const sort4 = require('./ceoncsignalfunction')
+
 const pool = new Pool({
     user: process.env.USER_NAME,
     host: process.env.HOST,
@@ -14,8 +19,7 @@ const BcBeoncQualityDomain = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
-        // console.log(results.rows)
+        response.status(200).json(sort1.goodMediumPoorSort(results.rows))
     })
 }
 
@@ -24,7 +28,7 @@ const BcBeoncSignalFunction = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(sort2.goodMediumPoorSort(results.rows))
         // console.log(results.rows)
     })
 }
@@ -34,7 +38,7 @@ const CeoncQualityDomain = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(sort3.goodMediumPoorSort(results.rows))
         // console.log(results.rows)
     })
 }
@@ -43,7 +47,7 @@ const CeoncSignalFunction = (request, response) => {
         if (error) {
             throw error
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(sort4.goodMediumPoorSort(results.rows))
         // console.log(results.rows)
     })
 }
