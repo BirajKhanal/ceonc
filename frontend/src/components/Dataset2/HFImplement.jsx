@@ -8,8 +8,11 @@ import {
     Tooltip,
     Legend
 } from "recharts";
+import { dynamicGraph } from '../../utils/dynamicGraph';
 
-const HFImplement = () => {
+import { color } from '../color';
+
+const HFImplement = ({graphWidth}) => {
   const [hfImplement, setHfImplement] = useState([])
 
   const requestOptions = {
@@ -21,7 +24,7 @@ const HFImplement = () => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/hfimplement', requestOptions)
+    let res = await fetch('https://ceonc.herokuapp.com/hfimplement', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -39,10 +42,10 @@ const HFImplement = () => {
   return (
     <div>
       <div>
-        <p class="text-center">No. of HFs implemented SBA clinical coaching</p>
+        <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
       </div>
       <BarChart
-        width={600}
+        width={dynamicGraph(graphWidth)}
         height={300}
         data={hfImplement}
       >
@@ -51,8 +54,8 @@ const HFImplement = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="No of HFs(BC/BEONC) implemented" fill="#4472c4" />
-        <Bar dataKey="No of CEONC implemented" fill="#ed7d31" />
+        <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
+        <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
       </BarChart>
     </div>
   )

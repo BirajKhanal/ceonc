@@ -5,22 +5,22 @@ import BcSignalFunction from './BcSignalFunction'
 import CeoncQualityDomain from './CeoncQualityDomain'
 import CeoncSignalFunction from './CeoncSignalFunction'
 
-const Dataset2 = () => {
+const Dataset2 = ({graphWidth}) => {
   return (
     <div>
-        <h1 class="text-center">Quality Improvement Process Reporting</h1>
+        <h1 className="text-center header-color">Quality Improvement Process Reporting</h1>
         <div className="graphItems">
           <div className="graphItem">
-              <BcQualityDomain />
+              <BcQualityDomain graphWidth={graphWidth} />
           </div>
           <div className="graphItem">
-              <BcSignalFunction />
+              <BcSignalFunction graphWidth={graphWidth} />
           </div>
           <div className="graphItem">
-              <CeoncQualityDomain />
+              <CeoncQualityDomain graphWidth={graphWidth} />
           </div>
           <div className="graphItem">
-              <CeoncSignalFunction />
+              <CeoncSignalFunction graphWidth={graphWidth} />
           </div>
         </div>
     </div>

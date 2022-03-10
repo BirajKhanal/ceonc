@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from "recharts";
 
-const BcQualityDomain = () => {
+import { color } from '../color';
+import { dynamicGraph } from '../../utils/dynamicGraph';
+
+const BcQualityDomain = ({graphWidth}) => {
   const [bcQualityDomain, setBcQualityDomain] = useState([])
 
   const requestOptions = {
@@ -21,7 +24,7 @@ const BcQualityDomain = () => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/bebeoncqualitydomain', requestOptions)
+    let res = await fetch('https://ceonc.herokuapp.com/bebeoncqualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -33,16 +36,13 @@ const BcQualityDomain = () => {
     getRequest()
   }, [])
 
-
-  console.log(bcQualityDomain)
-
   return (
     <div>
       <div>
-        <p class="text-center">No of BC/BEONC status in 13 Quality Domains</p>
+        <p className="text-center header-color">No of BC/BEONC status in 13 Quality Domains</p>
       </div>
       <BarChart
-        width={600}
+        width={dynamicGraph(graphWidth)}
         height={300}
         data={bcQualityDomain}
       >
@@ -51,9 +51,9 @@ const BcQualityDomain = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="good" stackId="a" fill="#00b150" />
-        <Bar dataKey="medium" stackId="a" fill="#ffc100" />
-        <Bar dataKey="poor" stackId="a" fill="#ff0000" />
+        <Bar dataKey="good" stackId="a" fill={color.color_1} />
+        <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+        <Bar dataKey="poor" stackId="a" fill={color.color_3} />
       </BarChart>
     </div>
   )

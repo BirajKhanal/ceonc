@@ -9,7 +9,10 @@ import {
     Legend
 } from "recharts";
 
-const BcSignalFunction = () => {
+import { color } from '../color';
+import { dynamicGraph } from '../../utils/dynamicGraph';
+
+const BcSignalFunction = ({graphWidth}) => {
   const [data, setdata] = useState([])
 
   const requestOptions = {
@@ -21,7 +24,7 @@ const BcSignalFunction = () => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/bebeoncsignalfunction', requestOptions)
+    let res = await fetch('https://ceonc.herokuapp.com/bebeoncsignalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -37,10 +40,10 @@ const BcSignalFunction = () => {
   return (
     <div>
       <div>
-        <p class="text-center">No of BC/BEONC status in 7 Signal Functions</p>
+        <p className="text-center header-color">No of BC/BEONC status in 7 Signal Functions</p>
       </div>
       <BarChart
-        width={600}
+        width={dynamicGraph(graphWidth)}
         height={300}
         data={data}
       >
@@ -49,9 +52,9 @@ const BcSignalFunction = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="good" stackId="a" fill="#00b150" />
-        <Bar dataKey="medium" stackId="a" fill="#ffc100" />
-        <Bar dataKey="poor" stackId="a" fill="#ff0000" />
+        <Bar dataKey="good" stackId="a" fill={color.color_1} />
+        <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+        <Bar dataKey="poor" stackId="a" fill={color.color_3} />
       </BarChart>
     </div>
   )

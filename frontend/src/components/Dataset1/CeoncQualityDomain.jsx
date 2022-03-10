@@ -8,8 +8,11 @@ import {
     Tooltip,
     Legend
 } from "recharts";
+import { dynamicGraph } from '../../utils/dynamicGraph';
 
-const CeoncQualityDomain = () => {
+import { color } from '../color';
+
+const CeoncQualityDomain = ({graphWidth}) => {
   const [data, setData] = useState([])
 
   const requestOptions = {
@@ -21,7 +24,7 @@ const CeoncQualityDomain = () => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/ceoncqualitydomain', requestOptions)
+    let res = await fetch('https://ceonc.herokuapp.com/ceoncqualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -36,10 +39,10 @@ const CeoncQualityDomain = () => {
   return (
     <div>
       <div>
-        <p class="text-center">No of CEONC hospitals status in 8 Quality Domains</p>
+        <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
       </div>
       <BarChart
-        width={600}
+        width={dynamicGraph(graphWidth)}
         height={300}
         data={data}
       >
@@ -48,9 +51,9 @@ const CeoncQualityDomain = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="good" stackId="a" fill="#00b150" />
-        <Bar dataKey="medium" stackId="a" fill="#ffc100" />
-        <Bar dataKey="poor" stackId="a" fill="#ff0000" />
+        <Bar dataKey="good" stackId="a" fill={color.color_1} />
+        <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+        <Bar dataKey="poor" stackId="a" fill={color.color_3} />
       </BarChart>
     </div>
   )

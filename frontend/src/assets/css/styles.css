@@ -2,7 +2,7 @@
     --primary: #2e3035;
     --secondary: #393c45;
     --white: #ffffff;
-    --side-nav-width: 15%;
+    --side-nav-width: 20%;
 }
 
 *,
@@ -17,26 +17,36 @@ ul {
     list-style-type: none;
 }
 
+.mainContainer {
+    display: flex;
+}
+
 /* side navigation and top bar design starts */
 .navContainer {
-    /* display: flex;
-    flex-grow: 1; */
-    justify-content: flex-start;
-    align-items: center;
-    /* max-width: var(--side-nav-width); */
-    /* height: 100vh; */
+    /* display: flex; */
+    /* flex-grow: 1; */
+    /* justify-content: flex-start; */
+    /* align-items: center; */
+    position: fixed;
+    width: var(--side-nav-width);
+    height: 100vh;
     color: var(--white);
     background-color: var(--primary);
 }
 .navItems {
     display: flex;
-    /* width: 100%; */
+    flex-wrap: wrap;
+    width: 100%;
     justify-content: center;
 }
 .navItem {
     padding: 1.5rem 1.2rem;
+    width: 100%;
 }
 .navItem:hover {
+    background-color: var(--secondary);
+}
+.select {
     background-color: var(--secondary);
 }
 /* .navBarContainer {
@@ -52,7 +62,9 @@ ul {
 
 /* main body styles starts */
 .mainBodyContainer {
-    padding: 2rem;
+    width: 100%;
+    padding-top: 2rem;
+    margin-left: var(--side-nav-width);
 }
 /* graphs layout design starts */
 .graphItems {
@@ -63,12 +75,12 @@ ul {
 }
 .graphItem {
     margin: 1rem;
-    padding: 2rem;
-    padding-left: 0.1rem;
+    /* padding: 2rem; */
+    /* padding-left: 0.1rem; */
     border-radius: 1.2rem;
-    color: var(--white);
-    background-color: var(--primary);
-    box-shadow:  -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
+    /* color: var(--white); */
+    /* background-color: var(--primary);
+    box-shadow:  -12px 10px 29px -16px rgba(0, 0, 0, 0.6); */
 }
 /* graphs layout design ends */
 /* main body styles ends */
@@ -77,4 +89,43 @@ ul {
 .text-center {
     text-align: center;
     margin-bottom: 0.2rem;
+}
+.header-color {
+    color: #2e3035;
+}
+
+@media screen and (max-width: 1000px) {
+    .mainContainer {
+        display: block;
+    }
+    .navContainer {
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+    .mainBodyContainer {
+        margin-left: 0;
+    }
+    .navItems {
+        width: auto;
+    }
+    .navItem {
+        width: auto;
+    }
+    .graphItem {
+        margin-left: -4.5%;
+    }
+}
+@media screen and (max-width: 694px) {
+    .navItems {
+        width: 100%;
+        text-align: center;
+    }
+    .navItem {
+        width: 100%;
+    }
 }

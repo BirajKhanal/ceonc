@@ -3,14 +3,14 @@ import React from 'react'
 import HFImplement from './HFImplement'
 import KnowledgeSkill from './KnowledgeSkill'
 
-const Dataset1 = () => {
+const Dataset1 = ({graphWidth}) => {
 
   return (
     <div>
-        <h1 class="text-center">Onsite Clinical Coaching Mentoring</h1>
+        <h1 className="text-center header-color">Onsite Clinical Coaching Mentoring</h1>
         <div className="graphItems">
           <div className="graphItem">
-              <HFImplement />
+              <HFImplement graphWidth={graphWidth}/>
           </div>
           {/* <div className="graphItem">
               <KnowledgeSkill />
