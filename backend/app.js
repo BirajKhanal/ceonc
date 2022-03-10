@@ -7,7 +7,7 @@ const coaching = require('./coaching')
 
 const app = express()
 app.use(cors())
-const port = 4000
+// const port = 4000
 
 app.use(bodyParser.json())
 app.use(
@@ -16,9 +16,9 @@ app.use(
   })
 )
 
-app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
-})
+// app.listen(port, () => {
+//     console.log(`App running on port ${port}.`)
+// })
 
 app.get('/bebeoncqualitydomain', quality.BcBeoncQualityDomain)
 app.get('/bebeoncsignalfunction', quality.BcBeoncSignalFunction)
@@ -27,3 +27,6 @@ app.get('/ceoncqualitydomain', quality.CeoncQualityDomain)
 
 app.get('/hfimplement', coaching.hfImplement)
 app.get('/knowledgeskill', coaching.knowledgeSkill)
+
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
