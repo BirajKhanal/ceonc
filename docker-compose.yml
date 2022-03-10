@@ -1,0 +1,13 @@
+version: '3'
+services:
+  ceonc-frontend:
+    image: ceonc-frontend:latest
+    environment:
+      PORT: "3000"
+      PROXY_API: "http://0.0.0.0:4000"
+    ports:
+      - "3000:3000"
+  ceonc-backend:
+    image: ceonc-backend:latest
+    ports:
+      - "4000:4000"

@@ -37,7 +37,7 @@ const App = () => {
     let listItems = document.getElementById("items").getElementsByTagName("li");
     let length = listItems.length
     for (let i = 0; i < length; i++) {
-      listItems[i].className = i+1 == item ? "navItem select" : "navItem";
+      listItems[i].className = i+1 === item ? "navItem select" : "navItem";
     }
   }
 

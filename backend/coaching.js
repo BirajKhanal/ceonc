@@ -3,21 +3,21 @@ const moment = require("moment")
 require('dotenv').config()
 const Pool = require('pg').Pool
 
-// const pool = new Pool({
-//     user: process.env.USER_NAME,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: process.env.PORT,
-// })
-
 const pool = new Pool({
-    user: "nhssp",
-    host: "202.45.146.72",
-    database: "odk_prod",
-    password: "nhssp123@#",
-    port: "8899",
+    user: process.env.USER_NAME,
+    host: process.env.HOST,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: process.env.PORT_DB,
 })
+
+// const pool = new Pool({
+//     user: "nhssp",
+//     host: "202.45.146.72",
+//     database: "odk_prod",
+//     password: "nhssp123@#",
+//     port: "8899",
+// })
 
 const countSort = (data) => {
     let bc_2021 = 0

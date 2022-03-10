@@ -6,21 +6,21 @@ const sort2 = require('./bcsignalfunction')
 const sort3 = require('./ceoncqualitydomain')
 const sort4 = require('./ceoncsignalfunction')
 
-// const pool = new Pool({
-//     user: process.env.USER_NAME,
-//     host: process.env.HOST,
-//     database: process.env.DATABASE,
-//     password: process.env.PASSWORD,
-//     port: process.env.PORT,
-// })
-
 const pool = new Pool({
-    user: "nhssp",
-    host: "202.45.146.72",
-    database: "odk_prod",
-    password: "nhssp123@#",
-    port: "8899",
+    user: process.env.USER_NAME,
+    host: process.env.HOST,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: process.env.PORT_DB,
 })
+
+// const pool = new Pool({
+//     user: "nhssp",
+//     host: "202.45.146.72",
+//     database: "odk_prod",
+//     password: "nhssp123@#",
+//     port: "8899",
+// })
 
 const BcBeoncQualityDomain = (request, response) => {
     pool.query(`SELECT "GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK", "GROUP_JF7YD07_PARTOGRAPH", "GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2", "GROUP_JF7YD07_STAFFING_001", "GROUP_JF7YD07_REFERRAL_FULL_MARKS_3", "GROUP_JF7YD07_MANAGEMENT", "GROUP_JF7YD07_WATER_AND_SANITATION_FULL_MARK", "GROUP_JF7YD07_DRUGS_001", "GROUP_JF7YD07_MANAGEMENT_DEMAND", "GROUP_JF7YD07_PATIENT_DIGNITY_001", "GROUP_JF7YD07_EQUIPMENT", "GROUP_JF7YD07_POSTNATAL_CARE", "GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2" FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {

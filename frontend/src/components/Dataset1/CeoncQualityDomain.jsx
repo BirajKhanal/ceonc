@@ -24,7 +24,7 @@ const CeoncQualityDomain = ({graphWidth}) => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('https://ceonc.herokuapp.com/ceoncqualitydomain', requestOptions)
+    let res = await fetch('http://0.0.0.0:4000/api/v1/ceoncqualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {

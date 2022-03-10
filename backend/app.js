@@ -20,13 +20,13 @@ app.use(
 //     console.log(`App running on port ${port}.`)
 // })
 
-app.get('/bebeoncqualitydomain', quality.BcBeoncQualityDomain)
-app.get('/bebeoncsignalfunction', quality.BcBeoncSignalFunction)
-app.get('/ceoncsignalfunction', quality.CeoncSignalFunction)
-app.get('/ceoncqualitydomain', quality.CeoncQualityDomain)
+app.get('/api/v1/bebeoncqualitydomain', quality.BcBeoncQualityDomain)
+app.get('/api/v1/bebeoncsignalfunction', quality.BcBeoncSignalFunction)
+app.get('/api/v1/ceoncsignalfunction', quality.CeoncSignalFunction)
+app.get('/api/v1/ceoncqualitydomain', quality.CeoncQualityDomain)
 
-app.get('/hfimplement', coaching.hfImplement)
-app.get('/knowledgeskill', coaching.knowledgeSkill)
+app.get('/api/v1/hfimplement', coaching.hfImplement)
+app.get('/api/v1/knowledgeskill', coaching.knowledgeSkill)
 
-app.listen(process.env.PORT || 3000, 
+app.listen(process.env.PORT || 4000, 
 	() => console.log("Server is running..."));
