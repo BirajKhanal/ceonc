@@ -4,7 +4,7 @@ services:
     image: ceonc-frontend:latest
     environment:
       PORT: "3000"
-      PROXY_API: "http://0.0.0.0:4000"
+      PROXY_API: "https://backend-ceonc.herokuapp.com"
     ports:
       - "3000:3000"
   ceonc-backend:

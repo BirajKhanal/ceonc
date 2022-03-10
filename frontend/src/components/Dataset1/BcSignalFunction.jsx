@@ -24,7 +24,7 @@ const BcSignalFunction = ({graphWidth}) => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://0.0.0.0:4000/api/v1/bebeoncsignalfunction', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/api/v1/bebeoncsignalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
