@@ -24,7 +24,7 @@ const HFImplement = ({graphWidth}) => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/api/v1/hfimplement', requestOptions)
+    let res = await fetch('/hf', requestOptions)
     let data = await res.json()
 
     if (res.ok) {

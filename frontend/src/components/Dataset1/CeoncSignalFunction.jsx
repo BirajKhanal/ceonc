@@ -12,8 +12,9 @@ import { dynamicGraph } from '../../utils/dynamicGraph';
 
 import { color } from '../color';
 
-const CeoncSignalFunction = ({graphWidth}) => {
+const CeoncSignalFunction = ({graphWidth, data4}) => {
   const [data, setData] = useState([])
+  const [dataYear, setDataYear] = useState([])
 
   const requestOptions = {
       method: 'GET',
@@ -23,8 +24,17 @@ const CeoncSignalFunction = ({graphWidth}) => {
       mode: 'cors'
   }
 
+  let year = "/"
+
+  if (data4 === "year") {
+    year = "/year"
+  }
+
+  let dataSort = year
+
+
   const getRequest = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/api/v1/ceoncsignalfunction', requestOptions)
+    let res = await fetch('/ceonc/signalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -32,31 +42,74 @@ const CeoncSignalFunction = ({graphWidth}) => {
     }
   }
 
+  const getRequestYear = async () => {
+    if (dataSort === "/year") {
+      let res = await fetch('/ceonc/qualitydomain/year', requestOptions)
+      let data = await res.json()
+
+      if (res.ok) {
+        setDataYear(data)
+      }
+    }
+  }
+
   useEffect(() => {
     getRequest()
-  }, [])
+    getRequestYear()
+  }, [dataSort])
 
-  return (
-    <div>
-      <div>
-        <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+  if (dataSort === "/year") {
+    return (
+      <div className='graphItems'>
+        {dataYear.map((items, index) => {
+          return (
+            <div key={index} className="graphItem">
+              <p className="text-center header-color">{items["year"]}</p>
+              <div>
+                <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+              </div>
+              <BarChart
+                width={dynamicGraph(graphWidth)}
+                height={300}
+                data={items["data"]}
+              >
+                <CartesianGrid strokeDasharray="9 9" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="good" stackId="a" fill={color.color_1} />
+                <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+                <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+              </BarChart>
+            </div>
+          )
+        })}
       </div>
-      <BarChart
-        width={dynamicGraph(graphWidth)}
-        height={300}
-        data={data}
-      >
-        <CartesianGrid strokeDasharray="9 9" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="good" stackId="a" fill={color.color_1} />
-        <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-        <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-      </BarChart>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div>
+        <div>
+          <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+        </div>
+        <BarChart
+          width={dynamicGraph(graphWidth)}
+          height={300}
+          data={data}
+        >
+          <CartesianGrid strokeDasharray="9 9" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="good" stackId="a" fill={color.color_1} />
+          <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+          <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+        </BarChart>
+      </div>
+    )
+  }
 }
 
 export default CeoncSignalFunction
