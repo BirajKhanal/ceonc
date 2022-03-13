@@ -34,7 +34,7 @@ const BcQualityDomain = ({graphWidth, data1}) => {
 
 
   const getRequest = async () => {
-    let res = await fetch('/bebeonc/qualitydomain', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -44,7 +44,7 @@ const BcQualityDomain = ({graphWidth, data1}) => {
 
   const getRequestYear = async () => {
     if (dataSort === "/year") {
-      let res = await fetch('/bebeonc/qualitydomain/year', requestOptions)
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {

@@ -33,7 +33,7 @@ const BcSignalFunction = ({graphWidth, data2}) => {
   let dataSort = year
 
   const getRequest = async () => {
-    let res = await fetch('/bebeonc/signalfunction', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -44,7 +44,7 @@ const BcSignalFunction = ({graphWidth, data2}) => {
   const getRequestYear = async () => {
     console.log(dataSort)
     if (dataSort === "/year") {
-      let res = await fetch('/bebeonc/signalfunction/year', requestOptions)
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {

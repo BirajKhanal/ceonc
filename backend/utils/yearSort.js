@@ -6,9 +6,9 @@ const sort3 = require('./ceoncqualitydomain')
 const sort4 = require('./ceoncsignalfunction')
 
 const yearSort = (data, type) => {
-    console.log(type)
     let data1 = []
     let data2 = []
+
     data.map((items) => {
         if (moment(items["_MARKED_AS_COMPLETE_DATE"]).format("YYYY") == "2021") {
             data1.push(items)
@@ -16,6 +16,7 @@ const yearSort = (data, type) => {
             data2.push(items)
         }
     })
+
     if (type === "bebeoncqualitydomain") {
         data1 = sort1.goodMediumPoorSort(data1)
         data2 = sort1.goodMediumPoorSort(data2)

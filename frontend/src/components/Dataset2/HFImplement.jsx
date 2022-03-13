@@ -24,7 +24,7 @@ const HFImplement = ({graphWidth}) => {
   }
 
   const getRequest = async () => {
-    let res = await fetch('/hf', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/hf', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -36,8 +36,6 @@ const HFImplement = ({graphWidth}) => {
     getRequest()
   }, [])
 
-
-  // console.log(beQuality)
 
   return (
     <div>

@@ -34,7 +34,7 @@ const CeoncSignalFunction = ({graphWidth, data4}) => {
 
 
   const getRequest = async () => {
-    let res = await fetch('/ceonc/signalfunction', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -44,7 +44,7 @@ const CeoncSignalFunction = ({graphWidth, data4}) => {
 
   const getRequestYear = async () => {
     if (dataSort === "/year") {
-      let res = await fetch('/ceonc/qualitydomain/year', requestOptions)
+      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {
