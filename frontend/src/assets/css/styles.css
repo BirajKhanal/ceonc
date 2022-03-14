@@ -91,6 +91,39 @@ ul {
 /* graphs layout design ends */
 /* main body styles ends */
 
+/* top container design start */
+.topContainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    gap: 2rem;
+    padding: 3rem;
+}
+.box {
+    max-width: 20rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1.2rem;
+    color: var(--white);
+    background-color: var(--primary);
+    box-shadow: -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
+}
+.select-dropdown {
+    width: 18rem;
+    margin-top: 1rem;
+    color: var(--primary);
+}
+.select-date {
+    width: 18rem;
+    height: 2rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    color: var(--primary);
+}
+/* top container design end */
+
 /* general styles */
 .text-center {
     text-align: center;
@@ -98,12 +131,17 @@ ul {
 }
 .header-color {
     color: #2e3035;
+    padding: 0.8rem;
 }
+.dash-count {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
 
 @media screen and (max-width: 1000px) {
     .mainContainer {
         display: block;
-        padding: 0.2rem;
     }
     .navContainer {
         position: relative;
@@ -131,6 +169,9 @@ ul {
     .graphItem {
         margin-left: -4.5%;
     }
+    .topContainer {
+        justify-content: center;
+    }
 }
 @media screen and (max-width: 694px) {
     .navItems {
@@ -141,26 +182,3 @@ ul {
         width: 100%;
     }
 }
-
-/* top container design start */
-.topContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 3rem;
-}
-.box {
-    max-width: 20rem;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 1.2rem;
-    color: var(--white);
-    background-color: var(--primary);
-    box-shadow: -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
-}
-.select-dropdown {
-    width: 18rem;
-    margin-top: 1rem;
-    color: var(--primary);
-}
-/* top container design end */

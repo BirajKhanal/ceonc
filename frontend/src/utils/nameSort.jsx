@@ -6,6 +6,7 @@ export const nameSort = (data) => {
         if(!names.includes(items["names"])){
             names.push(items["name"])
         }
+        return null
     })
     names.map((items) => {
         namesRe.push(
@@ -14,6 +15,7 @@ export const nameSort = (data) => {
                 value: ++count
             }
         )
+        return null
     })
     return namesRe
 }

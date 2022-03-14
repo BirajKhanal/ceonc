@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Select from 'react-select';
 
 import Dataset1 from '../Dataset1'
 import Dataset2 from '../Dataset2'
 import Dataset3 from '../Dataset3'
-import { nameSort } from '../../utils/nameSort';
+import { totalCount } from '../../utils/totalCount';
 
 export const Dashboard = ({graphWidth}) => {
-  const [data, setdata] = useState()
-  const [dataType, setDataType] = useState()
-  const [dataSortProvince, setDataSortProvince] = useState()
-  const [dataSortPalika, setDataSortPalika] = useState()
-  const [value1, setValue1] = useState()
-  const [value2, setValue2] = useState()
+  const [data, setData] = useState()
+  const [data1, setData1] = useState()
+  const [data2, setData2] = useState()
 
   const requestOptions = {
       method: 'GET',
@@ -22,69 +18,64 @@ export const Dashboard = ({graphWidth}) => {
       mode: 'cors'
   }
 
-  const getRequestProvince = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/province', requestOptions)
+  const getRequestBeCount = async () => {
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
-      setDataSortProvince(nameSort(data))
+      setData(totalCount(data))
     }
   }
 
-  const getRequestPalika = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/palika', requestOptions)
+  const getRequestCeCount = async () => {
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
-      setDataSortPalika(nameSort(data))
+      setData1(totalCount(data))
+    }
+  }
+
+  const getRequestPalikaCount = async () => {
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+    let data = await res.json()
+
+    if (res.ok) {
+      setData2(data.length)
     }
   }
 
   useEffect(() => {
-    getRequestProvince()
-    getRequestPalika()
+    getRequestBeCount()
+    getRequestCeCount()
+    getRequestPalikaCount()
   }, [])
 
   return (
-      <div>
-        <div className='topContainer'>
-            <div className="box" onClick={() => {
-              setdata("year")
-            }}>
-                Date
-            </div>
-            <div className="box">
-                Province
-                <Select 
-                  className="select-dropdown" 
-                  options={ dataSortProvince }
-                  value={value1}
-                  onChange={(option) => {
-                    setdata("province")
-                    setDataType(option["label"])
-                    setValue1(option)
-                    setValue2("")
-                  }}
-                />
-            </div>
-            <div className="box">
-                Palika
-                <Select 
-                  className="select-dropdown" 
-                  options={ dataSortPalika }
-                  value={value2}
-                  onChange={(option) => {
-                    setdata("palika")
-                    setDataType(option["label"])
-                    setValue2(option)
-                    setValue1("")
-                  }}
-                />
-            </div>
-        </div>
-        <Dataset1 graphWidth={graphWidth} data={data} dataType={dataType} location="dashboard"/>
-        <Dataset2 graphWidth={graphWidth} data={data} dataType={dataType}  location="dashboard"/>
-        <Dataset3 graphWidth={graphWidth} data={data} dataType={dataType}  location="dashboard"/>
+    <div>
+      <div className='topContainer'>
+          <div className="box">
+              BE/BEONC Highest Count
+              <div className="dash-count">
+                {data}
+              </div>
+          </div>
+          <div className="box">
+              CEONC Highest Count
+              <div className="dash-count">
+                {data1}
+              </div>
+          </div>
+          <div className="box">
+              Total No of Palika
+              <div className="dash-count">
+                {data2}
+              </div>
+          </div>
       </div>
+      <Dataset1 graphWidth={graphWidth}/>
+      <Dataset2 graphWidth={graphWidth}/>
+      <Dataset3 graphWidth={graphWidth}/>
+    </div>
   )
 }

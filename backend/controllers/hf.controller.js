@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const pool = require('../config/database')
 const sort = require('../utils/hfSort')
+const year = require('../utils/yearSort')
 const palikaProvince = require("../utils/palikaProvinceSort")
 
 const hfImplement = (request, response) => {
@@ -9,8 +10,25 @@ const hfImplement = (request, response) => {
         if (error) {
             throw "database retrive error in hf controller at hfimplement function"
         }
-        // countSort(results.rows)
         response.status(200).json(sort.countSort(results.rows))
+    })
+}
+
+const hfImplementMonth = (request, response) => {
+    pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
+        if (error) {
+            throw "database retrive error in hf controller at hfimplement function"
+        }
+        response.status(200).json(year.yearSort(results.rows, "hf", "month"))
+    })
+}
+
+const hfImplementAll = (request, response) => {
+    pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
+        if (error) {
+            throw "database retrive error in hf controller at hfimplement function"
+        }
+        response.status(200).json(year.yearSort(results.rows, "hf", "all"))
     })
 }
 
@@ -43,6 +61,8 @@ const hfImplementPalika = (request, response) => {
 
 module.exports = {
     hfImplement,
+    hfImplementMonth,
+    hfImplementAll,
     hfImplementProvince,
     hfImplementPalika
 }

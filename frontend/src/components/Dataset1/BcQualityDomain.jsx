@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   BarChart,
   Bar,
@@ -32,10 +32,14 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     filterType = "province"
   } else if (data1 === "palika") {
     filterType = "palika"
+  } else if (data1 === "all") {
+    filterType = "all"
+  } else if (data1 === "month") {
+    filterType = "month"
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/qualitydomain', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -45,21 +49,35 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
 
   const getRequestYear = async () => {
     if (filterType === "year") {
-      let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/year', requestOptions)
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {
         setDataSort(data)
       }
     } else if (filterType === "province") {
-        let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/province', requestOptions)
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
           setDataSort(data)
         }
     } else if (filterType === "palika") {
-        let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/palika', requestOptions)
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+        let data = await res.json()
+
+        if (res.ok) {
+          setDataSort(data)
+        }
+    } else if (filterType === "all") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/all', requestOptions)
+        let data = await res.json()
+
+        if (res.ok) {
+          setDataSort(data)
+        }
+    } else if (filterType === "month") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/month', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
@@ -72,7 +90,6 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     getRequest()
     getRequestYear()
   }, [filterType])
-
 
   if (filterType !== "default") {
     return (
@@ -102,6 +119,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
               </div>
             )
           }
+          return null
         })}
       </div>
     )

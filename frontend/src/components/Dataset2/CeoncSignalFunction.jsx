@@ -32,10 +32,14 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     filterType = "province"
   } else if (data4 === "palika") {
     filterType = "palika"
+  } else if (data4 === "all") {
+    filterType = "all"
+  } else if (data4 === "month") {
+    filterType = "month"
   }
 
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/ceonc/signalfunction', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -45,21 +49,35 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
 
   const getRequestYear = async () => {
     if (filterType === "year") {
-      let res = await fetch('http://localhost:4000/ceonc/signalfunction/year', requestOptions)
+      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {
         setDataSort(data)
       }
     } else if (filterType === "province") {
-        let res = await fetch('http://localhost:4000/ceonc/signalfunction/province', requestOptions)
+        let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/province', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
           setDataSort(data)
         }
     } else if (filterType === "palika") {
-        let res = await fetch('http://localhost:4000/ceonc/signalfunction/palika', requestOptions)
+        let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/palika', requestOptions)
+        let data = await res.json()
+
+        if (res.ok) {
+          setDataSort(data)
+        }
+    } else if (filterType === "all") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/all', requestOptions)
+        let data = await res.json()
+
+        if (res.ok) {
+          setDataSort(data)
+        }
+    } else if (filterType === "month") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/month', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
@@ -101,6 +119,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
               </div>
             )
           }
+          return null
         })}
       </div>
     )

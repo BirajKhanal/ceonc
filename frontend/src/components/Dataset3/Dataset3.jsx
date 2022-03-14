@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import Select from 'react-select';
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css"
 
 import HFImplement from './HFImplement'
-import { nameSort } from '../../utils/nameSort';
+import { nameSort } from '../../utils';
+
+const moment = require('moment')
 
 const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dataNew, setDataNew] = useState()
@@ -11,6 +15,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dataSortPalika, setDataSortPalika] = useState()
   const [value1, setValue1] = useState()
   const [value2, setValue2] = useState()
+  const [startDate, setStartDate] = useState(new Date());
+  const [startDate1, setStartDate1] = useState(new Date());
 
 
   const requestOptions = {
@@ -22,7 +28,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   }
 
   const getRequestProvince = async () => {
-    let res = await fetch('http://localhost:4000/hf/province', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -31,7 +37,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   }
 
   const getRequestPalika = async () => {
-    let res = await fetch('http://localhost:4000/hf/palika', requestOptions)
+    let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -50,10 +56,33 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
       {location === "nav"
       ? (
         <div className='topContainer'>
-            <div className="box" onClick={() => {
-              setDataNew("year")
-            }}>
+            <div className="box">
+                Month
+                <DatePicker
+                  className="select-date"
+                  selected={startDate}
+                  maxDate={new Date()}
+                  onChange={(date) => {
+                    setStartDate(date)
+                    setDataNew("month")
+                    setDataTypeNew(moment(date).format("YYYY MMMM"))
+                  }}
+                  dateFormat="MM/yyyy"
+                  showMonthYearPicker
+                />
+            </div>
+            <div className="box">
                 Date
+                <DatePicker
+                  className="select-date"
+                  selected={startDate1}
+                  maxDate={new Date()}
+                  onChange={(date) => {
+                    setStartDate1(date)
+                    setDataNew("all")
+                    setDataTypeNew(moment(date).format("YYYY MMMM DD"))
+                  }}
+                />
             </div>
             <div className="box">
                 Province
