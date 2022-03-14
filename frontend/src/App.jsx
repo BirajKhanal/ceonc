@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-// import Dataset1 from './components/Dataset1';
-// import Dataset2 from './components/Dataset2';
+import Dataset1 from './components/Dataset1';
+import Dataset2 from './components/Dataset2';
+import Dataset3 from './components/Dataset3';
 import { Dashboard } from './components/Dashboard';
 
 const App = () => {
@@ -9,7 +10,9 @@ const App = () => {
   const [width, setWidth] = useState()
   const bodySwitch = {
     "1" : <Dashboard graphWidth={width}/>,
-    // "2" : <Dataset2 graphWidth={width}/>,
+    "2" : <Dataset1 graphWidth={width} location="nav"/>,
+    "3" : <Dataset2 graphWidth={width} location="nav"/>,
+    "4" : <Dataset3 graphWidth={width} location="nav"/>,
   }
 
   const listRef = useRef(0)
@@ -50,11 +53,20 @@ const App = () => {
           <li className="navItem select" onClick={() => {
             navSelect(1)
             setSwitchSelect("1")
+            window.location.reload(false)
           }}>Dashboard</li>
-          {/* <li className="navItem" onClick={() => {
+          <li className="navItem" onClick={() => {
             navSelect(2)
             setSwitchSelect("2")
-          }}>Onsite Clinical Coaching Mentoring</li> */}
+          }}>BE/BEONC</li>
+          <li className="navItem" onClick={() => {
+            navSelect(3)
+            setSwitchSelect("3")
+          }}>CEONC</li>
+          <li className="navItem" onClick={() => {
+            navSelect(4)
+            setSwitchSelect("4")
+          }}>Onsite Clinical Coaching Mentoring</li>
         </ul>
       </nav>
       <div className="mainBodyContainer">

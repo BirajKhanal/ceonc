@@ -9,11 +9,11 @@ import {
     Legend
 } from "recharts";
 
-import { color } from '../color';
 import { dynamicGraph } from '../../utils/dynamicGraph';
+import { color } from '../color';
 
-const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
-  const [data, setdata] = useState([])
+const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
+  const [data, setData] = useState([])
   const [dataSort, setDataSort] = useState([])
 
   const requestOptions = {
@@ -26,40 +26,41 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
 
   let filterType = "default"
 
-  if (data2 === "year") {
+  if (data3 === "year") {
     filterType = "year"
-  } else if (data2 === "province") {
+  } else if (data3 === "province") {
     filterType = "province"
-  } else if (data2 === "palika") {
+  } else if (data3 === "palika") {
     filterType = "palika"
   }
 
+
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/signalfunction', requestOptions)
+    let res = await fetch('http://localhost:4000/ceonc/qualitydomain', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
-      setdata(data)
+      setData(data)
     }
   }
 
   const getRequestYear = async () => {
     if (filterType === "year") {
-      let res = await fetch('http://localhost:4000/bebeonc/signalfunction/year', requestOptions)
+      let res = await fetch('http://localhost:4000/ceonc/qualitydomain/year', requestOptions)
       let data = await res.json()
 
       if (res.ok) {
         setDataSort(data)
       }
     } else if (filterType === "province") {
-        let res = await fetch('http://localhost:4000/bebeonc/signalfunction/province', requestOptions)
+        let res = await fetch('http://localhost:4000/ceonc/qualitydomain/province', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
           setDataSort(data)
         }
     } else if (filterType === "palika") {
-        let res = await fetch('http://localhost:4000/bebeonc/signalfunction/palika', requestOptions)
+        let res = await fetch('http://localhost:4000/ceonc/qualitydomain/palika', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
@@ -77,12 +78,12 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
-          if (items["name"] === dataType2) {
+          if (items["name"] === dataType3) {
             return (
               <div key={index} className='graphItem'>
                 <p className="text-center header-color">{items["name"]}</p>
                 <div>
-                  <p className="text-center header-color">No of BC/BEONC status in 7 Signal Function</p>
+                  <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
                 </div>
                 <BarChart
                   width={dynamicGraph(graphWidth)}
@@ -108,7 +109,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     return (
       <div>
         <div>
-          <p className="text-center header-color">No of BC/BEONC status in 7 Signal Function</p>
+          <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
@@ -129,4 +130,4 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
   }
 }
 
-export default BcSignalFunction
+export default CeoncQualityDomain

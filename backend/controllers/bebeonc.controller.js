@@ -5,7 +5,7 @@ const sort1 = require('../utils/bcqualitydomain')
 const sort2 = require('../utils/bcsignalfunction')
 const year = require('../utils/yearSort')
 // const sort3 = require('../utils/gmpsort')
-const palika = require('../utils/palikaSort')
+const palikaProvince = require('../utils/palikaProvinceSort')
 
 const BcBeoncQualityDomain = (request, response) => {
     pool.query(`SELECT "GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK", "GROUP_JF7YD07_PARTOGRAPH", "GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2", "GROUP_JF7YD07_STAFFING_001", "GROUP_JF7YD07_REFERRAL_FULL_MARKS_3", "GROUP_JF7YD07_MANAGEMENT", "GROUP_JF7YD07_WATER_AND_SANITATION_FULL_MARK", "GROUP_JF7YD07_DRUGS_001", "GROUP_JF7YD07_MANAGEMENT_DEMAND", "GROUP_JF7YD07_PATIENT_DIGNITY_001", "GROUP_JF7YD07_EQUIPMENT", "GROUP_JF7YD07_POSTNATAL_CARE", "GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2" FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {
@@ -31,7 +31,7 @@ const BcBeoncQualityDomainYear = (request, response) => {
         if (error) {
             throw "database retrive error in bebeonc controller at bcbeoncqualitydomainyear function"
         }
-        response.status(200).json(year.yearSort(results.rows, "bebeoncqualitydomain"))
+        response.status(200).json(year.yearSort(results.rows, "bcqd"))
     })
 }
 
@@ -40,7 +40,7 @@ const BcBeoncSignalFunctionYear = (request, response) => {
         if (error) {
             throw "database retrive error in bebeonc controller at bcbeoncsignalfunctionyear function"
         }
-        response.status(200).json(year.yearSort(results.rows, "bebeoncsignalfunction"))
+        response.status(200).json(year.yearSort(results.rows, "bcsf"))
     })
 }
 
@@ -49,7 +49,7 @@ const BcBeoncQualityDomainProvince = (request, response) => {
         if (error) {
             throw "database retrive error in bebeonc controller at bcbeoncqualitydomainprovince function"
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "bcqd", "province"))
     })
 }
 
@@ -58,7 +58,7 @@ const BcBeoncSignalFunctionProvince = (request, response) => {
         if (error) {
             throw "database retrive error in bebeonc controller at bcbeoncsignalfunctionprovince function"
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "bcsf", "province"))
     })
 }
 
@@ -68,7 +68,7 @@ const BcBeoncQualityDomainPalika = (request, response) => {
             throw "database retrive error in bebeonc controller at bcbeoncqualitydomainpalika function"
         }
         // palika.palikaSort(results.rows)
-        response.status(200).json(palika.palikaSort(results.rows, "bcqd"))
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "bcqd", "palika"))
     })
 }
 
@@ -77,7 +77,7 @@ const BcBeoncSignalFunctionPalika = (request, response) => {
         if (error) {
             throw "database retrive error in bebeonc controller at bcbeoncsignalfunctionpalika function"
         }
-        response.status(200).json(palika.palikaSort(results.rows, "bcsf"))
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "bcsf", "palika"))
     })
 }
 

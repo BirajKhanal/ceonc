@@ -4,7 +4,7 @@ const pool = require("../config/database")
 const sort1 = require('../utils/ceoncqualitydomain')
 const sort2 = require('../utils/ceoncsignalfunction')
 const year = require('../utils/yearSort')
-const palika = require("../utils/palikaSort")
+const palikaProvince = require("../utils/palikaProvinceSort")
 
 const CeoncQualityDomain = (request, response) => {
     pool.query(`SELECT "GROUP_FZ43E09_INFECTION_PREVENTION", "GROUP_FZ43E09_CLINICAL_PRACTICE", "GROUP_FZ43E09_STAFFING", "GROUP_FZ43E09_INFRASTRUCTURE", "GROUP_FZ43E09_PATIENT_DIGNITY", "GROUP_FZ43E09_DRUGS", "GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT", "GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"  FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {
@@ -28,7 +28,7 @@ const CeoncQualityDomainYear = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncqualitydomainyear function"
         }
-        response.status(200).json(year.yearSort(results.rows, "ceoncqualitydomain"))
+        response.status(200).json(year.yearSort(results.rows, "cqd"))
     })
 }
 const CeoncSignalFunctionYear = (request, response) => {
@@ -36,7 +36,7 @@ const CeoncSignalFunctionYear = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncsignalfunctionyear function"
         }
-        response.status(200).json(year.yearSort(results.rows, "ceoncsignalfunction"))
+        response.status(200).json(year.yearSort(results.rows, "csf"))
     })
 }
 const CeoncQualityDomainProvince = (request, response) => {
@@ -44,7 +44,7 @@ const CeoncQualityDomainProvince = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncqualitydomainprovince function"
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "cqd", "province"))
     })
 }
 const CeoncSignalFunctionProvince = (request, response) => {
@@ -52,7 +52,7 @@ const CeoncSignalFunctionProvince = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncsignalfunctionprovince function"
         }
-        response.status(200).json(results.rows)
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "csf", "province"))
     })
 }
 const CeoncQualityDomainPalika = (request, response) => {
@@ -60,7 +60,7 @@ const CeoncQualityDomainPalika = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncqualitydomainpalika function"
         }
-        response.status(200).json(palika.palikaSort(results.rows, "cqd"))
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "cqd", "palika"))
     })
 }
 const CeoncSignalFunctionPalika = (request, response) => {
@@ -68,7 +68,7 @@ const CeoncSignalFunctionPalika = (request, response) => {
         if (error) {
             throw "database retrive error in ceonc controller at ceoncsignalfunctionpalika function"
         }
-        response.status(200).json(palika.palikaSort(results.rows, "csf"))
+        response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "csf", "palika"))
     })
 }
 

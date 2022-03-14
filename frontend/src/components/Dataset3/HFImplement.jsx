@@ -8,13 +8,23 @@ import {
     Tooltip,
     Legend
 } from "recharts";
-
-import { color } from '../color';
 import { dynamicGraph } from '../../utils/dynamicGraph';
 
-const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
-  const [data, setdata] = useState([])
+import { color } from '../color';
+
+const HFImplement = ({graphWidth, data, dataType}) => {
+  const [hfImplement, setHfImplement] = useState([])
   const [dataSort, setDataSort] = useState([])
+
+  let filterType = "default"
+
+  if (data === "year") {
+    filterType = "default"
+  } else if (data === "province") {
+    filterType = "province"
+  } else if (data === "palika") {
+    filterType = "palika"
+  }
 
   const requestOptions = {
       method: 'GET',
@@ -24,42 +34,25 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
       mode: 'cors'
   }
 
-  let filterType = "default"
-
-  if (data2 === "year") {
-    filterType = "year"
-  } else if (data2 === "province") {
-    filterType = "province"
-  } else if (data2 === "palika") {
-    filterType = "palika"
-  }
-
   const getRequest = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/signalfunction', requestOptions)
+    let res = await fetch('http://localhost:4000/hf', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
-      setdata(data)
+      setHfImplement(data)
     }
   }
 
   const getRequestYear = async () => {
-    if (filterType === "year") {
-      let res = await fetch('http://localhost:4000/bebeonc/signalfunction/year', requestOptions)
-      let data = await res.json()
-
-      if (res.ok) {
-        setDataSort(data)
-      }
-    } else if (filterType === "province") {
-        let res = await fetch('http://localhost:4000/bebeonc/signalfunction/province', requestOptions)
+    if (filterType === "province") {
+        let res = await fetch('http://localhost:4000/hf/province', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
           setDataSort(data)
         }
     } else if (filterType === "palika") {
-        let res = await fetch('http://localhost:4000/bebeonc/signalfunction/palika', requestOptions)
+        let res = await fetch('http://localhost:4000/hf/palika', requestOptions)
         let data = await res.json()
 
         if (res.ok) {
@@ -77,12 +70,12 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
-          if (items["name"] === dataType2) {
+          if (items["name"] === dataType) {
             return (
               <div key={index} className='graphItem'>
-                <p className="text-center header-color">{items["name"]}</p>
+                <p className='text-center header-color'>{items["name"]}</p>
                 <div>
-                  <p className="text-center header-color">No of BC/BEONC status in 7 Signal Function</p>
+                  <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
                 </div>
                 <BarChart
                   width={dynamicGraph(graphWidth)}
@@ -90,13 +83,12 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
                   data={items["data"]}
                 >
                   <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="year" />
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="good" stackId="a" fill={color.color_1} />
-                  <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-                  <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+                  <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
+                  <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
                 </BarChart>
               </div>
             )
@@ -108,25 +100,24 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     return (
       <div>
         <div>
-          <p className="text-center header-color">No of BC/BEONC status in 7 Signal Function</p>
+          <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
           height={300}
-          data={data}
+          data={hfImplement}
         >
           <CartesianGrid strokeDasharray="9 9" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="year" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="good" stackId="a" fill={color.color_1} />
-          <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-          <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+          <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
+          <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
         </BarChart>
       </div>
     )
   }
 }
 
-export default BcSignalFunction
+export default HFImplement

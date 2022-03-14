@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Select from 'react-select';
 
-import CeoncQualityDomain from './CeoncQualityDomain'
-import CeoncSignalFunction from './CeoncSignalFunction'
+import HFImplement from './HFImplement'
 import { nameSort } from '../../utils/nameSort';
 
-const Dataset2 = ({graphWidth, data, dataType, location}) => {
+const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dataNew, setDataNew] = useState()
   const [dataTypeNew, setDataTypeNew] = useState()
   const [dataSortProvince, setDataSortProvince] = useState()
@@ -23,7 +22,7 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
   }
 
   const getRequestProvince = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/province', requestOptions)
+    let res = await fetch('http://localhost:4000/hf/province', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -32,7 +31,7 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
   }
 
   const getRequestPalika = async () => {
-    let res = await fetch('http://localhost:4000/bebeonc/qualitydomain/palika', requestOptions)
+    let res = await fetch('http://localhost:4000/hf/palika', requestOptions)
     let data = await res.json()
 
     if (res.ok) {
@@ -44,6 +43,7 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
     getRequestProvince()
     getRequestPalika()
   }, [])
+
 
   return (
     <div>
@@ -86,17 +86,14 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
         </div>
       ): null
       }
-        <h1 className="text-center header-color">Quality Improvement Process Reporting CEONC</h1>
-        <div className="graphItemsContainer">
-          <div className="graphItemContainer">
-              <CeoncQualityDomain graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
-          </div>
-          <div className="graphItemContainer">
-              <CeoncSignalFunction graphWidth={graphWidth} data4={data || dataNew} dataType4={dataType || dataTypeNew}/>
+        <h1 className="text-center header-color">Onsite Clinical Coaching Mentoring</h1>
+        <div className="graphItems">
+          <div className="graphItem">
+              <HFImplement graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
           </div>
         </div>
     </div>
   )
 }
 
-export default Dataset2
+export default Dataset1
