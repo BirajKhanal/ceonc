@@ -18,38 +18,50 @@ export const Dashboard = ({graphWidth}) => {
       mode: 'cors'
   }
 
-  const getRequestBeCount = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setData(totalCount(data))
-    }
-  }
-
-  const getRequestCeCount = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setData1(totalCount(data))
-    }
-  }
-
-  const getRequestPalikaCount = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setData2(data.length)
-    }
-  }
 
   useEffect(() => {
+    let dismount = false
+
+    const getRequestBeCount = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setData(totalCount(data))
+        }
+      }
+    }
+
+    const getRequestCeCount = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setData1(totalCount(data))
+        }
+      }
+    }
+
+    const getRequestPalikaCount = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setData2(data.length)
+        }
+      }
+    }
+
     getRequestBeCount()
     getRequestCeCount()
     getRequestPalikaCount()
-  }, [])
+    return () => {
+      dismount = true
+    }
+  }, [data])
 
   return (
     <div>

@@ -38,57 +38,74 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     filterType = "month"
   }
 
-  const getRequest = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction', requestOptions)
-    let data = await res.json()
+  useEffect(() => {
+    let dismount = false
 
-    if (res.ok) {
-      setdata(data)
-    }
-  }
-
-  const getRequestYear = async () => {
-    if (filterType === "year") {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/year', requestOptions)
+    const getRequest = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction', requestOptions)
       let data = await res.json()
 
-      if (res.ok) {
-        setDataSort(data)
+      if (!dismount) {
+        if (res.ok) {
+          setdata(data)
+        }
       }
-    } else if (filterType === "province") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/province', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "palika") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/palika', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "all") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/all', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "month") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/month', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
     }
-  }
 
-  useEffect(() => {
+    const getRequestYear = async () => {
+      if (filterType === "year") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/year', requestOptions)
+        let data = await res.json()
+
+        if (!dismount) {
+          if (res.ok) {
+            setDataSort(data)
+          }
+        }
+      } else if (filterType === "province") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/province', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "palika") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/palika', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "all") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/all', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "month") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/signalfunction/month', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      }
+    }
+
     getRequest()
     getRequestYear()
+    return () => {
+      dismount = true
+    }
   }, [filterType])
 
   if (filterType !== "default") {

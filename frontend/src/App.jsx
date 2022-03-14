@@ -53,7 +53,6 @@ const App = () => {
           <li className="navItem select" onClick={() => {
             navSelect(1)
             setSwitchSelect("1")
-            window.location.reload(false)
           }}>Dashboard</li>
           <li className="navItem" onClick={() => {
             navSelect(2)

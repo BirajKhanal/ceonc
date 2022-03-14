@@ -18,7 +18,6 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [startDate, setStartDate] = useState(new Date());
   const [startDate1, setStartDate1] = useState(new Date());
 
-
   const requestOptions = {
       method: 'GET',
       headers: {
@@ -27,27 +26,36 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
       mode: 'cors'
   }
 
-  const getRequestProvince = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setDataSortProvince(nameSort(data))
-    }
-  }
-
-  const getRequestPalika = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setDataSortPalika(nameSort(data))
-    }
-  }
-
   useEffect(() => {
+    let dismount = false
+
+    const getRequestProvince = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setDataSortProvince(nameSort(data))
+        }
+      }
+    }
+
+    const getRequestPalika = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setDataSortPalika(nameSort(data))
+        }
+      }
+    }
+
     getRequestProvince()
     getRequestPalika()
+    return () => {
+      dismount = true
+    }
   }, [])
 
 

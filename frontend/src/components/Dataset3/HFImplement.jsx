@@ -38,50 +38,64 @@ const HFImplement = ({graphWidth, data, dataType}) => {
       mode: 'cors'
   }
 
-  const getRequest = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/hf', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setHfImplement(data)
-    }
-  }
-
-  const getRequestYear = async () => {
-    if (filterType === "province") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "palika") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "all") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/hf/all', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "month") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/hf/month', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    }
-  }
-
   useEffect(() => {
+    let dismount = false
+    const getRequest = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/hf', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setHfImplement(data)
+        }
+      }
+    }
+
+    const getRequestYear = async () => {
+      if (filterType === "province") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "palika") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "all") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/all', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "month") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/month', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      }
+    }
+
     getRequest()
     getRequestYear()
+    return () => {
+      dismount = true
+    }
   }, [filterType])
 
   if (filterType !== "default") {

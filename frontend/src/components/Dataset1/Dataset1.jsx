@@ -31,38 +31,49 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
       mode: 'cors'
   }
 
-  const getRequestYear = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setDataSortYear(yearList(data))
-    }
-  }
-
-  const getRequestProvince = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setDataSortProvince(nameSort(data))
-    }
-  }
-
-  const getRequestPalika = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setDataSortPalika(nameSort(data))
-    }
-  }
-
   useEffect(() => {
+    let dismount = false
+
+    const getRequestYear = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setDataSortYear(yearList(data))
+        }
+      }
+    }
+
+    const getRequestProvince = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setDataSortProvince(nameSort(data))
+        }
+      }
+    }
+
+    const getRequestPalika = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setDataSortPalika(nameSort(data))
+        }
+      }
+    }
+
     getRequestYear()
     getRequestProvince()
     getRequestPalika()
-  }, [])
+    return () => {
+      dismount = true
+    }
+  }, [data])
 
   return (
     <div>

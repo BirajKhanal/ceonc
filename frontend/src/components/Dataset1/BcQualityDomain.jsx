@@ -38,57 +38,75 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     filterType = "month"
   }
 
-  const getRequest = async () => {
-    let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
-    let data = await res.json()
-
-    if (res.ok) {
-      setBcQualityDomain(data)
-    }
-  }
-
-  const getRequestYear = async () => {
-    if (filterType === "year") {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
-      let data = await res.json()
-
-      if (res.ok) {
-        setDataSort(data)
-      }
-    } else if (filterType === "province") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "palika") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "all") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/all', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    } else if (filterType === "month") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/month', requestOptions)
-        let data = await res.json()
-
-        if (res.ok) {
-          setDataSort(data)
-        }
-    }
-  }
 
   useEffect(() => {
+    let dismount = false
+
+    const getRequest = async () => {
+      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let data = await res.json()
+
+      if (!dismount) {
+        if (res.ok) {
+          setBcQualityDomain(data)
+        }
+      }
+    }
+
+    const getRequestYear = async () => {
+      if (filterType === "year") {
+        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
+        let data = await res.json()
+
+        if (!dismount) {
+          if (res.ok) {
+            setDataSort(data)
+          }
+        }
+      } else if (filterType === "province") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "palika") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "all") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/all', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      } else if (filterType === "month") {
+          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/month', requestOptions)
+          let data = await res.json()
+
+          if (!dismount) {
+            if (res.ok) {
+              setDataSort(data)
+            }
+          }
+      }
+    }
     getRequest()
     getRequestYear()
+
+    return () => {
+      dismount = true
+    }
   }, [filterType])
 
   if (filterType !== "default") {
