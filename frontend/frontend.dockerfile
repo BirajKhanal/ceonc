@@ -6,8 +6,8 @@ RUN mkdir -p /app
 # The /app directory should act as the main application directory
 WORKDIR /app
 
-# Copy the app package and package-lock.json file
-COPY frontend/package*.json ./
+# Copy the app package file
+COPY frontend/package.json ./
 
 # Install node packages
 RUN npm install
