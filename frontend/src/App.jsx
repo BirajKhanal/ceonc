@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div className='mainContainer' ref={listRef}>
       <nav className="navContainer">
-        <h2 className="navHeader">CEONC Dashboard</h2>
+        <h2 className="navHeader">ODK Dashboard</h2>
         <ul className="navItems" id="items">
           <li className="navItem select" onClick={() => {
             navSelect(1)
