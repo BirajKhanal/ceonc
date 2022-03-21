@@ -119,7 +119,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
     return () => {
       dismount = true
     }
-  }, [filterType])
+  }, [dataType])
 
   if (filterType !== "default") {
     return (
