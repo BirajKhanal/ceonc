@@ -4,6 +4,7 @@ const pool = require('../config/database')
 const sort = require('../utils/hfSort')
 const year = require('../utils/yearSort')
 const palikaProvince = require("../utils/palikaProvinceSort")
+const filter = require("../utils/filter")
 
 const hfImplement = (request, response) => {
     pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
@@ -49,6 +50,16 @@ const hfImplementPalika = (request, response) => {
         response.status(200).json(palikaProvince.palikaProvinceSort(results.rows, "hf", "palika"))
     })
 }
+
+const hfImplementFilter = (request, response) => {
+    pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT", "PALIKA", "PROVINCE" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
+        if (error) {
+            throw "database retrive error in hf controller at hfimplementpalika function"
+        }
+        response.status(200).json(filter.filter(results.rows, request.body, "hf"))
+    })
+}
+
 // const knowledgeSkill = (request, response) => {
 //     pool.query(`SELECT "GROUP_GE4VE00_KNOWLEDGE_ASSESSMENT_SCORE", "GROUP_JY6HV93_PANTOGRAPH_PLOTTING_SCORE", "GROUP_JY6HV93_MANAGEMENT_OF_SHOCK_DUE_TO_PPH", "GROUP_JY6HV93_MANAGEMENT_OF_SEVERE_PRE_ECLAM", "GROUP_JY6HV93_REFERRAL_PROCEDURE_SCORE", "GROUP_CG7GG78__9_2_5_CONDUCT_NORMAL_DELIVERY", "GROUP_CG7GG78_CONDUCT_VACUUM_DELIVERY_AT_CE", "GROUP_CG7GG78_NEW_BORN_RESUSCITATION_SCPRES", "GROUP_CG7GG78_CONDOM_TAMPONADE_SCORE", "GROUP_CG7GG78_KANGAROO_MOTHER_CARE_SCORE", "GROUP_CG7GG78_MANUAL_VACUUM_ASPIRATION_SORE" FROM odk_prod."TOOL_1_NEW_GROUP_SV5UJ09"`, (error, results) => {
 //         if (error) {
@@ -64,7 +75,6 @@ module.exports = {
     hfImplementMonth,
     hfImplementAll,
     hfImplementProvince,
-    hfImplementPalika
+    hfImplementPalika,
+    hfImplementFilter
 }
-
-

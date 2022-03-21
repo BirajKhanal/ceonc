@@ -42,7 +42,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction', requestOptions)
+      let res = await fetch('/ceonc/signalfunction', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -53,8 +53,21 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     }
 
     const getRequestYear = async () => {
-      if (filterType === "year") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/year', requestOptions)
+      if (filterType === "all") {
+        let requestOptionsBody = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              "date": dataType4["date"],
+              "province": dataType4["province"],
+              "palika": dataType4["palika"]
+            }), 
+            mode: 'cors'
+        }
+
+        let res = await fetch('/ceonc/qualitydomain/filter', requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -62,43 +75,53 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             setDataSort(data)
           }
         }
-      } else if (filterType === "province") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/province', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "palika") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/palika', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "all") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/all', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "month") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/signalfunction/month', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
       }
+      // if (filterType === "year") {
+      //   let res = await fetch('/ceonc/signalfunction/year', requestOptions)
+      //   let data = await res.json()
+
+      //   if (!dismount) {
+      //     if (res.ok) {
+      //       setDataSort(data)
+      //     }
+      //   }
+      // } else if (filterType === "province") {
+      //     let res = await fetch('/ceonc/signalfunction/province', requestOptions)
+      //     let data = await res.json()
+
+      //     if (!dismount) {
+      //       if (res.ok) {
+      //         setDataSort(data)
+      //       }
+      //     }
+      // } else if (filterType === "palika") {
+      //     let res = await fetch('/ceonc/signalfunction/palika', requestOptions)
+      //     let data = await res.json()
+
+      //     if (!dismount) {
+      //       if (res.ok) {
+      //         setDataSort(data)
+      //       }
+      //     }
+      // } else if (filterType === "all") {
+      //     let res = await fetch('/ceonc/signalfunction/all', requestOptions)
+      //     let data = await res.json()
+
+      //     if (!dismount) {
+      //       if (res.ok) {
+      //         setDataSort(data)
+      //       }
+      //     }
+      // } else if (filterType === "month") {
+      //     let res = await fetch('/ceonc/signalfunction/month', requestOptions)
+      //     let data = await res.json()
+
+      //     if (!dismount) {
+      //       if (res.ok) {
+      //         setDataSort(data)
+      //       }
+      //     }
+      // }
     }
 
     getRequest()
@@ -106,37 +129,34 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     return () => {
       dismount = true
     }
-  }, [filterType])
+  }, [dataType4])
 
   if (filterType !== "default") {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
-          if (items["name"] === dataType4) {
-            return (
-              <div key={index} className="graphItem">
-                <p className="text-center header-color">{items["name"]}</p>
-                <div>
-                  <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
-                </div>
-                <BarChart
-                  width={dynamicGraph(graphWidth)}
-                  height={300}
-                  data={items["data"]}
-                >
-                  <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="good" stackId="a" fill={color.color_1} />
-                  <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-                  <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-                </BarChart>
+          return (
+            <div key={index} className="graphItem">
+              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+              <div>
+                <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
               </div>
-            )
-          }
-          return null
+              <BarChart
+                width={dynamicGraph(graphWidth)}
+                height={300}
+                data={items["data"]}
+              >
+                <CartesianGrid strokeDasharray="9 9" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="good" stackId="a" fill={color.color_1} />
+                <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+                <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+              </BarChart>
+            </div>
+          )
         })}
       </div>
     )

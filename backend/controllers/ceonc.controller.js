@@ -5,6 +5,7 @@ const sort1 = require('../utils/ceoncqualitydomain')
 const sort2 = require('../utils/ceoncsignalfunction')
 const year = require('../utils/yearSort')
 const palikaProvince = require("../utils/palikaProvinceSort")
+const filter = require("../utils/filter")
 
 const CeoncQualityDomain = (request, response) => {
     pool.query(`SELECT "GROUP_FZ43E09_INFECTION_PREVENTION", "GROUP_FZ43E09_CLINICAL_PRACTICE", "GROUP_FZ43E09_STAFFING", "GROUP_FZ43E09_INFRASTRUCTURE", "GROUP_FZ43E09_PATIENT_DIGNITY", "GROUP_FZ43E09_DRUGS", "GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT", "GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"  FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {
@@ -112,6 +113,24 @@ const CeoncSignalFunctionPalika = (request, response) => {
     })
 }
 
+const CeoncQualityDomainFilter = (request, response) => {
+    pool.query(`SELECT "GROUP_FZ43E09_INFECTION_PREVENTION", "GROUP_FZ43E09_CLINICAL_PRACTICE", "GROUP_FZ43E09_STAFFING", "GROUP_FZ43E09_INFRASTRUCTURE", "GROUP_FZ43E09_PATIENT_DIGNITY", "GROUP_FZ43E09_DRUGS", "GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT", "GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14", "_3_PALIKA", "_1_PROVINCE", "_6_DATE_OF_SELF_ASSESSMENT"  FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {
+        if (error) {
+            throw "database retrive error in ceonc controller at ceoncqualitydomain function"
+        }
+        response.status(200).json(filter.filter(results.rows, request.body, "cqd"))
+    })
+}
+
+const CeoncSignalFunctionFilter = (request, response) => {
+    pool.query(`SELECT "GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA", "GROUP_FT6ZY60_NEW_BORN_RESUSCITATION_FULL_MA", "GROUP_FT6ZY60_ASSISTED_VAGINAL_DELIVERY_VAC", "GROUP_FT6ZY60_PARENTERAL_UTEROTONIC_DRUGS", "GROUP_FT6ZY60_PARENTERAL_ANTIBIOTICS_MOTHER", "GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT", "GROUP_FT6ZY60_REMOVAL_OF_RETAINED_PRODUCTS_O", "GROUP_FT6ZY60_PERFORM_BLOOD_TRANSFUSION", "GROUP_FT6ZY60_PERFORM_SURGERY", "_3_PALIKA", "_1_PROVINCE", "_6_DATE_OF_SELF_ASSESSMENT" FROM odk_prod."TOOL_2_NEW_CORE"`, (error, results) => {
+        if (error) {
+            throw "database retrive error in ceonc controller at ceoncsignalfunction function"
+        }
+        response.status(200).json(filter.filter(results.rows, request.body, "csf"))
+    })
+}
+
 module.exports = {
     CeoncSignalFunction,
     CeoncQualityDomain,
@@ -125,4 +144,6 @@ module.exports = {
     CeoncQualityDomainProvince,
     CeoncSignalFunctionPalika,
     CeoncQualityDomainPalika,
+    CeoncQualityDomainFilter,
+    CeoncSignalFunctionFilter,
 }

@@ -20,4 +20,7 @@ router.get("/signalfunction/province", bebeoncController.BcBeoncSignalFunctionPr
 router.get("/qualitydomain/palika", bebeoncController.BcBeoncQualityDomainPalika)
 router.get("/signalfunction/palika", bebeoncController.BcBeoncSignalFunctionPalika)
 
+router.post("/qualitydomain/filter", bebeoncController.BcBeoncQualityDomainFilter)
+router.post("/signalfunction/filter", bebeoncController.BcBeoncSignalFunctionFilter)
+
 module.exports = { bebeoncRouter: router }

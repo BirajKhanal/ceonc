@@ -20,4 +20,7 @@ router.get("/signalfunction/province", ceoncController.CeoncSignalFunctionProvin
 router.get("/qualitydomain/palika", ceoncController.CeoncQualityDomainPalika)
 router.get("/signalfunction/palika", ceoncController.CeoncSignalFunctionPalika)
 
+router.post("/qualitydomain/filter", ceoncController.CeoncQualityDomainFilter)
+router.post("/signalfunction/filter", ceoncController.CeoncSignalFunctionFilter)
+
 module.exports = { ceoncRouter: router }

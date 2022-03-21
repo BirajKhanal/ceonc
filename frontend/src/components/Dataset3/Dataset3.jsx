@@ -13,10 +13,10 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dataTypeNew, setDataTypeNew] = useState()
   const [dataSortProvince, setDataSortProvince] = useState()
   const [dataSortPalika, setDataSortPalika] = useState()
-  const [value1, setValue1] = useState()
-  const [value2, setValue2] = useState()
+  const [dataSortPalikaProvince, setDataSortPalikaProvince] = useState()
+  const [value1, setValue1] = useState("")
+  const [value2, setValue2] = useState("")
   const [startDate, setStartDate] = useState(new Date());
-  const [startDate1, setStartDate1] = useState(new Date());
 
   const requestOptions = {
       method: 'GET',
@@ -29,42 +29,63 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   useEffect(() => {
     let dismount = false
 
-    const getRequestProvince = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
+    // const getRequestProvince = async () => {
+    //   let res = await fetch('/hf/province', requestOptions)
+    //   let data = await res.json()
+
+    //   if (!dismount) {
+    //     if (res.ok) {
+    //       setDataSortProvince(nameSort(data))
+    //     }
+    //   }
+    // }
+
+    // const getRequestPalika = async () => {
+    //   let res = await fetch('/hf/palika', requestOptions)
+    //   let data = await res.json()
+
+    //   if (!dismount) {
+    //     if (res.ok) {
+    //       setDataSortPalika(nameSort(data))
+    //     }
+    //   }
+    // }
+    const getRequestPalikaProvince = async () => {
+      let res = await fetch('/palikaprovince', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
         if (res.ok) {
-          setDataSortProvince(nameSort(data))
+          setDataSortPalikaProvince(data)
+          setDataSortProvince(nameSort(data, "province"))
         }
       }
     }
 
-    const getRequestPalika = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
-      let data = await res.json()
-
-      if (!dismount) {
-        if (res.ok) {
-          setDataSortPalika(nameSort(data))
-        }
-      }
-    }
-
-    getRequestProvince()
-    getRequestPalika()
+    // getRequestProvince()
+    // getRequestPalika()
+    getRequestPalikaProvince()
     return () => {
       dismount = true
     }
   }, [])
 
+  const palikaSelector = (selected) => {
+    let select = {}
+    dataSortPalikaProvince.map((items) => {
+      if (items["name"] === selected["label"]) {
+        select = items["data"]
+      }
+    })
+    setDataSortPalika(nameSort(select, "palika"))
+  }
 
   return (
     <div>
       {location === "nav"
       ? (
         <div className='topContainer'>
-            <div className="box">
+            {/* <div className="box">
                 Month
                 <DatePicker
                   className="select-date"
@@ -91,6 +112,17 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                     setDataTypeNew(moment(date).format("YYYY MMMM DD"))
                   }}
                 />
+            </div> */}
+            <div className="box">
+                Date
+                <DatePicker
+                  className="select-date"
+                  selected={startDate}
+                  maxDate={new Date()}
+                  onChange={(date) => {
+                    setStartDate(date)
+                  }}
+                />
             </div>
             <div className="box">
                 Province
@@ -99,10 +131,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortProvince }
                   value={value1}
                   onChange={(option) => {
-                    setDataNew("province")
-                    setDataTypeNew(option["label"])
+                    palikaSelector(option)
                     setValue1(option)
-                    setValue2("")
                   }}
                 />
             </div>
@@ -113,12 +143,20 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortPalika }
                   value={value2}
                   onChange={(option) => {
-                    setDataNew("palika")
-                    setDataTypeNew(option["label"])
                     setValue2(option)
-                    setValue1("")
                   }}
                 />
+            </div>
+            <div className="box search-button" onClick={() => {
+              setDataNew("all")
+              setDataTypeNew({
+                "date": moment(startDate).format("YYYY-MM-DD"),
+                "province": value1,
+                "palika": value2
+              })
+            }}
+            >
+              Search
             </div>
         </div>
       ): null

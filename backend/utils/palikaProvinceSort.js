@@ -21,6 +21,12 @@ const palikaProvinceSort = (data, type, flt) => {
         } else {
             fltData = "_1_PROVINCE"
         }
+    } else if (flt == "palikaprovince") {
+        if (type == "hf") {
+            fltData = "PROVINCE"
+        } else {
+            fltData = "_1_PROVINCE"
+        }
     }
 
     data.map((items) => {
@@ -53,6 +59,16 @@ const palikaProvinceSort = (data, type, flt) => {
             items["name"] = items["name"].slice(3)
             items["name"] = items["name"].slice(0, -1)
             items["name"] = items["name"].replace(/_/g, " ")
+        } else if (flt == "palikaprovince") {
+            items["name"] = items["name"].slice(3)
+            items["name"] = items["name"].slice(0, -1)
+            items["name"] = items["name"].replace(/_/g, " ")
+
+            items["data"].map((item) => {
+                item["_3_PALIKA"] = item["_3_PALIKA"].slice(7)
+                item["_3_PALIKA"] = item["_3_PALIKA"].slice(0, -1)
+                item["_3_PALIKA"] = item["_3_PALIKA"].replace(/_/g, " ")
+            })
         }
         if (type == "bcqd") {
             items["data"] = sort1.goodMediumPoorSort(items["data"])

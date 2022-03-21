@@ -3,6 +3,7 @@
     --secondary: #393c45;
     --white: #ffffff;
     --side-nav-width: 20%;
+    --green: #00b150;
 }
 
 *,
@@ -67,7 +68,7 @@ ul {
 /* main body styles starts */
 .mainBodyContainer {
     width: 100%;
-    padding-top: 2rem;
+    /* padding-top: 2rem; */
     margin-left: var(--side-nav-width);
 }
 /* graphs layout design starts */
@@ -96,8 +97,10 @@ ul {
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
+    align-items: center;
     gap: 2rem;
     padding: 3rem;
+    /* background-color: var(--primary); */
 }
 .box {
     max-width: 20rem;
@@ -136,6 +139,11 @@ ul {
 .dash-count {
     margin-top: 1rem;
     font-size: 1.5rem;
+}
+.search-button {
+    display: flex;
+    align-items: center;
+    background-color: var(--green);
 }
 
 

@@ -43,7 +43,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let res = await fetch('/bebeonc/qualitydomain', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -54,8 +54,21 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     }
 
     const getRequestYear = async () => {
-      if (filterType === "year") {
-        let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/year', requestOptions)
+      if (filterType === "all") {
+        let requestOptionsBody = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              "date": dataType1["date"],
+              "province": dataType1["province"],
+              "palika": dataType1["palika"]
+            }), 
+            mode: 'cors'
+        }
+
+        let res = await fetch('/bebeonc/qualitydomain/filter', requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -63,43 +76,53 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
             setDataSort(data)
           }
         }
-      } else if (filterType === "province") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/province', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "palika") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "all") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/all', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "month") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/month', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
       }
+    //   if (filterType === "year") {
+    //     let res = await fetch('/bebeonc/qualitydomain/year', requestOptions)
+    //     let data = await res.json()
+
+    //     if (!dismount) {
+    //       if (res.ok) {
+    //         setDataSort(data)
+    //       }
+    //     }
+    //   } else if (filterType === "province") {
+    //       let res = await fetch('/bebeonc/qualitydomain/province', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "palika") {
+    //       let res = await fetch('/bebeonc/qualitydomain/palika', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "all") {
+    //       let res = await fetch('/bebeonc/qualitydomain/all', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "month") {
+    //       let res = await fetch('/bebeonc/qualitydomain/month', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   }
     }
     getRequest()
     getRequestYear()
@@ -107,37 +130,34 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
     return () => {
       dismount = true
     }
-  }, [filterType])
+  }, [dataType1])
 
   if (filterType !== "default") {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
-          if (items["name"] === dataType1) {
-            return (
-              <div key={index} className='graphItem'>
-                <p className='text-center header-color'>{items["name"]}</p>
-                <div>
-                  <p className="text-center header-color">No of BC/BEONC status in 13 Quality Domains</p>
-                </div>
-                <BarChart
-                  width={dynamicGraph(graphWidth)}
-                  height={300}
-                  data={items["data"]}
-                >
-                  <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="good" stackId="a" fill={color.color_1} />
-                  <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-                  <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-                </BarChart>
+          return (
+            <div key={index} className='graphItem'>
+              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+              <div>
+                <p className="text-center header-color">No of BC/BEONC status in 13 Quality Domains</p>
               </div>
-            )
-          }
-          return null
+              <BarChart
+                width={dynamicGraph(graphWidth)}
+                height={300}
+                data={items["data"]}
+              >
+                <CartesianGrid strokeDasharray="9 9" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="good" stackId="a" fill={color.color_1} />
+                <Bar dataKey="medium" stackId="a" fill={color.color_2} />
+                <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+              </BarChart>
+            </div>
+          )
         })}
       </div>
     )

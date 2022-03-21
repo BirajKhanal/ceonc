@@ -10,4 +10,6 @@ router.get("/palika", hfController.hfImplementPalika)
 router.get("/month", hfController.hfImplementMonth)
 router.get("/all", hfController.hfImplementAll)
 
+router.post("/filter", hfController.hfImplementFilter)
+
 module.exports = { hfRouter: router }

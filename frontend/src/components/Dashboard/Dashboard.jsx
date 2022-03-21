@@ -23,7 +23,7 @@ export const Dashboard = ({graphWidth}) => {
     let dismount = false
 
     const getRequestBeCount = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let res = await fetch('/bebeonc/qualitydomain', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -34,7 +34,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestCeCount = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain', requestOptions)
+      let res = await fetch('/bebeonc/qualitydomain', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -45,7 +45,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestPalikaCount = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/bebeonc/qualitydomain/palika', requestOptions)
+      let res = await fetch('/bebeonc/qualitydomain/palika', requestOptions)
       let data = await res.json()
 
       if (!dismount) {

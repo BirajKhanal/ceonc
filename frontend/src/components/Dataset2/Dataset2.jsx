@@ -13,14 +13,12 @@ const moment = require('moment')
 const Dataset2 = ({graphWidth, data, dataType, location}) => {
   const [dataNew, setDataNew] = useState()
   const [dataTypeNew, setDataTypeNew] = useState()
-  const [dataSortYear, setDataSortYear] = useState()
   const [dataSortProvince, setDataSortProvince] = useState()
   const [dataSortPalika, setDataSortPalika] = useState()
-  const [value1, setValue1] = useState()
-  const [value2, setValue2] = useState()
-  const [value3, setValue3] = useState()
+  const [dataSortPalikaProvince, setDataSortPalikaProvince] = useState()
+  const [value1, setValue1] = useState("")
+  const [value2, setValue2] = useState("")
   const [startDate, setStartDate] = useState(new Date());
-  const [startDate1, setStartDate1] = useState(new Date());
 
 
   const requestOptions = {
@@ -34,54 +32,77 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
   useEffect(() => {
     let dismount = false
 
-    const getRequestYear = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/year', requestOptions)
+    // const getRequestYear = async () => {
+    //   let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/year', requestOptions)
+    //   let data = await res.json()
+
+    //   if (!dismount) {
+    //     if (res.ok) {
+    //       setDataSortYear(yearList(data))
+    //     }
+    //   }
+    // }
+
+    // const getRequestProvince = async () => {
+    //   let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/province', requestOptions)
+    //   let data = await res.json()
+
+    //   if (!dismount) {
+    //     if (res.ok) {
+    //       setDataSortProvince(nameSort(data))
+    //     }
+    //   }
+    // }
+
+    // const getRequestPalika = async () => {
+    //   let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/palika', requestOptions)
+    //   let data = await res.json()
+
+    //   if (!dismount) {
+    //     if (res.ok) {
+    //       setDataSortPalika(nameSort(data))
+    //     }
+    //   }
+    // }
+
+    const getRequestPalikaProvince = async () => {
+      let res = await fetch('/palikaprovince', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
         if (res.ok) {
-          setDataSortYear(yearList(data))
+          setDataSortPalikaProvince(data)
+          setDataSortProvince(nameSort(data, "province"))
         }
       }
     }
 
-    const getRequestProvince = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/province', requestOptions)
-      let data = await res.json()
-
-      if (!dismount) {
-        if (res.ok) {
-          setDataSortProvince(nameSort(data))
-        }
-      }
-    }
-
-    const getRequestPalika = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/ceonc/qualitydomain/palika', requestOptions)
-      let data = await res.json()
-
-      if (!dismount) {
-        if (res.ok) {
-          setDataSortPalika(nameSort(data))
-        }
-      }
-    }
-
-    getRequestYear()
-    getRequestProvince()
-    getRequestPalika()
+    // getRequestYear()
+    // getRequestProvince()
+    getRequestPalikaProvince()
+    // getRequestPalika()
 
     return () => {
       dismount = true
     }
   }, [data])
 
+  const palikaSelector = (selected) => {
+    let select = {}
+    dataSortPalikaProvince.map((items) => {
+      if (items["name"] === selected["label"]) {
+        select = items["data"]
+      }
+    })
+    setDataSortPalika(nameSort(select, "palika"))
+  }
+
   return (
     <div>
       {location === "nav"
       ? (
         <div className='topContainer'>
-            <div className="box">
+            {/* <div className="box">
                 Year
                 <Select 
                   className="select-dropdown" 
@@ -110,17 +131,15 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
                   dateFormat="MM/yyyy"
                   showMonthYearPicker
                 />
-            </div>
+            </div> */}
             <div className="box">
                 Date
                 <DatePicker
                   className="select-date"
-                  selected={startDate1}
+                  selected={startDate}
                   maxDate={new Date()}
                   onChange={(date) => {
-                    setStartDate1(date)
-                    setDataNew("all")
-                    setDataTypeNew(moment(date).format("YYYY MMMM DD"))
+                    setStartDate(date)
                   }}
                 />
             </div>
@@ -129,13 +148,10 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
                 <Select 
                   className="select-dropdown" 
                   options={ dataSortProvince }
-                  value={value2}
+                  value={value1}
                   onChange={(option) => {
-                    setDataNew("province")
-                    setDataTypeNew(option["label"])
-                    setValue1("")
-                    setValue2(option)
-                    setValue3("")
+                    palikaSelector(option)
+                    setValue1(option)
                   }}
                 />
             </div>
@@ -144,15 +160,22 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
                 <Select 
                   className="select-dropdown" 
                   options={ dataSortPalika }
-                  value={value3}
+                  value={value2}
                   onChange={(option) => {
-                    setDataNew("palika")
-                    setDataTypeNew(option["label"])
-                    setValue1("")
-                    setValue2("")
-                    setValue3(option)
+                    setValue2(option)
                   }}
                 />
+            </div>
+            <div className="box search-button" onClick={() => {
+              setDataNew("all")
+              setDataTypeNew({
+                "date": moment(startDate).format("YYYY-MM-DD"),
+                "province": value1,
+                "palika": value2
+              })
+            }}
+            >
+              Search
             </div>
         </div>
       ): null

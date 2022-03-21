@@ -41,7 +41,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
   useEffect(() => {
     let dismount = false
     const getRequest = async () => {
-      let res = await fetch('https://backend-ceonc.herokuapp.com/hf', requestOptions)
+      let res = await fetch('/hf', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -52,43 +52,66 @@ const HFImplement = ({graphWidth, data, dataType}) => {
     }
 
     const getRequestYear = async () => {
-      if (filterType === "province") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/province', requestOptions)
-          let data = await res.json()
+      if (filterType === "all") {
+        let requestOptionsBody = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              "date": dataType["date"],
+              "province": dataType["province"],
+              "palika": dataType["palika"]
+            }), 
+            mode: 'cors'
+        }
 
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "palika") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/palika', requestOptions)
-          let data = await res.json()
+        let res = await fetch('/hf/filter', requestOptionsBody)
+        let data = await res.json()
 
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
+        if (!dismount) {
+          if (res.ok) {
+            setDataSort(data)
           }
-      } else if (filterType === "all") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/all', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
-      } else if (filterType === "month") {
-          let res = await fetch('https://backend-ceonc.herokuapp.com/hf/month', requestOptions)
-          let data = await res.json()
-
-          if (!dismount) {
-            if (res.ok) {
-              setDataSort(data)
-            }
-          }
+        }
       }
+    //   if (filterType === "province") {
+    //       let res = await fetch('/hf/province', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "palika") {
+    //       let res = await fetch('/hf/palika', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "all") {
+    //       let res = await fetch('/hf/all', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   } else if (filterType === "month") {
+    //       let res = await fetch('/hf/month', requestOptions)
+    //       let data = await res.json()
+
+    //       if (!dismount) {
+    //         if (res.ok) {
+    //           setDataSort(data)
+    //         }
+    //       }
+    //   }
     }
 
     getRequest()
@@ -102,30 +125,27 @@ const HFImplement = ({graphWidth, data, dataType}) => {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
-          if (items["name"] === dataType) {
-            return (
-              <div key={index} className='graphItem'>
-                <p className='text-center header-color'>{items["name"]}</p>
-                <div>
-                  <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
-                </div>
-                <BarChart
-                  width={dynamicGraph(graphWidth)}
-                  height={300}
-                  data={items["data"]}
-                >
-                  <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="year" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-                  <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
-                </BarChart>
+          return (
+            <div key={index} className='graphItem'>
+              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+              <div>
+                <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
               </div>
-            )
-          }
-          return null
+              <BarChart
+                width={dynamicGraph(graphWidth)}
+                height={300}
+                data={items["data"]}
+              >
+                <CartesianGrid strokeDasharray="9 9" />
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
+                <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
+              </BarChart>
+            </div>
+          )
         })}
       </div>
     )
