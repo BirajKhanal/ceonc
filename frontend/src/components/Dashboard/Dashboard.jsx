@@ -87,7 +87,7 @@ export const Dashboard = ({graphWidth}) => {
           </div>
       </div>
       <Dataset1 graphWidth={graphWidth}/>
-      <Dataset2 graphWidth={graphWidth}/>
+      {/* <Dataset2 graphWidth={graphWidth}/> */}
       <Dataset3 graphWidth={graphWidth}/>
     </div>
   )
