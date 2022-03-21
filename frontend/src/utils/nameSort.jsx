@@ -1,20 +1,56 @@
-export const nameSort = (data, type) => {
+export const nameSort = (data, selected, type) => {
     let names = []
     let namesRe = []
     let count = 0
 
-    data.map((items) => {
-        if (type == "palika") {
-            if(!names.includes(items["_3_PALIKA"])){
-                names.push(items["_3_PALIKA"])
-            }
-        } else if (type == "province") {
-            if(!names.includes(items["names"])){
+    if (type === "province") {
+        data.map((items) => {
+            if(!names.includes(items["name"])){
                 names.push(items["name"])
             }
-        }
-        return null
-    })
+            return null
+        })
+    }
+
+    if (type === "district") {
+        data.map((items) => {
+            if (items["name"] === selected["label"]) {
+                items["data"].map((item) => {
+                    if(!names.includes(item["name"])){
+                        names.push(item["name"])
+                    }
+                })
+            }
+        })
+    }
+    if (type === "palika") {
+        data.map((items) => {
+            items["data"].map((item) => {
+                if (item["name"] === selected["label"]) {
+                    item["data"].map((itm) => {
+                        if(!names.includes(itm["name"])){
+                            names.push(itm["name"])
+                        }
+                    })
+                }
+            })
+        })
+    }
+    if (type === "facility") {
+        data.map((items) => {
+            items["data"].map((item) => {
+                item["data"].map((itm) => {
+                    if (itm["name"] === selected["label"]) {
+                        itm["data"].map((it) => {
+                            if(!names.includes(it["name"])){
+                                names.push(it["name"])
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    }
 
     names.map((items) => {
         namesRe.push(
@@ -25,5 +61,6 @@ export const nameSort = (data, type) => {
         )
         return null
     })
+
     return namesRe
 }

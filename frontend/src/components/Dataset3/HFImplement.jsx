@@ -61,7 +61,9 @@ const HFImplement = ({graphWidth, data, dataType}) => {
             body: JSON.stringify({
               "date": dataType["date"],
               "province": dataType["province"],
-              "palika": dataType["palika"]
+              "district": dataType["district"],
+              "palika": dataType["palika"],
+              "facility": dataType["facility"]
             }), 
             mode: 'cors'
         }
@@ -127,7 +129,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
         {dataSort.map((items, index) => {
           return (
             <div key={index} className='graphItem'>
-              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
                 <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
               </div>

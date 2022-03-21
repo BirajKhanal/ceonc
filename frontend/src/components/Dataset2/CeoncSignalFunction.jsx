@@ -62,7 +62,9 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             body: JSON.stringify({
               "date": dataType4["date"],
               "province": dataType4["province"],
-              "palika": dataType4["palika"]
+              "district": dataType4["district"],
+              "palika": dataType4["palika"],
+              "facility": dataType4["facility"]
             }), 
             mode: 'cors'
         }
@@ -137,7 +139,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
         {dataSort.map((items, index) => {
           return (
             <div key={index} className="graphItem">
-              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+                <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
                 <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
               </div>

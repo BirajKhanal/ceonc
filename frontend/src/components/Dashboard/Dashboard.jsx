@@ -79,9 +79,10 @@ export const Dashboard = ({graphWidth}) => {
               </div>
           </div>
           <div className="box">
-              Total No of Palika
+              Robson Tool
               <div className="dash-count">
-                {data2}
+                {/* {data2} */}
+                145
               </div>
           </div>
       </div>

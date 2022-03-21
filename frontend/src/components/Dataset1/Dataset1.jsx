@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css"
 
 import BcQualityDomain from './BcQualityDomain'
 import BcSignalFunction from './BcSignalFunction'
+import CeoncSignalFunction from '../Dataset2/CeoncSignalFunction';
+import CeoncQualityDomain from '../Dataset2/CeoncQualityDomain';
 import { nameSort } from '../../utils';
 import { yearList } from '../../utils';
 
@@ -14,10 +16,14 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dataNew, setDataNew] = useState()
   const [dataTypeNew, setDataTypeNew] = useState()
   const [dataSortProvince, setDataSortProvince] = useState()
+  const [dataSortDistrict, setDataSortDistrict] = useState()
   const [dataSortPalika, setDataSortPalika] = useState()
+  const [dataSortFacility, setDataSortFacility] = useState()
   const [dataSortPalikaProvince, setDataSortPalikaProvince] = useState()
   const [value1, setValue1] = useState("")
   const [value2, setValue2] = useState("")
+  const [value3, setValue3] = useState("")
+  const [value4, setValue4] = useState("")
   const [startDate, setStartDate] = useState(new Date());
 
 
@@ -72,7 +78,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
       if (!dismount) {
         if (res.ok) {
           setDataSortPalikaProvince(data)
-          setDataSortProvince(nameSort(data, "province"))
+          setDataSortProvince(nameSort(data, "", "province")) 
         }
       }
     }
@@ -87,15 +93,16 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
     }
   }, [data])
 
-
-  const palikaSelector = (selected) => {
-    let select = {}
-    dataSortPalikaProvince.map((items) => {
-      if (items["name"] === selected["label"]) {
-        select = items["data"]
-      }
-    })
-    setDataSortPalika(nameSort(select, "palika"))
+  const palikaSelector = (selected, type) => {
+    if (type === "province") {
+      setDataSortDistrict(nameSort(dataSortPalikaProvince, selected, "district"))
+    }
+    if (type === "district") {
+      setDataSortPalika(nameSort(dataSortPalikaProvince, selected, "palika"))
+    }
+    if (type === "palika") {
+      setDataSortFacility(nameSort(dataSortPalikaProvince, selected, "facility"))
+    }
   }
 
   return (
@@ -149,19 +156,44 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortProvince }
                   value={value1}
                   onChange={(option) => {
-                    palikaSelector(option)
                     setValue1(option)
+                    palikaSelector(option, "province")
                   }}
                 />
             </div>
             <div className="box">
-                Palika
+                District
                 <Select 
                   className="select-dropdown" 
-                  options={ dataSortPalika }
+                  options={ dataSortDistrict }
                   value={value2}
                   onChange={(option) => {
                     setValue2(option)
+                    palikaSelector(option, "district")
+                  }}
+                />
+            </div>
+            <div className="box">
+                Municipality
+                <Select 
+                  className="select-dropdown" 
+                  options={ dataSortPalika }
+                  value={value3}
+                  onChange={(option) => {
+                    setValue3(option)
+                    palikaSelector(option, "palika")
+                  }}
+                />
+            </div>
+            <div className="box">
+                Name of Health Facility
+                <Select 
+                  className="select-dropdown" 
+                  options={ dataSortFacility }
+                  value={value4}
+                  onChange={(option) => {
+                    setValue4(option)
+                    palikaSelector(option, "facility")
                   }}
                 />
             </div>
@@ -169,8 +201,10 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
               setDataNew("all")
               setDataTypeNew({
                 "date": moment(startDate).format("YYYY-MM-DD"),
-                "province": value1,
-                "palika": value2
+                "province": value1["label"] ? value1["label"] : "",
+                "district": value2["label"] ? value2["label"] : "",
+                "palika": value3["label"] ? value3["label"] : "",
+                "facility": value4["label"] ? value4["label"] : ""
               })
             }}
             >
@@ -179,13 +213,19 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
         </div>
       ): null
       }
-        <h1 className="text-center header-color">Quality Improvement Process Reporting BC/BEONC</h1>
+        <h1 className="text-center header-color">Quality Improvement Process Reporting</h1>
         <div className="graphItemsContainer">
           <div className="graphItemContainer">
               <BcQualityDomain graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
           </div>
           <div className="graphItemContainer">
               <BcSignalFunction graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
+          </div>
+          <div className="graphItemContainer">
+              <CeoncQualityDomain graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
+          </div>
+          <div className="graphItemContainer">
+              <CeoncSignalFunction graphWidth={graphWidth} data4={data || dataNew} dataType4={dataType || dataTypeNew}/>
           </div>
         </div>
     </div>

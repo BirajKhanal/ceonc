@@ -63,7 +63,9 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
             body: JSON.stringify({
               "date": dataType3["date"],
               "province": dataType3["province"],
-              "palika": dataType3["palika"]
+              "district": dataType3["district"],
+              "palika": dataType3["palika"],
+              "facility": dataType3["facility"]
             }), 
             mode: 'cors'
         }
@@ -132,15 +134,13 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
     }
   }, [dataType3])
 
-  console.log(dataSort)
-
   if (filterType !== "default") {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
           return (
             <div key={index} className='graphItem'>
-              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+                <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
                 <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
               </div>

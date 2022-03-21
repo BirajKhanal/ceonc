@@ -62,7 +62,9 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
             body: JSON.stringify({
               "date": dataType2["date"],
               "province": dataType2["province"],
-              "palika": dataType2["palika"]
+              "district": dataType2["district"],
+              "palika": dataType2["palika"],
+              "facility": dataType2["facility"]
             }), 
             mode: 'cors'
         }
@@ -137,7 +139,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
         {dataSort.map((items, index) => {
           return (
             <div key={index} className='graphItem'>
-              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+                <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
                 <p className="text-center header-color">No of BC/BEONC status in 7 Signal Function</p>
               </div>

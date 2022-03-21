@@ -63,7 +63,9 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
             body: JSON.stringify({
               "date": dataType1["date"],
               "province": dataType1["province"],
-              "palika": dataType1["palika"]
+              "district": dataType1["district"],
+              "palika": dataType1["palika"],
+              "facility": dataType1["facility"]
             }), 
             mode: 'cors'
         }
@@ -138,7 +140,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
         {dataSort.map((items, index) => {
           return (
             <div key={index} className='graphItem'>
-              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["palika"]}</p>
+              <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
                 <p className="text-center header-color">No of BC/BEONC status in 13 Quality Domains</p>
               </div>

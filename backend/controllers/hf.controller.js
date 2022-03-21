@@ -52,7 +52,7 @@ const hfImplementPalika = (request, response) => {
 }
 
 const hfImplementFilter = (request, response) => {
-    pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT", "PALIKA", "PROVINCE" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
+    pool.query(`SELECT "TYPES_OF_HF", "DATE_OF_ASSESSMENT", "PALIKA", "PROVINCE", "DISTRICT", "_4_NAME_OF_FACILITY" FROM odk_prod."TOOL_1_NEW_CORE"`, (error, results) => {
         if (error) {
             throw "database retrive error in hf controller at hfimplementpalika function"
         }

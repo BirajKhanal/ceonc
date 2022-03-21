@@ -4,30 +4,9 @@ const sort3 = require('./ceoncqualitydomain')
 const sort4 = require('./ceoncsignalfunction')
 const sort5 = require('./hfSort')
 
-const palikaProvinceSort = (data, type, flt) => {
-    let fltData = ""
+const sortLogic = (data, fltData) => {
     let names = []
     let sortData = []
-
-    if (flt == "palika") {
-        if (type == "hf") {
-            fltData = "PALIKA"
-        } else {
-            fltData = "_3_PALIKA"
-        }
-    } else if (flt == "province") {
-        if (type == "hf") {
-            fltData = "PROVINCE"
-        } else {
-            fltData = "_1_PROVINCE"
-        }
-    } else if (flt == "palikaprovince") {
-        if (type == "hf") {
-            fltData = "PROVINCE"
-        } else {
-            fltData = "_1_PROVINCE"
-        }
-    }
 
     data.map((items) => {
         if (!names.includes(items[fltData])) {
@@ -50,6 +29,46 @@ const palikaProvinceSort = (data, type, flt) => {
         }
     })
 
+    return sortData
+}
+
+const palikaProvinceSort = (data, type, flt) => {
+    let fltData = ""
+
+    if (flt == "palika") {
+        if (type == "hf") {
+            fltData = "PALIKA"
+        } else {
+            fltData = "_3_PALIKA"
+        }
+    } else if (flt == "province") {
+        if (type == "hf") {
+            fltData = "PROVINCE"
+        } else {
+            fltData = "_1_PROVINCE"
+        }
+    } else if (flt == "palikaprovince") {
+        if (type == "hf") {
+            fltData = "PROVINCE"
+        } else {
+            fltData = "_1_PROVINCE"
+        }
+    } else if (flt == "district") {
+        if (type == "hf") {
+            fltData = "DISTRICT"
+        } else {
+            fltData = "_2_DISTRICT"
+        }
+    } else if (flt == "facility") {
+        if (type == "hf") {
+            fltData = "NAME_OF_FACILITY"
+        } else {
+            fltData = "_4_NAME_OF_FACILITY"
+        }
+    }
+
+    sortData = sortLogic(data, fltData)
+
     sortData.map((items) => {
         if (flt == "palika") {
             items["name"] = items["name"].slice(7)
@@ -58,6 +77,13 @@ const palikaProvinceSort = (data, type, flt) => {
         } else if (flt == "province") {
             items["name"] = items["name"].slice(3)
             items["name"] = items["name"].slice(0, -1)
+            items["name"] = items["name"].replace(/_/g, " ")
+        } else if (flt === "district") {
+            items["name"] = items["name"].slice(3)
+            items["name"] = items["name"].slice(0, -1)
+            items["name"] = items["name"].replace(/_/g, " ")
+        } else if (flt === "facility") {
+            items["name"] = items["name"].slice(1)
             items["name"] = items["name"].replace(/_/g, " ")
         } else if (flt == "palikaprovince") {
             items["name"] = items["name"].slice(3)

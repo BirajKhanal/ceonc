@@ -59,17 +59,17 @@ const App = () => {
           <li className="navItem" onClick={() => {
             navSelect(2)
             setSwitchSelect("2")
-          }}>BE/BEONC</li>
-          <li className="navItem" onClick={() => {
+          }}>Quality Improvement Process Reporting</li>
+          {/* <li className="navItem" onClick={() => {
             navSelect(3)
             setSwitchSelect("3")
-          }}>CEONC</li>
+          }}>CEONC</li> */}
           <li className="navItem" onClick={() => {
-            navSelect(4)
+            navSelect(3)
             setSwitchSelect("4")
           }}>Onsite Clinical Coaching Mentoring</li>
           <li className="navItem" onClick={() => {
-            navSelect(5)
+            navSelect(4)
             setSwitchSelect("5")
           }}>Robson Tool</li>
         </ul>

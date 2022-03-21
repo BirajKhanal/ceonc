@@ -156,7 +156,7 @@ const Dataset2 = ({graphWidth, data, dataType, location}) => {
                 />
             </div>
             <div className="box">
-                Palika
+                Municipality
                 <Select 
                   className="select-dropdown" 
                   options={ dataSortPalika }
