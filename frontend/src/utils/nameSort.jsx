@@ -19,8 +19,10 @@ export const nameSort = (data, selected, type) => {
                     if(!names.includes(item["name"])){
                         names.push(item["name"])
                     }
+                    return null
                 })
             }
+            return null
         })
     }
     if (type === "palika") {
@@ -31,9 +33,12 @@ export const nameSort = (data, selected, type) => {
                         if(!names.includes(itm["name"])){
                             names.push(itm["name"])
                         }
+                        return null
                     })
                 }
+                return null
             })
+            return null
         })
     }
     if (type === "facility") {
@@ -45,10 +50,14 @@ export const nameSort = (data, selected, type) => {
                             if(!names.includes(it["name"])){
                                 names.push(it["name"])
                             }
+                        return null
                         })
                     }
+                    return null
                 })
+                return null
             })
+            return null
         })
     }
 
