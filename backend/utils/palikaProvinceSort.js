@@ -61,7 +61,7 @@ const palikaProvinceSort = (data, type, flt) => {
         }
     } else if (flt == "facility") {
         if (type == "hf") {
-            fltData = "NAME_OF_FACILITY"
+            fltData = "_4_NAME_OF_FACILITY"
         } else {
             fltData = "_4_NAME_OF_FACILITY"
         }

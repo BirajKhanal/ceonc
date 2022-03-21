@@ -156,6 +156,9 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortProvince }
                   value={value1}
                   onChange={(option) => {
+                    setValue2("")
+                    setValue3("")
+                    setValue4("")
                     setValue1(option)
                     palikaSelector(option, "province")
                   }}
@@ -168,6 +171,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortDistrict }
                   value={value2}
                   onChange={(option) => {
+                    setValue3("")
+                    setValue4("")
                     setValue2(option)
                     palikaSelector(option, "district")
                   }}
@@ -180,6 +185,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                   options={ dataSortPalika }
                   value={value3}
                   onChange={(option) => {
+                    setValue4("")
                     setValue3(option)
                     palikaSelector(option, "palika")
                   }}
