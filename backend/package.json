@@ -20,5 +20,5 @@
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
-  "homepage": "https://ceonc.herokuapp.com/"
+  "homepage": "https://backend-ceonc.herokuapp.com/"
 }

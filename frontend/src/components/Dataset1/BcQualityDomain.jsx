@@ -61,7 +61,8 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "date": dataType1["date"],
+              "startDate": dataType1["startDate"],
+              "endDate": dataType1["endDate"],
               "province": dataType1["province"],
               "district": dataType1["district"],
               "palika": dataType1["palika"],

@@ -60,7 +60,8 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "date": dataType2["date"],
+              "startDate": dataType2["startDate"],
+              "endDate": dataType2["endDate"],
               "province": dataType2["province"],
               "district": dataType2["district"],
               "palika": dataType2["palika"],

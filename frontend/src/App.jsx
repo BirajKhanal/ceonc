@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import Dataset1 from './components/Dataset1';
-import Dataset2 from './components/Dataset2';
 import Dataset3 from './components/Dataset3';
 import Dataset4 from './components/Dataset4';
 import { Dashboard } from './components/Dashboard';
@@ -12,9 +11,8 @@ const App = () => {
   const bodySwitch = {
     "1" : <Dashboard graphWidth={width}/>,
     "2" : <Dataset1 graphWidth={width} location="nav"/>,
-    "3" : <Dataset2 graphWidth={width} location="nav"/>,
-    "4" : <Dataset3 graphWidth={width} location="nav"/>,
-    "5" : <Dataset4 graphWidth={width} location="nav"/>,
+    "3" : <Dataset3 graphWidth={width} location="nav"/>,
+    "4" : <Dataset4 graphWidth={width} location="nav"/>,
   }
 
   const listRef = useRef(0)
@@ -60,17 +58,13 @@ const App = () => {
             navSelect(2)
             setSwitchSelect("2")
           }}>Quality Improvement Process Reporting</li>
-          {/* <li className="navItem" onClick={() => {
-            navSelect(3)
-            setSwitchSelect("3")
-          }}>CEONC</li> */}
           <li className="navItem" onClick={() => {
             navSelect(3)
-            setSwitchSelect("4")
+            setSwitchSelect("3")
           }}>Onsite Clinical Coaching Mentoring</li>
           <li className="navItem" onClick={() => {
             navSelect(4)
-            setSwitchSelect("5")
+            setSwitchSelect("4")
           }}>Robson Tool</li>
         </ul>
       </nav>

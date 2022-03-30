@@ -12,7 +12,7 @@ import {
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { color } from '../color';
 
-const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
+const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
   const [data, setData] = useState([])
   const [dataSort, setDataSort] = useState([])
 
@@ -26,23 +26,24 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
 
   let filterType = "default"
 
-  if (data4 === "year") {
+  if (data3 === "year") {
     filterType = "year"
-  } else if (data4 === "province") {
+  } else if (data3 === "province") {
     filterType = "province"
-  } else if (data4 === "palika") {
+  } else if (data3 === "palika") {
     filterType = "palika"
-  } else if (data4 === "all") {
+  } else if (data3 === "all") {
     filterType = "all"
-  } else if (data4 === "month") {
+  } else if (data3 === "month") {
     filterType = "month"
   }
+
 
   useEffect(() => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('/ceonc/signalfunction', requestOptions)
+      let res = await fetch('/ceonc/qualitydomain', requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -60,11 +61,12 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "date": dataType4["date"],
-              "province": dataType4["province"],
-              "district": dataType4["district"],
-              "palika": dataType4["palika"],
-              "facility": dataType4["facility"]
+              "startDate": dataType3["startDate"],
+              "endDate": dataType3["endDate"],
+              "province": dataType3["province"],
+              "district": dataType3["district"],
+              "palika": dataType3["palika"],
+              "facility": dataType3["facility"]
             }), 
             mode: 'cors'
         }
@@ -79,7 +81,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
         }
       }
       // if (filterType === "year") {
-      //   let res = await fetch('/ceonc/signalfunction/year', requestOptions)
+      //   let res = await fetch('/ceonc/qualitydomain/year', requestOptions)
       //   let data = await res.json()
 
       //   if (!dismount) {
@@ -88,7 +90,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
       //     }
       //   }
       // } else if (filterType === "province") {
-      //     let res = await fetch('/ceonc/signalfunction/province', requestOptions)
+      //     let res = await fetch('/ceonc/qualitydomain/province', requestOptions)
       //     let data = await res.json()
 
       //     if (!dismount) {
@@ -97,7 +99,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
       //       }
       //     }
       // } else if (filterType === "palika") {
-      //     let res = await fetch('/ceonc/signalfunction/palika', requestOptions)
+      //     let res = await fetch('/ceonc/qualitydomain/palika', requestOptions)
       //     let data = await res.json()
 
       //     if (!dismount) {
@@ -106,7 +108,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
       //       }
       //     }
       // } else if (filterType === "all") {
-      //     let res = await fetch('/ceonc/signalfunction/all', requestOptions)
+      //     let res = await fetch('/ceonc/qualitydomain/all', requestOptions)
       //     let data = await res.json()
 
       //     if (!dismount) {
@@ -115,7 +117,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
       //       }
       //     }
       // } else if (filterType === "month") {
-      //     let res = await fetch('/ceonc/signalfunction/month', requestOptions)
+      //     let res = await fetch('/ceonc/qualitydomain/month', requestOptions)
       //     let data = await res.json()
 
       //     if (!dismount) {
@@ -131,17 +133,17 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     return () => {
       dismount = true
     }
-  }, [dataType4])
+  }, [dataType3])
 
   if (filterType !== "default") {
     return (
       <div className='graphItems'>
         {dataSort.map((items, index) => {
           return (
-            <div key={index} className="graphItem">
+            <div key={index} className='graphItem'>
                 <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
-                <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+                <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
@@ -166,7 +168,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     return (
       <div>
         <div>
-          <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+          <p className="text-center header-color">No of CEONC hospitals status in 8 Quality Domains</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
@@ -187,4 +189,4 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
   }
 }
 
-export default CeoncSignalFunction
+export default CeoncQualityDomain

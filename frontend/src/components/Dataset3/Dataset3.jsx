@@ -20,7 +20,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [value2, setValue2] = useState("")
   const [value3, setValue3] = useState("")
   const [value4, setValue4] = useState("")
-  const [startDate, setStartDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([null, null])
+  const [startDate, endDate] = dateRange
 
   const requestOptions = {
       method: 'GET',
@@ -123,10 +124,12 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                 Date
                 <DatePicker
                   className="select-date"
-                  selected={startDate}
-                  maxDate={new Date()}
-                  onChange={(date) => {
-                    setStartDate(date)
+                  startDate={startDate}
+                  endDate={endDate}
+                  selectsRange={true}
+                  isClearable={true}
+                  onChange={(dates) => {
+                    setDateRange(dates)
                   }}
                 />
             </div>
@@ -187,7 +190,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
             <div className="box search-button" onClick={() => {
               setDataNew("all")
               setDataTypeNew({
-                "date": moment(startDate).format("YYYY-MM-DD"),
+                "startDate": moment(startDate).format("YYYY-MM-DD"),
+                "endDate": moment(endDate).format("YYYY-MM-DD"),
                 "province": value1["label"] ? value1["label"] : "",
                 "district": value2["label"] ? value2["label"] : "",
                 "palika": value3["label"] ? value3["label"] : "",

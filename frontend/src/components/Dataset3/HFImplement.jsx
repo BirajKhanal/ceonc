@@ -59,7 +59,8 @@ const HFImplement = ({graphWidth, data, dataType}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "date": dataType["date"],
+              "startDate": dataType["startDate"],
+              "endDate": dataType["endDate"],
               "province": dataType["province"],
               "district": dataType["district"],
               "palika": dataType["palika"],

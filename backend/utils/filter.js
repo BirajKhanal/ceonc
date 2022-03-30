@@ -109,8 +109,6 @@ const filterFacility = (data, req) => {
 
 const filterDate = (data, req, kind) => {
     let dateAll = []
-    let dateMonth = []
-    let dateYear = []
     let province = []
     let district = []
     let palika = []
@@ -130,8 +128,10 @@ const filterDate = (data, req, kind) => {
         kindDate = "DATE_OF_ASSESSMENT"
     }
 
+    // console.log(moment(2022-03-30) < moment(2022-03-29))
+
     data.map((items) => {
-        if (moment(items[kindDate]).format("YYYY-MM-DD") === moment(req["date"]).format("YYYY-MM-DD")) {
+        if (moment(items[kindDate]).format("YYYY-MM-DD") >= moment(req["startDate"]).format("YYYY-MM-DD") && moment(items[kindDate]).format("YYYY-MM-DD") <= moment(req["endDate"]).format("YYYY-MM-DD")){
             if (req["province"] !== "") {
                 let filtered1 = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== kindDate));
                 let filtered2 = Object.fromEntries(Object.entries(filtered1).filter(([k,v]) => k !== kindPalika));
@@ -177,8 +177,8 @@ const filterDate = (data, req, kind) => {
     province = filterProvince(palikaProvinceSort.palikaProvinceSort(province, kind, "province"), req["province"])
     district = filterDistrict(palikaProvinceSort.palikaProvinceSort(district, kind, "district"), req["district"])
     palika = filterPalika(palikaProvinceSort.palikaProvinceSort(palika, kind, "palika"), req["palika"])
-    facility = filterPalika(palikaProvinceSort.palikaProvinceSort(facility, kind, "facility"), req["facility"])
-    dateAll = yearSort.yearSort(dateAll, kind, "all")
+    facility = filterFacility(palikaProvinceSort.palikaProvinceSort(facility, kind, "facility"), req["facility"])
+    dateAll = yearSort.yearSort(dateAll, kind, "year")
 
     let reData = []
 
@@ -201,7 +201,8 @@ const filterDate = (data, req, kind) => {
     
     let reBody = [
         {
-            "date": req["date"],
+            "startDate": req["startDate"],
+            "endDate": req["endDate"],
             "province": req["province"],
             "district": req["district"],
             "palika": req["palika"],

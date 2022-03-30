@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css"
 
 import BcQualityDomain from './BcQualityDomain'
 import BcSignalFunction from './BcSignalFunction'
-import CeoncSignalFunction from '../Dataset2/CeoncSignalFunction';
-import CeoncQualityDomain from '../Dataset2/CeoncQualityDomain';
+import CeoncSignalFunction from './CeoncSignalFunction';
+import CeoncQualityDomain from './CeoncQualityDomain';
 import { nameSort } from '../../utils';
 import { yearList } from '../../utils';
 
@@ -24,7 +24,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [value2, setValue2] = useState("")
   const [value3, setValue3] = useState("")
   const [value4, setValue4] = useState("")
-  const [startDate, setStartDate] = useState(new Date());
+  const [dateRange, setDateRange] = useState([null, null])
+  const [startDate, endDate] = dateRange
 
 
   const requestOptions = {
@@ -142,10 +143,12 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
                 Date
                 <DatePicker
                   className="select-date"
-                  selected={startDate}
-                  maxDate={new Date()}
-                  onChange={(date) => {
-                    setStartDate(date)
+                  startDate={startDate}
+                  endDate={endDate}
+                  selectsRange={true}
+                  isClearable={true}
+                  onChange={(dates) => {
+                    setDateRange(dates)
                   }}
                 />
             </div>
@@ -206,7 +209,8 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
             <div className="box search-button" onClick={() => {
               setDataNew("all")
               setDataTypeNew({
-                "date": moment(startDate).format("YYYY-MM-DD"),
+                "startDate": moment(startDate).format("YYYY-MM-DD"),
+                "endDate": moment(endDate).format("YYYY-MM-DD"),
                 "province": value1["label"] ? value1["label"] : "",
                 "district": value2["label"] ? value2["label"] : "",
                 "palika": value3["label"] ? value3["label"] : "",

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 import Dataset1 from '../Dataset1'
-import Dataset2 from '../Dataset2'
 import Dataset3 from '../Dataset3'
 import { totalCount } from '../../utils/totalCount';
 
