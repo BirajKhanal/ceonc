@@ -9,6 +9,7 @@ import {
     Legend
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
+import { host } from '../../utils';
 
 import { color } from '../color';
 
@@ -41,7 +42,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
   useEffect(() => {
     let dismount = false
     const getRequest = async () => {
-      let res = await fetch('/hf', requestOptions)
+      let res = await fetch(`${host}/hf`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -69,7 +70,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
             mode: 'cors'
         }
 
-        let res = await fetch('/hf/filter', requestOptionsBody)
+        let res = await fetch(`${host}/hf/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -154,7 +155,7 @@ const HFImplement = ({graphWidth, data, dataType}) => {
     )
   } else {
     return (
-      <div>
+      <div className='graphItem'>
         <div>
           <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
         </div>

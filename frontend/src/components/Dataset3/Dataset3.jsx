@@ -4,7 +4,9 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 
 import HFImplement from './HFImplement'
+import KnowledgeSkill from './KnowledgeSkill';
 import { nameSort } from '../../utils';
+import { host } from '../../utils';
 
 const moment = require('moment')
 
@@ -56,7 +58,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
     //   }
     // }
     const getRequestPalikaProvince = async () => {
-      let res = await fetch('/palikaprovince', requestOptions)
+      let res = await fetch(`${host}/palikaprovince`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -208,6 +210,9 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
         <div className="graphItems">
           <div className="graphItem">
               <HFImplement graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
+          </div>
+          <div className="graphItem">
+              <KnowledgeSkill graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
           </div>
         </div>
     </div>

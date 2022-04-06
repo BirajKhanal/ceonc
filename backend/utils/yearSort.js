@@ -5,6 +5,7 @@ const sort2 = require('./bcsignalfunction')
 const sort3 = require('./ceoncqualitydomain')
 const sort4 = require('./ceoncsignalfunction')
 const sort5 = require('./hfSort')
+const sort6 = require('./knowledgeSort')
 
 const yearSort = (data, type, fltType) => {
     let dateArr = []
@@ -12,7 +13,7 @@ const yearSort = (data, type, fltType) => {
     let dateFormat = ""
 
     let fltData = "_6_DATE_OF_SELF_ASSESSMENT"
-    if (type === "hf") {
+    if (type === "hf" || type === "knowledge") {
         fltData = "DATE_OF_ASSESSMENT"
     }
 
@@ -56,6 +57,8 @@ const yearSort = (data, type, fltType) => {
             items["data"] = sort4.goodMediumPoorSort(items["data"])
         } else if (type === "hf") {
             items["data"] = sort5.countSort(items["data"])
+        } else if(type === "knowledge") {
+            items["data"] = sort6.sort(items["data"])
         }
     })
 

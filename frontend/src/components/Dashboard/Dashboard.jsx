@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Dataset1 from '../Dataset1'
 import Dataset3 from '../Dataset3'
 import { totalCount } from '../../utils/totalCount';
+import { host } from '../../utils';
 
 export const Dashboard = ({graphWidth}) => {
   const [data, setData] = useState()
@@ -22,7 +23,7 @@ export const Dashboard = ({graphWidth}) => {
     let dismount = false
 
     const getRequestBeCount = async () => {
-      let res = await fetch('/bebeonc/qualitydomain', requestOptions)
+      let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -33,7 +34,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestCeCount = async () => {
-      let res = await fetch('/bebeonc/qualitydomain', requestOptions)
+      let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -44,7 +45,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestPalikaCount = async () => {
-      let res = await fetch('/bebeonc/qualitydomain/palika', requestOptions)
+      let res = await fetch(`${host}/bebeonc/qualitydomain/palika`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {

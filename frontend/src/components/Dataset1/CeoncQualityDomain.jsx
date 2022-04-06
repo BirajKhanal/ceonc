@@ -11,6 +11,7 @@ import {
 
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { color } from '../color';
+import { host } from '../../utils';
 
 const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
   const [data, setData] = useState([])
@@ -43,7 +44,7 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('/ceonc/qualitydomain', requestOptions)
+      let res = await fetch(`${host}/ceonc/qualitydomain`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -71,7 +72,7 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
             mode: 'cors'
         }
 
-        let res = await fetch('/ceonc/qualitydomain/filter', requestOptionsBody)
+        let res = await fetch(`${host}/ceonc/qualitydomain/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {

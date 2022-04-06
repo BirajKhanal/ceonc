@@ -148,7 +148,9 @@ ul {
     align-items: center;
     background-color: var(--green);
 }
-
+.text_width {
+    max-width: 65%;
+}
 
 @media screen and (max-width: 1000px) {
     .mainContainer {

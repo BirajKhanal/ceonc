@@ -9,6 +9,7 @@ import CeoncSignalFunction from './CeoncSignalFunction';
 import CeoncQualityDomain from './CeoncQualityDomain';
 import { nameSort } from '../../utils';
 import { yearList } from '../../utils';
+import { host } from '../../utils';
 
 const moment = require('moment')
 
@@ -73,7 +74,7 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
     // }
 
     const getRequestPalikaProvince = async () => {
-      let res = await fetch('/palikaprovince', requestOptions)
+      let res = await fetch(`${host}/palikaprovince`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {

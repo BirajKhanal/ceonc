@@ -4,27 +4,6 @@ const yearSort = require("./yearSort")
 const palikaProvinceSort = require("./palikaProvinceSort")
 
 const filter = (data, req, kind) => {
-    const resBody = [
-        {
-            date: req["date"],
-            province: req["province"] === "" ? "" : req["province"],
-            palika: req["palika"] === "" ? "" : req["palika"],
-            data: {}
-        },
-        {
-            date: moment(req["date"]).format("YYYY MMMM"),
-            province: req["province"] === "" ? "" : req["province"],
-            palika: req["palika"] === "" ? "" : req["palika"],
-            data: {}
-        },
-        {
-            date: moment(req["date"]).format("YYYY"),
-            province: req["province"] === "" ? "" : req["province"],
-            palika: req["palika"] === "" ? "" : req["palika"],
-            data: {}
-        }
-    ]
-
     let fnl = filterDate(data, req, kind)
 
 
@@ -120,7 +99,7 @@ const filterDate = (data, req, kind) => {
     let kindFacility = "_4_NAME_OF_FACILITY"
     let kindDate = "_6_DATE_OF_SELF_ASSESSMENT"
 
-    if (kind === "hf") {
+    if (kind === "hf" || kind === "knowledge") {
         kindProvince = "PROVINCE"
         kindDistrict = "DISTRICT"
         kindPalika = "PALIKA"

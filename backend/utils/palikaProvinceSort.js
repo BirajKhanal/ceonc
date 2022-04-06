@@ -3,6 +3,7 @@ const sort2 = require('./bcsignalfunction')
 const sort3 = require('./ceoncqualitydomain')
 const sort4 = require('./ceoncsignalfunction')
 const sort5 = require('./hfSort')
+const sort6 = require('./knowledgeSort')
 
 const sortLogic = (data, fltData) => {
     let names = []
@@ -36,31 +37,31 @@ const palikaProvinceSort = (data, type, flt) => {
     let fltData = ""
 
     if (flt == "palika") {
-        if (type == "hf") {
+        if (type == "hf" || type === "knowledge") {
             fltData = "PALIKA"
         } else {
             fltData = "_3_PALIKA"
         }
     } else if (flt == "province") {
-        if (type == "hf") {
+        if (type == "hf" || type === "knowledge") {
             fltData = "PROVINCE"
         } else {
             fltData = "_1_PROVINCE"
         }
     } else if (flt == "palikaprovince") {
-        if (type == "hf") {
+        if (type == "hf" || type === "knowledge") {
             fltData = "PROVINCE"
         } else {
             fltData = "_1_PROVINCE"
         }
     } else if (flt == "district") {
-        if (type == "hf") {
+        if (type == "hf" || type === "knowledge") {
             fltData = "DISTRICT"
         } else {
             fltData = "_2_DISTRICT"
         }
     } else if (flt == "facility") {
-        if (type == "hf") {
+        if (type == "hf" || type === "knowledge") {
             fltData = "_4_NAME_OF_FACILITY"
         } else {
             fltData = "_4_NAME_OF_FACILITY"
@@ -106,6 +107,8 @@ const palikaProvinceSort = (data, type, flt) => {
             items["data"] = sort4.goodMediumPoorSort(items["data"])
         } else if (type == "hf") {
             items["data"] = sort5.countSort(items["data"])
+        } else if (type === "knowledge") {
+            items["data"] = sort6.sort(items["data"])
         }
     })
 

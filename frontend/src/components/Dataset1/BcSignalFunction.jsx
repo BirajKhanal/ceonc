@@ -11,6 +11,7 @@ import {
 
 import { color } from '../color';
 import { dynamicGraph } from '../../utils/dynamicGraph';
+import { host } from '../../utils';
 
 const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
   const [data, setdata] = useState([])
@@ -42,7 +43,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('/bebeonc/signalfunction', requestOptions)
+      let res = await fetch(`${host}/bebeonc/signalfunction`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -70,7 +71,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
             mode: 'cors'
         }
 
-        let res = await fetch('/bebeonc/qualitydomain/filter', requestOptionsBody)
+        let res = await fetch(`${host}/bebeonc/qualitydomain/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {

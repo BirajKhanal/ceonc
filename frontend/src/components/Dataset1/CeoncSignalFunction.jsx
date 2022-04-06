@@ -11,6 +11,7 @@ import {
 
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { color } from '../color';
+import { host } from '../../utils';
 
 const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
   const [data, setData] = useState([])
@@ -42,7 +43,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     let dismount = false
 
     const getRequest = async () => {
-      let res = await fetch('/ceonc/signalfunction', requestOptions)
+      let res = await fetch(`${host}/ceonc/signalfunction`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -70,7 +71,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             mode: 'cors'
         }
 
-        let res = await fetch('/ceonc/qualitydomain/filter', requestOptionsBody)
+        let res = await fetch(`${host}/ceonc/qualitydomain/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
