@@ -25,10 +25,14 @@ const yearSort = (data, type, fltType) => {
         dateFormat = "YYYY MMMM"
     }
 
+
     data.map((items) => {
         if (!dateArr.includes(moment(items[fltData]).format(dateFormat))) {
             dateArr.push(moment(items[fltData]).format(dateFormat))
-            let filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
+            let filtered = items
+            if (type !== "hf") {
+                filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
+            }
             sortData.push(
                 {
                     name: moment(items[fltData]).format(dateFormat),
@@ -38,7 +42,10 @@ const yearSort = (data, type, fltType) => {
         } else {
             sortData.map((dataItems) => {
                 if (dataItems["name"] == moment(items[fltData]).format(dateFormat)) {
-                    let filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
+                    let filtered = items
+                    if (type !== "hf") {
+                        filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
+                    }
                     let len = dataItems["data"].length
                     dataItems["data"][len] = filtered
                 }

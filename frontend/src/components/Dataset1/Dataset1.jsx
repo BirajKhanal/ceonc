@@ -226,15 +226,23 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
       }
         <h1 className="text-center header-color">Quality Improvement Process Reporting</h1>
         <div className="graphItemsContainer">
-          <div className="graphItemContainer">
-              <BcQualityDomain graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
-          </div>
+          {location === "nav"
+            ? (
+                <div className="graphItemContainer">
+                    <BcQualityDomain graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
+                </div>
+            ):null
+          }
           <div className="graphItemContainer">
               <BcSignalFunction graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
           </div>
-          <div className="graphItemContainer">
-              <CeoncQualityDomain graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
-          </div>
+          {location === "nav"
+            ? (
+                <div className="graphItemContainer">
+                    <CeoncQualityDomain graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
+                </div>
+            ):null
+          }
           <div className="graphItemContainer">
               <CeoncSignalFunction graphWidth={graphWidth} data4={data || dataNew} dataType4={dataType || dataTypeNew}/>
           </div>

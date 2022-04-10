@@ -67,13 +67,13 @@ export const Dashboard = ({graphWidth}) => {
     <div>
       <div className='topContainer'>
           <div className="box">
-              BE/BEONC Highest Count
+              BE/BEONC Sites Implemented
               <div className="dash-count">
                 {data}
               </div>
           </div>
           <div className="box">
-              CEONC Highest Count
+              CEONC Sites Implemented
               <div className="dash-count">
                 {data1}
               </div>
@@ -86,7 +86,7 @@ export const Dashboard = ({graphWidth}) => {
               </div>
           </div>
       </div>
-      <Dataset1 graphWidth={graphWidth}/>
+      <Dataset1 graphWidth={graphWidth} location="dashboard"/>
       {/* <Dataset2 graphWidth={graphWidth}/> */}
       <Dataset3 graphWidth={graphWidth}/>
     </div>

@@ -6,7 +6,6 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { host } from '../../utils';
@@ -172,8 +171,8 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                   data={items["data"]}
                 >
                   <CartesianGrid strokeDasharray="9 9" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
+                  <XAxis dataKey="name"/>
+                  <YAxis/>
                   <Tooltip />
                   <Bar dataKey="value" fill={color.color_4} />
                 </BarChart>

@@ -148,7 +148,6 @@ const filterDate = (data, req, kind) => {
                 let filtered2 = Object.fromEntries(Object.entries(filtered1).filter(([k,v]) => k !== kindProvince));
                 let filtered3 = Object.fromEntries(Object.entries(filtered2).filter(([k,v]) => k !== kindDistrict));
                 let filtered4 = Object.fromEntries(Object.entries(filtered3).filter(([k,v]) => k !== kindFacility));
-
                 dateAll.push(filtered4)
             }
         }
@@ -159,8 +158,8 @@ const filterDate = (data, req, kind) => {
     facility = filterFacility(palikaProvinceSort.palikaProvinceSort(facility, kind, "facility"), req["facility"])
     dateAll = yearSort.yearSort(dateAll, kind, "year")
 
-    let reData = []
 
+    let reData = []
     if (palika) {
         reData = palika
     } else if (province) {
@@ -177,7 +176,7 @@ const filterDate = (data, req, kind) => {
         })
     }
     
-    
+
     let reBody = [
         {
             "startDate": req["startDate"],

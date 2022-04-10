@@ -6,6 +6,7 @@ const countSort = (data) => {
     let bc_2022 = 0
     let ceonc_2022 = 0
 
+
     Object.keys(data).map((key) => {
         if (moment(data[key].DATE_OF_ASSESSMENT).format("YYYY") == "2021") {
             if (data[key].TYPES_OF_HF === "ceonc") {

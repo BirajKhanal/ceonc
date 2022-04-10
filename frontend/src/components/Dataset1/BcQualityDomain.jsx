@@ -159,6 +159,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
                 <Bar dataKey="good" stackId="a" fill={color.color_1} />
                 <Bar dataKey="medium" stackId="a" fill={color.color_2} />
                 <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+                <Bar dataKey="null" stackId="a" fill={color.color_5} />
               </BarChart>
             </div>
           )
@@ -184,6 +185,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
           <Bar dataKey="good" stackId="a" fill={color.color_1} />
           <Bar dataKey="medium" stackId="a" fill={color.color_2} />
           <Bar dataKey="poor" stackId="a" fill={color.color_3} />
+          <Bar dataKey="null" stackId="a" fill={color.color_5} />
         </BarChart>
       </div>
     )

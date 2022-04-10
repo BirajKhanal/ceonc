@@ -50,6 +50,7 @@ ul {
 }
 .navItem:hover {
     background-color: var(--secondary);
+    cursor: pointer;
 }
 .select {
     background-color: var(--secondary);
@@ -146,7 +147,18 @@ ul {
 .search-button {
     display: flex;
     align-items: center;
+    background-color: var(--secondary);
+    animation-duration: 10000ms;
+}
+.search-button:hover {
+    cursor: pointer;
     background-color: var(--green);
+    animation: ease;
+}
+.search-button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 .text_width {
     max-width: 65%;
