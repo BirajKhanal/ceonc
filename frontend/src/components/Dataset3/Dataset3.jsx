@@ -211,9 +211,13 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
           <div className="graphItem">
               <HFImplement graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
           </div>
-          {/* <div className="graphItem">
-              <KnowledgeSkill graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
-          </div> */}
+          {location === "nav"
+          ? (
+            <div className="graphItem">
+                <KnowledgeSkill graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
+            </div>
+          ): null
+          }
         </div>
     </div>
   )
