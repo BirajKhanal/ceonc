@@ -4,6 +4,7 @@ import Dataset1 from '../Dataset1'
 import Dataset3 from '../Dataset3'
 import { totalCount } from '../../utils/totalCount';
 import { host } from '../../utils';
+import Dataset4 from '../Dataset4/Dataset4';
 
 export const Dashboard = ({graphWidth}) => {
   const [data, setData] = useState()
@@ -67,7 +68,7 @@ export const Dashboard = ({graphWidth}) => {
     <div>
       <div className='topContainer'>
           <div className="box">
-              BE/BEONC Sites Implemented
+              BC/BEONC Sites Implemented
               <div className="dash-count">
                 {data}
               </div>
@@ -89,6 +90,7 @@ export const Dashboard = ({graphWidth}) => {
       <Dataset1 graphWidth={graphWidth} location="dashboard"/>
       {/* <Dataset2 graphWidth={graphWidth}/> */}
       <Dataset3 graphWidth={graphWidth}/>
+      <Dataset4 graphWidth={graphWidth} location="dashboard"/>
     </div>
   )
 }
