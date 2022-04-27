@@ -16,7 +16,7 @@ import { host } from '../../utils';
 
 import { color } from '../color';
 
-const GrpSize = ({graphWidth, data, dataType}) => {
+const AbsltCs = ({graphWidth, data, dataType}) => {
   const [dataReq, setDataReq] = useState([])
   const [dataSort, setDataSort] = useState([])
 
@@ -45,7 +45,7 @@ const GrpSize = ({graphWidth, data, dataType}) => {
   useEffect(() => {
     let dismount = false
     const getRequest = async () => {
-      let res = await fetch(`${host}/robson/grpsize`, requestOptions)
+      let res = await fetch(`${host}/robson/absolutecsrate`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -123,7 +123,7 @@ const GrpSize = ({graphWidth, data, dataType}) => {
     return (
       <div className='graphItem'>
         <div>
-          <p className="text-center header-color">Group Size</p>
+          <p className="text-center header-color">Absolute CS</p>
         </div>
         <ComposedChart
           width={dynamicGraph(graphWidth)}
@@ -144,4 +144,4 @@ const GrpSize = ({graphWidth, data, dataType}) => {
   }
 }
 
-export default GrpSize
+export default AbsltCs

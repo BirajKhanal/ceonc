@@ -9,6 +9,8 @@ import OverallCSRate from './OverallCSRate'
 import { nameSort } from '../../utils';
 import { yearList } from '../../utils';
 import { host } from '../../utils';
+import GrpCsRate from './GrpCsRate';
+import AbsltCs from './AbsltCs';
 
 const moment = require('moment')
 
@@ -227,14 +229,19 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
         <div className="graphItemsContainer">
           {location === "nav"
             ? (
-                <div className="graphItemContainer">
-                    <Delivery graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
+                <div className="graphItemsContainer">
+                <OverallCSRate graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
+                  <Delivery graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
+                  <GrpSize graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
+                  <GrpCsRate graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
+                  <AbsltCs graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
                 </div>
-            ):null
+            ):(
+              <div className="graphItemsContainer">
+                <OverallCSRate graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
+              </div>
+            )
           }
-          <div className="graphItemContainer">
-              <OverallCSRate graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
-          </div>
         </div>
     </div>
   )
