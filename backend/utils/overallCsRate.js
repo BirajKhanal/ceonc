@@ -1,3 +1,5 @@
+const { GrpSize } = require("./grpSize")
+
 const averageCalc = (data) => {
     let sum = 0
 
@@ -47,7 +49,7 @@ const overallCsRate = (data, type) => {
             } 
         })
     } else {
-        sortData = data
+        return GrpSize(data, type)
     }
 
     return sortData

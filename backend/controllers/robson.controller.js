@@ -17,7 +17,7 @@ const GrpSize = (request, response) => {
         if (error) {
             throw "database retrive error in robson controller in overallcsrate"
         }
-        response.status(200).json(sort1.overallCsRate(results.rows, "grp"))
+        response.status(200).json(sort1.overallCsRate(results.rows, "grpsize"))
         // response.status(200).json(results.rows)
     })
 }
@@ -27,7 +27,7 @@ const GrpCSRate = (request, response) => {
         if (error) {
             throw "database retrive error in robson controller in overallcsrate"
         }
-        response.status(200).json(sort1.overallCsRate(results.rows, "grp"))
+        response.status(200).json(sort1.overallCsRate(results.rows, "grpcsrate"))
     })
 }
 
@@ -36,7 +36,7 @@ const AbsltCS = (request, response) => {
         if (error) {
             throw "database retrive error in robson controller in overallcsrate"
         }
-        response.status(200).json(sort1.overallCsRate(results.rows, "grp"))
+        response.status(200).json(sort1.overallCsRate(results.rows, "grpabsltcs"))
     })
 }
 
