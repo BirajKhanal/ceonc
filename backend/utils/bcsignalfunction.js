@@ -84,43 +84,43 @@ const goodMediumPoorSort = (data) => {
            name: "Manual Removal of Retained",
            good: good_1,
            poor: poor_1,
-           null: null_1
+           "N/A": null_1
        },
        {
            name: "New Born Resuscitation Full",
            good: good_2,
            poor: poor_2,
-           null: null_2
+           "N/A": null_2
        },
        {
            name: "Assisted Vaginal Delivery",
            good: good_3,
            poor: poor_3,
-           null: null_3
+           "N/A": null_3
        },
        {
            name: "Parenteral Uterotonic Drugs",
            good: good_4,
            poor: poor_4,
-           null: null_4
+           "N/A": null_4
        },
        {
            name: "Parenteral Antibiotics Mother",
            good: good_5,
            poor: poor_5,
-           null: null_5
+           "N/A": null_5
        },
        {
            name: "Parenteral Anti Convulsant",
            good: good_6,
            poor: poor_6,
-           null: null_6
+           "N/A": null_6
        },
        {
            name: "Removal Of Retained Products",
            good: good_7,
            poor: poor_7,
-           null: null_7
+           "N/A": null_7
        },
    ]
 }

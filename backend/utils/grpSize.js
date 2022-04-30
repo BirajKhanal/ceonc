@@ -166,8 +166,6 @@ const GrpSize = (data, type) => {
     sortData.push(dict9)
     sortData.push(dict10)
 
-    console.log(sortData)
-
     return sortData
 }
 

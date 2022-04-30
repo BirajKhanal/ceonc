@@ -174,91 +174,91 @@ const goodMediumPoorSort = (data) => {
            good: good_1,
            medium: medium_1,
            poor: poor_1,
-           null: null_1
+           "N/A": null_1
        },
        {
            name: "Partograph",
            good: good_2,
            medium: medium_2,
            poor: poor_2,
-           null: null_2
+           "N/A": null_2
        },
        {
            name: "Electricity",
            good: good_3,
            medium: medium_3,
            poor: poor_3,
-           null: null_3
+           "N/A": null_3
        },
        {
            name: "Staffing",
            good: good_4,
            medium: medium_4,
            poor: poor_4,
-           null: null_4
+           "N/A": null_4
        },
        {
            name: "Referral",
            good: good_5,
            medium: medium_5,
            poor: poor_5,
-           null: null_5
+           "N/A": null_5
        },
        {
            name: "Management",
            good: good_6,
            medium: medium_6,
            poor: poor_6,
-           null: null_6
+           "N/A": null_6
        },
        {
            name: "Water And Sanitation",
            good: good_7,
            medium: medium_7,
            poor: poor_7,
-           null: null_7
+           "N/A": null_7
        },
        {
            name: "Drugs",
            good: good_8,
            medium: medium_8,
            poor: poor_8,
-           null: null_8
+           "N/A": null_8
        },
        {
            name: "Management Demand",
            good: good_9,
            medium: medium_9,
            poor: poor_9,
-           null: null_9
+           "N/A": null_9
        },
        {
            name: "Patient Dignity",
            good: good_10,
            medium: medium_10,
            poor: poor_10,
-           null: null_10
+           "N/A": null_10
        },
        {
            name: "Equipment",
            good: good_11,
            medium: medium_11,
            poor: poor_11,
-           null: null_11
+           "N/A": null_11
        },
        {
            name: "Postnatal Care",
            good: good_12,
            medium: medium_12,
            poor: poor_12,
-           null: null_12
+           "N/A": null_12
        },
        {
            name: "Family Planning",
            good: good_13,
            medium: medium_13,
            poor: poor_13,
-           null: null_13
+           "N/A": null_13
        },
    ]
 }
