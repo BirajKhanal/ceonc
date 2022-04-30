@@ -9,16 +9,20 @@ import {
     Legend,
     ComposedChart,
     Scatter,
-    Line
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { host } from '../../utils';
+import Select from 'react-select';
 
 import { color } from '../color';
 
 const GrpCsRate = ({graphWidth, data, dataType}) => {
   const [dataReq, setDataReq] = useState([])
+  const [dataPlot, setDataPlot] = useState()
   const [dataSort, setDataSort] = useState([])
+  const [options, setOptions] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [scatterData, setScatterData] = useState(["NOBEL_MEDICAL_COLLEGE_MORANG"])
 
   let filterType = "default"
 
@@ -51,6 +55,7 @@ const GrpCsRate = ({graphWidth, data, dataType}) => {
       if (!dismount) {
         if (res.ok) {
           setDataReq(data)
+          setDataPlot(data)
         }
       }
     }
@@ -91,6 +96,58 @@ const GrpCsRate = ({graphWidth, data, dataType}) => {
     }
   }, [dataType])
 
+  useEffect(() => {
+    const optionSetter = () => {
+      let optionIndiArr = []
+      let optionArr = []
+
+      dataReq.map((items) => {
+        let filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== "who" && k !== "name"));
+        Object.entries(filtered).map(([k,v]) => {
+          if (!optionIndiArr.includes(k)) {
+            optionIndiArr.push(k)
+            optionArr.push({
+              value: k,
+              label: k
+            })
+          }
+        })
+      })
+      setOptions(optionArr)
+    }
+    setIsLoading(true)
+    optionSetter()
+  },[dataPlot])
+
+  const scatterReturn = (data) => {
+    let sctr = []
+    let scrtDict = {}
+    let fltData = []
+
+    data.map((items) => {
+      fltData.push(items["value"])
+    })
+
+    dataReq.map((items) => {
+      let filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== "who" && k !== "name"));
+      Object.entries(filtered).map(([k, v]) => {
+        fltData.map((itm) => {
+          if (k === itm) {
+            scrtDict[k] = v
+          }
+        })
+      })
+      sctr.push({
+        name: items["name"],
+        who: items["who"],
+        ...scrtDict
+      })
+    })
+
+    setScatterData(fltData)
+    setDataPlot(sctr)
+  }
+
   if (filterType !== "default") {
     return (
       <div className='graphItems'>
@@ -125,10 +182,23 @@ const GrpCsRate = ({graphWidth, data, dataType}) => {
         <div>
           <p className="text-center header-color">Group CS Rate</p>
         </div>
+      <div className='multi-dropdown'>
+        {isLoading ? (
+          <Select 
+            defaultValue={options[0]}
+            isMulti
+            isSearchable
+            options={options}
+            onChange={(value) => {
+              scatterReturn(value)
+            }}
+          />
+        ):null}
+      </div>
         <ComposedChart
           width={dynamicGraph(graphWidth)}
           height={300}
-          data={dataReq}
+          data={dataPlot}
         >
           <CartesianGrid strokeDasharray="9 9" />
           <XAxis dataKey="name" />
@@ -136,8 +206,11 @@ const GrpCsRate = ({graphWidth, data, dataType}) => {
           <Tooltip />
           <Legend />
           <Bar dataKey="who" fill={color.color_4} />
-          <Scatter dataKey="NOBEL_MEDICAL_COLLEGE_MORANG" fill={color.color_1} />
-          <Scatter dataKey="SINDHULI_PROVINCIAL_HOSPITAL" fill={color.color_1} />
+          {scatterData.map((items, i) => {
+            return (
+              <Scatter dataKey={items} fill={color.color_1} key={i}/>
+            )
+          })}
         </ComposedChart>
       </div>
     )

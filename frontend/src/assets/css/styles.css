@@ -163,6 +163,11 @@ ul {
 .text_width {
     max-width: 65%;
 }
+.multi-dropdown {
+    margin-left: 5rem;
+    margin-bottom: 1rem;
+    max-width: 30rem;
+}
 
 @media screen and (max-width: 1000px) {
     .mainContainer {
@@ -205,5 +210,8 @@ ul {
     }
     .navItem {
         width: 100%;
+    }
+    .multi-dropdown {
+        margin-left: 2rem;
     }
 }

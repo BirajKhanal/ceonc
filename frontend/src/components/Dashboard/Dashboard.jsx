@@ -46,7 +46,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestPalikaCount = async () => {
-      let res = await fetch(`${host}/bebeonc/qualitydomain/palika`, requestOptions)
+      let res = await fetch(`${host}/robson/csrate`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -80,15 +80,13 @@ export const Dashboard = ({graphWidth}) => {
               </div>
           </div>
           <div className="box">
-              Robson Tool
+              Robson CS Rate Count
               <div className="dash-count">
-                {/* {data2} */}
-                145
+                {data2}
               </div>
           </div>
       </div>
       <Dataset1 graphWidth={graphWidth} location="dashboard"/>
-      {/* <Dataset2 graphWidth={graphWidth}/> */}
       <Dataset3 graphWidth={graphWidth}/>
       <Dataset4 graphWidth={graphWidth} location="dashboard"/>
     </div>
