@@ -71,11 +71,11 @@ const yearSort = (data, type, fltType) => {
             items["data"] = sort5.countSort(items["data"])
         } else if(type === "knowledge") {
             items["data"] = sort6.sort(items["data"])
-        } else if (kind === "overallcs") {
-            items["data"] = overallCsRate(items["data"])
-        } else if (kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs") {
-            items["data"] = GrpSize(items["data"])
-        } else if (kind === "delivery") {
+        } else if (type === "overallcs") {
+            items["data"] = overallCsRate(items["data"], "overall")
+        } else if (type === "grpsize" || type === "grpcsrate" || type === "grpabsltcs") {
+            items["data"] = GrpSize(items["data"], type)
+        } else if (type === "delivery") {
             items["data"] = deliverySort(items["data"])
         }
     })

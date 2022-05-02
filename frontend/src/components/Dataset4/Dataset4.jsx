@@ -75,7 +75,7 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
     // }
 
     const getRequestPalikaProvince = async () => {
-      let res = await fetch(`${host}/palikaprovince`, requestOptions)
+      let res = await fetch(`${host}/palikaprovince/robson`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
@@ -141,7 +141,7 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
                   showMonthYearPicker
                 />
             </div> */}
-            {/* <div className="box">
+            <div className="box">
                 Date
                 <DatePicker
                   className="select-date"
@@ -221,7 +221,7 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
             }}
             >
               Search
-            </div> */}
+            </div>
         </div>
       ): null
       }
@@ -230,15 +230,14 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
           {location === "nav"
             ? (
                 <div className="graphItemsContainer">
-                <OverallCSRate graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
-                  <Delivery graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
-                  <GrpSize graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
-                  <GrpCsRate graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
-                  <AbsltCs graphWidth={graphWidth} data3={data || dataNew} dataType3={dataType || dataTypeNew}/>
+                  <OverallCSRate graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
+                  <GrpSize graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
+                  <GrpCsRate graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
+                  <AbsltCs graphWidth={graphWidth} data={data || dataNew} dataType={dataType || dataTypeNew}/>
                 </div>
             ):(
               <div className="graphItemsContainer">
-                <OverallCSRate graphWidth={graphWidth} data2={data || dataNew} dataType2={dataType || dataTypeNew}/>
+                <OverallCSRate graphWidth={graphWidth} data1={data || dataNew} dataType1={dataType || dataTypeNew}/>
               </div>
             )
           }

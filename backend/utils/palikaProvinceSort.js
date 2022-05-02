@@ -83,32 +83,40 @@ const palikaProvinceSort = (data, type, flt) => {
 
     sortData = sortLogic(data, fltData)
 
-    sortData.map((items) => {
-        if (flt == "palika") {
-            items["name"] = items["name"].slice(7)
-            items["name"] = items["name"].slice(0, -1)
-            items["name"] = items["name"].replace(/_/g, " ")
-        } else if (flt == "province") {
-            items["name"] = items["name"].slice(3)
-            items["name"] = items["name"].slice(0, -1)
-            items["name"] = items["name"].replace(/_/g, " ")
-        } else if (flt === "district") {
-            items["name"] = items["name"].slice(5)
-            items["name"] = items["name"].slice(0, -1)
-            items["name"] = items["name"].replace(/_/g, " ")
-        } else if (flt === "facility") {
-            items["name"] = items["name"].slice(1)
-            items["name"] = items["name"].replace(/_/g, " ")
-        } else if (flt == "palikaprovince") {
-            items["name"] = items["name"].slice(3)
-            items["name"] = items["name"].slice(0, -1)
-            items["name"] = items["name"].replace(/_/g, " ")
+    let robson = true
+    
+    if (type === "overallcs" || type === "grpsize" || type === "grpcsrate" || type === "grpabsltcs" || type === "delivery") {
+        robson = false
+    }
 
-            items["data"].map((item) => {
-                item["_3_PALIKA"] = item["_3_PALIKA"].slice(7)
-                item["_3_PALIKA"] = item["_3_PALIKA"].slice(0, -1)
-                item["_3_PALIKA"] = item["_3_PALIKA"].replace(/_/g, " ")
-            })
+    sortData.map((items) => {
+        if (robson) {
+            if (flt == "palika") {
+                items["name"] = items["name"].slice(7)
+                items["name"] = items["name"].slice(0, -1)
+                items["name"] = items["name"].replace(/_/g, " ")
+            } else if (flt == "province") {
+                items["name"] = items["name"].slice(3)
+                items["name"] = items["name"].slice(0, -1)
+                items["name"] = items["name"].replace(/_/g, " ")
+            } else if (flt === "district") {
+                items["name"] = items["name"].slice(5)
+                items["name"] = items["name"].slice(0, -1)
+                items["name"] = items["name"].replace(/_/g, " ")
+            } else if (flt === "facility") {
+                items["name"] = items["name"].slice(1)
+                items["name"] = items["name"].replace(/_/g, " ")
+            } else if (flt == "palikaprovince") {
+                items["name"] = items["name"].slice(3)
+                items["name"] = items["name"].slice(0, -1)
+                items["name"] = items["name"].replace(/_/g, " ")
+
+                items["data"].map((item) => {
+                    item["_3_PALIKA"] = item["_3_PALIKA"].slice(7)
+                    item["_3_PALIKA"] = item["_3_PALIKA"].slice(0, -1)
+                    item["_3_PALIKA"] = item["_3_PALIKA"].replace(/_/g, " ")
+                })
+            }
         }
         if (type == "bcqd") {
             items["data"] = sort1.goodMediumPoorSort(items["data"])
@@ -122,11 +130,11 @@ const palikaProvinceSort = (data, type, flt) => {
             items["data"] = sort5.countSort(items["data"])
         } else if (type === "knowledge") {
             items["data"] = sort6.sort(items["data"])
-        } else if (kind === "overallcs") {
-            items["data"] = overallCsRate(items["data"])
-        } else if (kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs") {
-            items["data"] = GrpSize(items["data"])
-        } else if (kind === "delivery") {
+        } else if (type === "overallcs") {
+            items["data"] = overallCsRate(items["data"], "overall")
+        } else if (type === "grpsize" || type === "grpcsrate" || type === "grpabsltcs") {
+            items["data"] = GrpSize(items["data"], type)
+        } else if (type === "delivery") {
             items["data"] = deliverySort(items["data"])
         }
     })

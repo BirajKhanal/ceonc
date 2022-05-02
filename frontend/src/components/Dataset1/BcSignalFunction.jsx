@@ -63,10 +63,10 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
             body: JSON.stringify({
               "startDate": dataType2["startDate"],
               "endDate": dataType2["endDate"],
-              "province": dataType2["province"],
-              "district": dataType2["district"],
-              "palika": dataType2["palika"],
-              "facility": dataType2["facility"]
+              "province": dataType2["province"] === "All" ? "" : dataType2["province"],
+              "district": dataType2["district"] === "All" ? "" : dataType2["district"],
+              "palika": dataType2["palika"] === "All" ? "" : dataType2["palika"],
+              "facility": dataType2["facility"] === "All" ? "" : dataType2["facility"]
             }), 
             mode: 'cors'
         }

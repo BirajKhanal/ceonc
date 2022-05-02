@@ -63,10 +63,10 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             body: JSON.stringify({
               "startDate": dataType4["startDate"],
               "endDate": dataType4["endDate"],
-              "province": dataType4["province"],
-              "district": dataType4["district"],
-              "palika": dataType4["palika"],
-              "facility": dataType4["facility"]
+              "province": dataType4["province"] === "All" ? "" : dataType4["province"],
+              "district": dataType4["district"] === "All" ? "" : dataType4["district"],
+              "palika": dataType4["palika"] === "All" ? "" : dataType4["palika"],
+              "facility": dataType4["facility"] === "All" ? "" : dataType4["facility"]
             }), 
             mode: 'cors'
         }

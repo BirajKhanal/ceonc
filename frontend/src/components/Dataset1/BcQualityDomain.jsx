@@ -64,10 +64,10 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
             body: JSON.stringify({
               "startDate": dataType1["startDate"],
               "endDate": dataType1["endDate"],
-              "province": dataType1["province"],
-              "district": dataType1["district"],
-              "palika": dataType1["palika"],
-              "facility": dataType1["facility"]
+              "province": dataType1["province"] === "All" ? "" : dataType1["province"],
+              "district": dataType1["district"] === "All" ? "" : dataType1["district"],
+              "palika": dataType1["palika"] === "All" ? "" : dataType1["palika"],
+              "facility": dataType1["facility"] === "All" ? "" : dataType1["facility"]
             }), 
             mode: 'cors'
         }

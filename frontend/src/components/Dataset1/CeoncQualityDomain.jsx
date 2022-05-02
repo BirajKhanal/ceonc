@@ -64,10 +64,10 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
             body: JSON.stringify({
               "startDate": dataType3["startDate"],
               "endDate": dataType3["endDate"],
-              "province": dataType3["province"],
-              "district": dataType3["district"],
-              "palika": dataType3["palika"],
-              "facility": dataType3["facility"]
+              "province": dataType3["province"] === "All" ? "" : dataType3["province"],
+              "district": dataType3["district"] === "All" ? "" : dataType3["district"],
+              "palika": dataType3["palika"] === "All" ? "" : dataType3["palika"],
+              "facility": dataType3["facility"] === "All" ? "" : dataType3["facility"]
             }), 
             mode: 'cors'
         }

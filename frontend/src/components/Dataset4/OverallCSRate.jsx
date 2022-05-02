@@ -13,21 +13,21 @@ import { host } from '../../utils';
 
 import { color } from '../color';
 
-const OverallCSRate = ({graphWidth, data, dataType}) => {
+const OverallCSRate = ({graphWidth, data1, dataType1}) => {
   const [overallCSRate, setOverallCSRate] = useState([])
   const [dataSort, setDataSort] = useState([])
 
   let filterType = "default"
 
-  if (data === "year") {
+  if (data1 === "year") {
     filterType = "default"
-  } else if (data === "province") {
+  } else if (data1 === "province") {
     filterType = "province"
-  } else if (data === "palika") {
+  } else if (data1 === "palika") {
     filterType = "palika"
-  } else if (data === "all") {
+  } else if (data1 === "all") {
     filterType = "all"
-  } else if (data === "month") {
+  } else if (data1 === "month") {
     filterType = "month"
   }
 
@@ -60,17 +60,17 @@ const OverallCSRate = ({graphWidth, data, dataType}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "startDate": dataType["startDate"],
-              "endDate": dataType["endDate"],
-              "province": dataType["province"],
-              "district": dataType["district"],
-              "palika": dataType["palika"],
-              "facility": dataType["facility"]
+              "startDate": dataType1["startDate"],
+              "endDate": dataType1["endDate"],
+              "province": dataType1["province"] === "All" ? "" : dataType1["province"],
+              "district": dataType1["district"] === "All" ? "" : dataType1["district"],
+              "palika": dataType1["palika"] === "All" ? "" : dataType1["palika"],
+              "facility": dataType1["facility"] === "All" ? "" : dataType1["facility"]
             }), 
             mode: 'cors'
         }
 
-        let res = await fetch(`${host}/hf/filter`, requestOptionsBody)
+        let res = await fetch(`${host}/robson/csrate/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -86,7 +86,7 @@ const OverallCSRate = ({graphWidth, data, dataType}) => {
     return () => {
       dismount = true
     }
-  }, [dataType])
+  }, [dataType1])
 
   if (filterType !== "default") {
     return (
@@ -104,12 +104,10 @@ const OverallCSRate = ({graphWidth, data, dataType}) => {
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
-                <XAxis dataKey="year" />
+                <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
-                <Legend />
-                <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-                <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
+                <Bar dataKey="data" fill={color.color_1} />
               </BarChart>
             </div>
           )

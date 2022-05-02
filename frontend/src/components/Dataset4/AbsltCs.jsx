@@ -16,7 +16,7 @@ import Select from 'react-select';
 
 import { color } from '../color';
 
-const AbsltCs = ({graphWidth, data, dataType}) => {
+const AbsltCs = ({graphWidth, data4, dataType4}) => {
   const [dataReq, setDataReq] = useState([])
   const [dataPlot, setDataPlot] = useState()
   const [dataSort, setDataSort] = useState([])
@@ -26,15 +26,15 @@ const AbsltCs = ({graphWidth, data, dataType}) => {
 
   let filterType = "default"
 
-  if (data === "year") {
+  if (data4 === "year") {
     filterType = "default"
-  } else if (data === "province") {
+  } else if (data4 === "province") {
     filterType = "province"
-  } else if (data === "palika") {
+  } else if (data4 === "palika") {
     filterType = "palika"
-  } else if (data === "all") {
+  } else if (data4 === "all") {
     filterType = "all"
-  } else if (data === "month") {
+  } else if (data4 === "month") {
     filterType = "month"
   }
 
@@ -68,17 +68,17 @@ const AbsltCs = ({graphWidth, data, dataType}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "startDate": dataType["startDate"],
-              "endDate": dataType["endDate"],
-              "province": dataType["province"],
-              "district": dataType["district"],
-              "palika": dataType["palika"],
-              "facility": dataType["facility"]
+              "startDate": dataType4["startDate"],
+              "endDate": dataType4["endDate"],
+              "province": dataType4["province"] === "All" ? "" : dataType4["province"],
+              "district": dataType4["district"] === "All" ? "" : dataType4["district"],
+              "palika": dataType4["palika"] === "All" ? "" : dataType4["palika"],
+              "facility": dataType4["facility"] === "All" ? "" : dataType4["facility"]
             }), 
             mode: 'cors'
         }
 
-        let res = await fetch(`${host}/hf/filter`, requestOptionsBody)
+        let res = await fetch(`${host}/robson/absolutecsrate/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -94,7 +94,7 @@ const AbsltCs = ({graphWidth, data, dataType}) => {
     return () => {
       dismount = true
     }
-  }, [dataType])
+  }, [dataType4])
 
   useEffect(() => {
     const optionSetter = () => {
@@ -156,21 +156,25 @@ const AbsltCs = ({graphWidth, data, dataType}) => {
             <div key={index} className='graphItem'>
               <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
-                <p className="text-center header-color">Group Size</p>
+                <p className="text-center header-color">Absolute CS</p>
               </div>
-              <BarChart
-                width={dynamicGraph(graphWidth)}
-                height={300}
-                data={items["data"]}
-              >
-                <CartesianGrid strokeDasharray="9 9" />
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-                <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
-              </BarChart>
+                <ComposedChart
+                  width={dynamicGraph(graphWidth)}
+                  height={300}
+                  data={dataPlot}
+                >
+                  <CartesianGrid strokeDasharray="9 9" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="who" fill={color.color_4} />
+                  {scatterData.map((items, i) => {
+                    return (
+                      <Scatter dataKey={items} fill={color.color_1} key={i}/>
+                    )
+                  })}
+                </ComposedChart>
             </div>
           )
         })}
@@ -180,7 +184,7 @@ const AbsltCs = ({graphWidth, data, dataType}) => {
     return (
       <div className='graphItem'>
         <div>
-          <p className="text-center header-color">Group CS Rate</p>
+          <p className="text-center header-color">Absolute CS</p>
         </div>
       <div className='multi-dropdown'>
         {isLoading ? (

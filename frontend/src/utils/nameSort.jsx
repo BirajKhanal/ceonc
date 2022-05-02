@@ -4,6 +4,7 @@ export const nameSort = (data, selected, type) => {
     let count = 0
 
     if (type === "province") {
+        names.push("All")
         data.map((items) => {
             if(!names.includes(items["name"])){
                 names.push(items["name"])
@@ -13,6 +14,7 @@ export const nameSort = (data, selected, type) => {
     }
 
     if (type === "district") {
+        names.push("All")
         data.map((items) => {
             if (items["name"] === selected["label"]) {
                 items["data"].map((item) => {
@@ -26,6 +28,7 @@ export const nameSort = (data, selected, type) => {
         })
     }
     if (type === "palika") {
+        names.push("All")
         data.map((items) => {
             items["data"].map((item) => {
                 if (item["name"] === selected["label"]) {
@@ -42,6 +45,7 @@ export const nameSort = (data, selected, type) => {
         })
     }
     if (type === "facility") {
+        names.push("All")
         data.map((items) => {
             items["data"].map((item) => {
                 item["data"].map((itm) => {

@@ -62,10 +62,10 @@ const HFImplement = ({graphWidth, data, dataType}) => {
             body: JSON.stringify({
               "startDate": dataType["startDate"],
               "endDate": dataType["endDate"],
-              "province": dataType["province"],
-              "district": dataType["district"],
-              "palika": dataType["palika"],
-              "facility": dataType["facility"]
+              "province": dataType["province"] === "All" ? "" : dataType["province"],
+              "district": dataType["district"] === "All" ? "" : dataType["district"],
+              "palika": dataType["palika"] === "All" ? "" : dataType["palika"],
+              "facility": dataType["facility"] === "All" ? "" : dataType["facility"]
             }), 
             mode: 'cors'
         }

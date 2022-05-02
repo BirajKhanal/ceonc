@@ -12,6 +12,8 @@ const filter = (data, req, kind) => {
 const filterPalika = (data, req) => {
   let reData = [];
 
+  // console.log(data)
+
   if (req !== "") {
     data.map((items) => {
       if (items["name"] === req) {
@@ -139,7 +141,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
 
-        province.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? province.push(filtered3): province.push(filtered4);
       }
       if (req["district"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -155,7 +157,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
 
-        district.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? district.push(filtered3): district.push(filtered4);
       }
       if (req["palika"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -171,7 +173,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
 
-        palika.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? palika.push(filtered3): palika.push(filtered4);
       }
       if (req["facility"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -187,7 +189,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindPalika)
         );
 
-        facility.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? facility.push(filtered3): facility.push(filtered4);
       }
       if (
         req["palika"] === "" &&
@@ -207,7 +209,8 @@ const filterDate = (data, req, kind) => {
         let filtered4 = Object.fromEntries(
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
-        dateAll.push(filtered4);
+
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? dateAll.push(filtered3): dateAll.push(filtered4);
       }
     } else {
       if (req["province"] !== "") {
@@ -224,7 +227,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
         
-        province.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? province.push(filtered3): province.push(filtered4);
       }
       if (req["district"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -240,7 +243,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
 
-        district.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? district.push(filtered3): district.push(filtered4);
       }
       if (req["palika"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -256,7 +259,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
 
-        palika.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? palika.push(filtered3): palika.push(filtered4);
       }
       if (req["facility"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -272,7 +275,7 @@ const filterDate = (data, req, kind) => {
           Object.entries(filtered3).filter(([k, v]) => k !== kindPalika)
         );
 
-        facility.push(filtered4);
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? facility.push(filtered3): facility.push(filtered4);
       }
       if (
         req["palika"] === "" &&
@@ -292,7 +295,8 @@ const filterDate = (data, req, kind) => {
         let filtered4 = Object.fromEntries(
           Object.entries(filtered3).filter(([k, v]) => k !== kindFacility)
         );
-        dateAll.push(filtered4);
+
+        kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? dateAll.push(filtered3): dateAll.push(filtered4);
       }
     }
   });

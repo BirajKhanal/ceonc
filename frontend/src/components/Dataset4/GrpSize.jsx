@@ -16,7 +16,7 @@ import Select from 'react-select';
 
 import { color } from '../color';
 
-const GrpSize = ({graphWidth, data, dataType}) => {
+const GrpSize = ({graphWidth, data2, dataType2}) => {
   const [dataReq, setDataReq] = useState([])
   const [dataPlot, setDataPlot] = useState()
   const [dataSort, setDataSort] = useState([])
@@ -26,15 +26,15 @@ const GrpSize = ({graphWidth, data, dataType}) => {
 
   let filterType = "default"
 
-  if (data === "year") {
+  if (data2 === "year") {
     filterType = "default"
-  } else if (data === "province") {
+  } else if (data2 === "province") {
     filterType = "province"
-  } else if (data === "palika") {
+  } else if (data2 === "palika") {
     filterType = "palika"
-  } else if (data === "all") {
+  } else if (data2 === "all") {
     filterType = "all"
-  } else if (data === "month") {
+  } else if (data2 === "month") {
     filterType = "month"
   }
 
@@ -68,17 +68,17 @@ const GrpSize = ({graphWidth, data, dataType}) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "startDate": dataType["startDate"],
-              "endDate": dataType["endDate"],
-              "province": dataType["province"],
-              "district": dataType["district"],
-              "palika": dataType["palika"],
-              "facility": dataType["facility"]
+              "startDate": dataType2["startDate"],
+              "endDate": dataType2["endDate"],
+              "province": dataType2["province"] === "All" ? "" : dataType2["province"],
+              "district": dataType2["district"] === "All" ? "" : dataType2["district"],
+              "palika": dataType2["palika"] === "All" ? "" : dataType2["palika"],
+              "facility": dataType2["facility"] === "All" ? "" : dataType2["facility"]
             }), 
             mode: 'cors'
         }
 
-        let res = await fetch(`${host}/hf/filter`, requestOptionsBody)
+        let res = await fetch(`${host}/robson/grpsize/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {
@@ -94,7 +94,7 @@ const GrpSize = ({graphWidth, data, dataType}) => {
     return () => {
       dismount = true
     }
-  }, [dataType])
+  }, [dataType2])
 
   useEffect(() => {
     const optionSetter = () => {
@@ -158,19 +158,23 @@ const GrpSize = ({graphWidth, data, dataType}) => {
               <div>
                 <p className="text-center header-color">Group Size</p>
               </div>
-              <BarChart
-                width={dynamicGraph(graphWidth)}
-                height={300}
-                data={items["data"]}
-              >
-                <CartesianGrid strokeDasharray="9 9" />
-                <XAxis dataKey="year" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-                <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
-              </BarChart>
+                <ComposedChart
+                  width={dynamicGraph(graphWidth)}
+                  height={300}
+                  data={items["data"]}
+                >
+                  <CartesianGrid strokeDasharray="9 9" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="who" fill={color.color_4} />
+                  {scatterData.map((items, i) => {
+                    return (
+                      <Scatter dataKey={items} fill={color.color_1} key={i}/>
+                    )
+                  })}
+                </ComposedChart>
             </div>
           )
         })}
@@ -180,7 +184,7 @@ const GrpSize = ({graphWidth, data, dataType}) => {
     return (
       <div className='graphItem'>
         <div>
-          <p className="text-center header-color">Group CS Rate</p>
+          <p className="text-center header-color">Group Size</p>
         </div>
       <div className='multi-dropdown'>
         {isLoading ? (
