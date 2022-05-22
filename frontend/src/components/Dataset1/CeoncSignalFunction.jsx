@@ -143,7 +143,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             <div key={index} className="graphItem">
                 <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
-                <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+                <p className="text-center header-color">Readiness of CEONC for delivering 9 Signal Function</p>
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
@@ -155,10 +155,8 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="good" stackId="a" fill={color.color_1} />
-                <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-                <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-                <Bar dataKey="N/A" stackId="a" fill={color.color_5} />
+                <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
+                <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
               </BarChart>
             </div>
           )
@@ -169,7 +167,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
     return (
       <div>
         <div>
-          <p className="text-center header-color">No of CEONC hospitals status in 9 Signal Function</p>
+          <p className="text-center header-color">Readiness of CEONC for delivering 9 Signal Function</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
@@ -181,10 +179,8 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="good" stackId="a" fill={color.color_1} />
-          <Bar dataKey="medium" stackId="a" fill={color.color_2} />
-          <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-          <Bar dataKey="N/A" stackId="a" fill={color.color_5} />
+          <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
+          <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
         </BarChart>
       </div>
     )

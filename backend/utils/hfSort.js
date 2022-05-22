@@ -26,13 +26,13 @@ const countSort = (data) => {
     return [
         {
             year: '2021',
-            "No of HFs(BC/BEONC) implemented": bc_2021,
-            "No of CEONC implemented": ceonc_2021
+            "No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)": bc_2021,
+            "No of Onsite Clinical Coaching Mentoring Conducted(CEONC)": ceonc_2021
         },
         {
             year: '2022',
-            "No of HFs(BC/BEONC) implemented": bc_2022,
-            "No of CEONC implemented": ceonc_2022
+            "No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)": bc_2022,
+            "No of Onsite Clinical Coaching Mentoring Conducted(CEONC)": ceonc_2022
         }
     ]
 }

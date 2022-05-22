@@ -53,24 +53,28 @@ const goodMediumPoorSort = (data) => {
    let null_13 = 0 
 
    data.map((items) => {
-       if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] == 3) {
+       if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] == 8) {
             good_1 += 1
-       } else if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] == 2) {
+       } else if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] <= 7 || items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] >= 5 ) {
            medium_1 += 1
-       } else if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] <= 1) {
+       } else if (items["GROUP_JF7YD07_INFECTION_PREVENTION_FULL_MARK"] < 5) {
            poor_1 += 1
        } else {
            null_1 += 1
        }
-       if (items["GROUP_JF7YD07_PARTOGRAPH"] == 1) {
+       if (items["GROUP_JF7YD07_PARTOGRAPH"] == 3) {
             good_2 += 1
-       } else if (items["GROUP_JF7YD07_PARTOGRAPH"] == 0) {
+       } else if (items["GROUP_JF7YD07_PARTOGRAPH"] == 2) {
+           medium_2 += 1
+       } else if (items["GROUP_JF7YD07_PARTOGRAPH"] <= 1) {
            poor_2 += 1
        } else {
            null_2 += 1
        }
-       if (items["GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2"] == 1) {
+       if (items["GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2"] == 2) {
             good_3 += 1
+       } else if (items["GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2"] == 1) {
+           medium_3 += 1
        } else if (items["GROUP_JF7YD07_ELECTRICITY_FULL_MARKS_2"] == 0) {
            poor_3 += 1
        } else {
@@ -85,20 +89,20 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_4 += 1
        }
-       if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] == 4) {
+       if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] == 3) {
             good_5 += 1
-       } else if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] == 3) {
+       } else if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] == 2) {
            medium_5 += 1
-       } else if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] <= 2) {
+       } else if (items["GROUP_JF7YD07_REFERRAL_FULL_MARKS_3"] <= 1) {
            poor_5 += 1
        } else {
            null_5 += 1
        }
-       if (items["GROUP_JF7YD07_MANAGEMENT"] == 8) {
+       if (items["GROUP_JF7YD07_MANAGEMENT"] == 10) {
             good_6 += 1
-       } else if (items["GROUP_JF7YD07_MANAGEMENT"] <= 7 && items["GROUP_JF7YD07_MANAGEMENT"] >= 5) {
+       } else if (items["GROUP_JF7YD07_MANAGEMENT"] <= 9 || items["GROUP_JF7YD07_MANAGEMENT"] >= 6) {
            medium_6 += 1
-       } else if (items["GROUP_JF7YD07_MANAGEMENT"] < 5 ) {
+       } else if (items["GROUP_JF7YD07_MANAGEMENT"] < 6 ) {
            poor_6 += 1
        } else {
            null_6 += 1
@@ -112,11 +116,11 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_7 += 1
        }
-       if (items["GROUP_JF7YD07_DRUGS_001"] == 10) {
+       if (items["GROUP_JF7YD07_DRUGS_001"] == 8) {
             good_8 += 1
-       } else if (items["GROUP_JF7YD07_DRUGS_001"] <= 9 && items["GROUP_JF7YD07_DRUGS_001"] >= 6) {
+       } else if (items["GROUP_JF7YD07_DRUGS_001"] <= 7 || items["GROUP_JF7YD07_DRUGS_001"] >= 5) {
            medium_8 += 1
-       } else if (items["GROUP_JF7YD07_DRUGS_001"] < 6) {
+       } else if (items["GROUP_JF7YD07_DRUGS_001"] < 5) {
            poor_8 += 1
        } else {
            null_8 += 1
@@ -130,38 +134,38 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_9 += 1
        }
-       if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] == 10) {
+       if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] == 9) {
             good_10 += 1
-       } else if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] <= 9 && items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] >= 6) {
+       } else if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] <= 8 || items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] >= 5) {
            medium_10 += 1
-       } else if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] < 6) {
+       } else if (items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] < 5) {
            poor_10 += 1
        } else {
            null_10 += 1
        }
        if (items["GROUP_JF7YD07_EQUIPMENT"] == 27) {
             good_11 += 1
-       } else if (items["GROUP_JF7YD07_EQUIPMENT"] <= 26 && items["GROUP_JF7YD07_EQUIPMENT"] >= 14) {
+       } else if (items["GROUP_JF7YD07_EQUIPMENT"] <= 26 || items["GROUP_JF7YD07_EQUIPMENT"] >= 14) {
            medium_11 += 1
        } else if (items["GROUP_JF7YD07_EQUIPMENT"] < 14) {
            poor_11 += 1
        } else {
            null_11 += 1
        }
-       if (items["GROUP_JF7YD07_POSTNATAL_CARE"] == 7) {
+       if (items["GROUP_JF7YD07_POSTNATAL_CARE"] == 8) {
             good_12 += 1
-       } else if (items["GROUP_JF7YD07_POSTNATAL_CARE"] <= 6 && items["GROUP_JF7YD07_POSTNATAL_CARE"] >= 4) {
+       } else if (items["GROUP_JF7YD07_POSTNATAL_CARE"] <= 7 || items["GROUP_JF7YD07_POSTNATAL_CARE"] >= 5) {
            medium_12 += 1
-       } else if (items["GROUP_JF7YD07_POSTNATAL_CARE"] < 4) {
+       } else if (items["GROUP_JF7YD07_POSTNATAL_CARE"] < 5) {
            poor_12 += 1
        } else {
            null_12 += 1
        }
-       if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 3) {
+       if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 2) {
             good_13 += 1
-       } else if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 2) {
+       } else if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 1) {
            medium_13 += 1
-       } else if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 1 || items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 0) {
+       } else if (items["GROUP_JF7YD07_FAMILY_PLANNING_FULL_MARKS_2"] == 0 ) {
            poor_13 += 1
        } else {
            null_13 += 1

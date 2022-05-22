@@ -8,15 +8,6 @@ const goodMediumPoorSort = (data) => {
    let good_7 = 0 
    let good_8 = 0 
    let good_9 = 0 
-   let medium_1 = 0 
-   let medium_2 = 0 
-   let medium_3 = 0 
-   let medium_4 = 0 
-   let medium_5 = 0 
-   let medium_6 = 0 
-   let medium_7 = 0 
-   let medium_8 = 0 
-   let medium_9 = 0 
    let poor_1 = 0 
    let poor_2 = 0 
    let poor_3 = 0 
@@ -41,9 +32,9 @@ const goodMediumPoorSort = (data) => {
    let null_13 = 0 
 
    data.map((items) => {
-       if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] == 5) {
+       if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] == 4) {
             good_1 += 1
-       } else if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] <= 4) {
+       } else if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] <= 3) {
            poor_1 += 1
        } else {
            null_1 += 1
@@ -69,16 +60,16 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_4 += 1
        }
-       if (items["GROUP_FT6ZY60_PARENTERAL_ANTIBIOTICS_MOTHER"] == 4) {
+       if (items["GROUP_FT6ZY60_PARENTERAL_ANTIBIOTICS_MOTHER"] == 3) {
             good_5 += 1
-       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTIBIOTICS_MOTHER"] <= 3) {
+       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTIBIOTICS_MOTHER"] < 3) {
            poor_5 += 1
        } else {
            null_5 += 1
        }
-       if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] == 4) {
+       if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] == 5) {
             good_6 += 1
-       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] < 4 ) {
+       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] < 5 ) {
            poor_6 += 1
        } else {
            null_6 += 1
@@ -90,16 +81,16 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_7 += 1
        }
-       if (items["GROUP_FT6ZY60_PERFORM_BLOOD_TRANSFUSION"] == 3) {
+       if (items["GROUP_FT6ZY60_PERFORM_BLOOD_TRANSFUSION"] == 2) {
             good_8 += 1
-       } else if (items["GROUP_FT6ZY60_PERFORM_BLOOD_TRANSFUSION"] < 3) {
+       } else if (items["GROUP_FT6ZY60_PERFORM_BLOOD_TRANSFUSION"] < 2) {
            poor_8 += 1
        } else {
            null_8 += 1
        }
-       if (items["GROUP_FT6ZY60_PERFORM_SURGERY"] == 6) {
+       if (items["GROUP_FT6ZY60_PERFORM_SURGERY"] == 5) {
             good_9 += 1
-       } else if (items["GROUP_FT6ZY60_PERFORM_SURGERY"] < 6) {
+       } else if (items["GROUP_FT6ZY60_PERFORM_SURGERY"] < 5) {
            poor_9 += 1
        } else {
            null_9 += 1
@@ -109,65 +100,56 @@ const goodMediumPoorSort = (data) => {
    return [
        {
            name: "Manual Removal Of Retained",
-           good: good_1,
-           medium: medium_1,
-           poor: poor_1,
+           "Standards Met For GOOD": good_1,
+           "Standards Not Met For POOR": poor_1,
            "N/A": null_1,
        },
        {
            name: "New Born Resuscitation",
-           good: good_2,
-           medium: medium_2,
-           poor: poor_2,
+           "Standards Met For GOOD": good_2,
+           "Standards Not Met For POOR": poor_2,
            "N/A": null_2,
        },
        {
            name: "Assisted Vaginal Delivery",
-           good: good_3,
-           medium: medium_3,
-           poor: poor_3,
+           "Standards Met For GOOD": good_3,
+           "Standards Not Met For POOR": poor_3,
            "N/A": null_3,
        },
        {
            name: "Parenteral Uterotonic Drugs",
-           good: good_4,
-           medium: medium_4,
-           poor: poor_4,
+           "Standards Met For GOOD": good_4,
+           "Standards Not Met For POOR": poor_4,
            "N/A": null_4,
        },
        {
            name: "Parenteral Antibiotics Mother",
-           good: good_5,
-           medium: medium_5,
-           poor: poor_5,
+           "Standards Met For GOOD": good_5,
+           "Standards Not Met For POOR": poor_5,
            "N/A": null_5,
        },
        {
            name: "Parenteral Anti Convulsant",
-           good: good_6,
-           medium: medium_6,
-           poor: poor_6,
+           "Standards Met For GOOD": good_6,
+           "Standards Not Met For POOR": poor_6,
            "N/A": null_6,
        },
        {
            name: "Removal Of Retained Products",
-           good: good_7,
-           medium: medium_7,
-           poor: poor_7,
+           "Standards Met For GOOD": good_7,
+           "Standards Not Met For POOR": poor_7,
            "N/A": null_7,
        },
        {
            name: "Perform Blood Transfusion",
-           good: good_8,
-           medium: medium_8,
-           poor: poor_8,
+           "Standards Met For GOOD": good_8,
+           "Standards Not Met For POOR": poor_8,
            "N/A": null_8,
        },
        {
            name: "Perform Surgery",
-           good: good_9,
-           medium: medium_9,
-           poor: poor_9,
+           "Standards Met For GOOD": good_9,
+           "Standards Not Met For POOR": poor_9,
            "N/A": null_9,
        },
    ]

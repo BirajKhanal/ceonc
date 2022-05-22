@@ -159,7 +159,6 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
                 <Bar dataKey="good" stackId="a" fill={color.color_1} />
                 <Bar dataKey="medium" stackId="a" fill={color.color_2} />
                 <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-                <Bar dataKey="N/A" stackId="a" fill={color.color_5} />
               </BarChart>
             </div>
           )
@@ -185,7 +184,6 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
           <Bar dataKey="good" stackId="a" fill={color.color_1} />
           <Bar dataKey="medium" stackId="a" fill={color.color_2} />
           <Bar dataKey="poor" stackId="a" fill={color.color_3} />
-          <Bar dataKey="N/A" stackId="a" fill={color.color_5} />
         </BarChart>
       </div>
     )

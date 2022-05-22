@@ -145,8 +145,8 @@ const HFImplement = ({graphWidth, data, dataType}) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-                <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
+                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_1} />
+                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_3} />
               </BarChart>
             </div>
           )
@@ -169,8 +169,8 @@ const HFImplement = ({graphWidth, data, dataType}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="No of HFs(BC/BEONC) implemented" fill={color.color_1} />
-          <Bar dataKey="No of CEONC implemented" fill={color.color_3} />
+          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_1} />
+          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_3} />
         </BarChart>
       </div>
     )

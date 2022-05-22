@@ -107,10 +107,10 @@ ul {
     max-width: 20rem;
     padding: 1rem;
     text-align: center;
-    border-radius: 1.2rem;
+    /* border-radius: 1.2rem; */
     color: var(--white);
     background-color: var(--primary);
-    box-shadow: -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
+    /* box-shadow: -12px 10px 29px -16px rgba(0, 0, 0, 0.6); */
 }
 .select-dropdown {
     width: 18rem;
@@ -169,6 +169,22 @@ ul {
     max-width: 30rem;
 }
 
+.box_container {
+    display: flex;
+}
+.box_big {
+    margin-bottom: 0.1rem;
+    padding: 1rem;
+    text-align: center;
+    color: var(--white);
+    background-color: var(--primary);
+    box-shadow: -12px 10px 29px -16px rgba(0, 0, 0, 0.6);
+}
+.custom-tooltip {
+    padding: 0.5rem;
+    border: 1px solid gainsboro;
+    background-color: var(--white);
+}
 @media screen and (max-width: 1000px) {
     .mainContainer {
         display: block;

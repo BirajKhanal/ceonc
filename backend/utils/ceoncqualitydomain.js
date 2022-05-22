@@ -38,74 +38,74 @@ const goodMediumPoorSort = (data) => {
    let null_13 = 0 
 
    data.map((items) => {
-       if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] == 9) {
+       if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] == 13) {
             good_1 += 1
-       } else if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] <= 8 && items["GROUP_FZ43E09_INFECTION_PREVENTION"] >= 5) {
+       } else if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] <= 12 || items["GROUP_FZ43E09_INFECTION_PREVENTION"] >= 7) {
            medium_1 += 1
-       } else if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] <= 4) {
+       } else if (items["GROUP_FZ43E09_INFECTION_PREVENTION"] <= 6) {
            poor_1 += 1
        } else {
            null_1 += 1
        }
-       if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] == 15) {
+       if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] == 17) {
             good_2 += 1
-       } else if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] <= 14 && items["GROUP_JF7YD07_STAFFING_001"] >= 8) {
+       } else if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] <= 16 || items["GROUP_JF7YD07_STAFFING_001"] >= 9) {
            medium_2 += 1
-       } else if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] <= 7) {
+       } else if (items["GROUP_FZ43E09_CLINICAL_PRACTICE"] <= 8) {
            poor_2 += 1
        } else {
            null_2 += 1
        }
-       if (items["GROUP_FZ43E09_STAFFING"] == 10) {
+       if (items["GROUP_FZ43E09_STAFFING"] == 9) {
             good_3 += 1
-       } else if (items["GROUP_FZ43E09_STAFFING"] <= 9 && items["GROUP_FZ43E09_STAFFING"] >= 6) {
+       } else if (items["GROUP_FZ43E09_STAFFING"] <= 8 || items["GROUP_FZ43E09_STAFFING"] >= 5) {
            medium_3 += 1
-       } else if (items["GROUP_FZ43E09_STAFFING"] <= 5) {
+       } else if (items["GROUP_FZ43E09_STAFFING"] <= 4) {
            poor_3 += 1
        } else {
            null_3 += 1
        }
-       if (items["GROUP_FZ43E09_INFRASTRUCTURE"] == 4) {
+       if (items["GROUP_FZ43E09_INFRASTRUCTURE"] == 5) {
             good_4 += 1
-       } else if (items["GROUP_FZ43E09_INFRASTRUCTURE"] <= 3 && items["GROUP_JF7YD07_MANAGEMENT"] >= 2) {
+       } else if (items["GROUP_FZ43E09_INFRASTRUCTURE"] <= 4 || items["GROUP_JF7YD07_MANAGEMENT"] >= 3) {
            medium_4 += 1
-       } else if (items["GROUP_FZ43E09_INFRASTRUCTURE"] < 2 ) {
+       } else if (items["GROUP_FZ43E09_INFRASTRUCTURE"] < 3 ) {
            poor_4 += 1
        } else {
            null_4 += 1
        }
        if (items["GROUP_FZ43E09_PATIENT_DIGNITY"] == 11) {
             good_5 += 1
-       } else if (items["GROUP_FZ43E09_PATIENT_DIGNITY"] <= 10 && items["GROUP_FZ43E09_PATIENT_DIGNITY"] >= 6) {
+       } else if (items["GROUP_FZ43E09_PATIENT_DIGNITY"] <= 10 || items["GROUP_FZ43E09_PATIENT_DIGNITY"] >= 6) {
            medium_5 += 1
        } else if (items["GROUP_FZ43E09_PATIENT_DIGNITY"] < 6) {
            poor_5 += 1
        } else {
            null_5 += 1
        }
-       if (items["GROUP_FZ43E09_DRUGS"] == 13) {
+       if (items["GROUP_FZ43E09_DRUGS"] == 12) {
             good_6 += 1
-       } else if (items["GROUP_FZ43E09_DRUGS"] <= 12 && items["GROUP_JF7YD07_DRUGS_001"] >= 7) {
+       } else if (items["GROUP_FZ43E09_DRUGS"] <= 11 || items["GROUP_JF7YD07_DRUGS_001"] >= 7) {
            medium_6 += 1
        } else if (items["GROUP_FZ43E09_DRUGS"] < 7) {
            poor_6 += 1
        } else {
            null_6 += 1
        }
-       if (items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] == 21) {
+       if (items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] == 20) {
             good_7 += 1
-       } else if (items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] <= 20 && items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] >= 11) {
+       } else if (items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] <= 19 || items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] >= 11) {
            medium_7 += 1
        } else if (items["GROUP_FZ43E09_SUPPLIES_AND_EQUIPMENT"] < 11) {
            poor_7 += 1
        } else {
            null_7 += 1
        }
-       if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] == 9) {
+       if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] == 14) {
             good_8 += 1
-       } else if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] <= 8 && items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] >= 5) {
+       } else if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] <= 13 || items["GROUP_JF7YD07_PATIENT_DIGNITY_001"] >= 7) {
            medium_8 += 1
-       } else if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] < 5) {
+       } else if (items["GROUP_FZ43E09_MANAGEMENT_FULL_MARKS_14"] < 7) {
            poor_8 += 1
        } else {
            null_8 += 1

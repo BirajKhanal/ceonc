@@ -145,7 +145,15 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                       <CartesianGrid strokeDasharray="9 9" />
                       <XAxis dataKey="name" />
                       <YAxis />
-                      <Tooltip />
+                      <Tooltip content={({active, payload, label}) => {
+                        if (active && payload && payload.length) (
+                          <div className="custom-tooltip">
+                            <p className="label">{`${label} : ${payload[0].value}`}</p>
+                          </div>
+                        )
+                        return null
+                      }}
+                      />
                       <Bar dataKey="value" fill={color.color_4} />
                     </BarChart>
                   </div>
@@ -173,7 +181,17 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                   <CartesianGrid strokeDasharray="9 9" />
                   <XAxis dataKey="name"/>
                   <YAxis/>
-                  <Tooltip />
+                  <Tooltip content={({active, payload, label}) => {
+                    if (active && payload && payload.length) {
+                      return (
+                        <div className="custom-tooltip">
+                          <p className="label">{`${label}`}</p>
+                          <p className="label" style={{color: color.color_4, marginTop: 10}}>value: {`${payload[0].value}`} %</p>
+                        </div>
+                      )
+                    }
+                    return null
+                  }}/>
                   <Bar dataKey="value" fill={color.color_4} />
                 </BarChart>
               </div>

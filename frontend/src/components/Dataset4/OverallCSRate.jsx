@@ -96,7 +96,7 @@ const OverallCSRate = ({graphWidth, data1, dataType1}) => {
             <div key={index} className='graphItem'>
               <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
-                <p className="text-center header-color">Overall CS Rate</p>
+                <p className="text-center header-color">Health Facilities with the Highest CS Rate</p>
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
@@ -118,7 +118,7 @@ const OverallCSRate = ({graphWidth, data1, dataType1}) => {
     return (
       <div className='graphItem'>
         <div>
-          <p className="text-center header-color">Overall CS Rate</p>
+          <p className="text-center header-color">Health Facilities with the Highest CS Rate</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}

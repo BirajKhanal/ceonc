@@ -139,7 +139,7 @@ const AbsltCs = ({graphWidth, data4, dataType4}) => {
       })
       sctr.push({
         name: items["name"],
-        who: items["who"],
+        WHO: items["WHO"],
         ...scrtDict
       })
     })
@@ -168,7 +168,7 @@ const AbsltCs = ({graphWidth, data4, dataType4}) => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="who" fill={color.color_4} />
+                  <Bar dataKey="WHO" fill={color.color_4} />
                   {scatterData.map((items, i) => {
                     return (
                       <Scatter dataKey={items} fill={color.color_1} key={i}/>
@@ -209,7 +209,7 @@ const AbsltCs = ({graphWidth, data4, dataType4}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="who" fill={color.color_4} />
+          <Bar dataKey="WHO" fill={color.color_4} />
           {scatterData.map((items, i) => {
             return (
               <Scatter dataKey={items} fill={color.color_1} key={i}/>

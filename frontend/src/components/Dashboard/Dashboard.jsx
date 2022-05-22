@@ -67,20 +67,27 @@ export const Dashboard = ({graphWidth}) => {
   return (
     <div>
       <div className='topContainer'>
-          <div className="box">
-              BC/BEONC Sites Implemented
-              <div className="dash-count">
-                {data}
+          <div className="onsite_box">
+            <div className="box_big">
+              No. of Onsite Clinical Coaching Mentoring Conducted ({data + data1})
+            </div>
+            <div className="box_container">
+              <div className="box">
+                  BC/BEONC Sites Implemented
+                  <div className="dash-count">
+                    {data}
+                  </div>
               </div>
+              <div className="box" style={{marginLeft: 2}}>
+                  CEONC Sites Implemented
+                  <div className="dash-count">
+                    {data1}
+                  </div>
+              </div>
+            </div>
           </div>
           <div className="box">
-              CEONC Sites Implemented
-              <div className="dash-count">
-                {data1}
-              </div>
-          </div>
-          <div className="box">
-              Robson CS Rate Count
+              No. of Hospitals Implementing Robson Classification
               <div className="dash-count">
                 {data2}
               </div>

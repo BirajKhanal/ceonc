@@ -28,16 +28,16 @@ const goodMediumPoorSort = (data) => {
    let null_13 = 0 
 
    data.map((items) => {
-       if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] == 2) {
+       if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] == 4) {
             good_1 += 1
-       } else if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] <= 1) {
+       } else if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] < 4) {
            poor_1 += 1
        } else {
            null_1 += 1
        }
-       if (items["GROUP_FT6ZY60_NEW_BORN_RESUSCITATION_FULL_MA"] == 3) {
+       if (items["GROUP_FT6ZY60_NEW_BORN_RESUSCITATION_FULL_MA"] == 4) {
             good_2 += 1
-       } else if (items["GROUP_FT6ZY60_NEW_BORN_RESUSCITATION_FULL_MA"] < 3) {
+       } else if (items["GROUP_FT6ZY60_NEW_BORN_RESUSCITATION_FULL_MA"] < 4) {
            poor_2 += 1
        } else {
            null_2 += 1
@@ -49,9 +49,9 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_3 += 1
        }
-       if (items["GROUP_FT6ZY60_PARENTERAL_UTEROTONIC_DRUGS"] == 2) {
+       if (items["GROUP_FT6ZY60_PARENTERAL_UTEROTONIC_DRUGS"] == 3) {
             good_4 += 1
-       } else if (items["GROUP_FT6ZY60_PARENTERAL_UTEROTONIC_DRUGS"] < 2) {
+       } else if (items["GROUP_FT6ZY60_PARENTERAL_UTEROTONIC_DRUGS"] < 3) {
            poor_4 += 1
        } else {
            null_4 += 1
@@ -63,16 +63,16 @@ const goodMediumPoorSort = (data) => {
        } else {
            null_5 += 1
        }
-       if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] == 6) {
+       if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] == 5) {
             good_6 += 1
-       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] < 6 ) {
+       } else if (items["GROUP_FT6ZY60_PARENTERAL_ANTI_CONVULSANT"] < 5 ) {
            poor_6 += 1
        } else {
            null_6 += 1
        }
-       if (items["GROUP_FT6ZY60_REMOVAL_OF_RETAINED_PRODUCTS_O"] == 2) {
+       if (items["GROUP_FT6ZY60_REMOVAL_OF_RETAINED_PRODUCTS_O"] == 3) {
             good_7 += 1
-       } else if (items["GROUP_FT6ZY60_REMOVAL_OF_RETAINED_PRODUCTS_O"] < 1) {
+       } else if (items["GROUP_FT6ZY60_REMOVAL_OF_RETAINED_PRODUCTS_O"] < 3) {
            poor_7 += 1
        } else {
            null_7 += 1
@@ -82,44 +82,44 @@ const goodMediumPoorSort = (data) => {
    return [
        {
            name: "Manual Removal of Retained",
-           good: good_1,
-           poor: poor_1,
+           "Standards Met For GOOD": good_1,
+           "Standards Not Met For POOR": poor_1,
            "N/A": null_1
        },
        {
            name: "New Born Resuscitation Full",
-           good: good_2,
-           poor: poor_2,
+           "Standards Met For GOOD": good_2,
+           "Standards Not Met For POOR": poor_2,
            "N/A": null_2
        },
        {
            name: "Assisted Vaginal Delivery",
-           good: good_3,
-           poor: poor_3,
+           "Standards Met For GOOD": good_3,
+           "Standards Not Met For POOR": poor_3,
            "N/A": null_3
        },
        {
            name: "Parenteral Uterotonic Drugs",
-           good: good_4,
-           poor: poor_4,
+           "Standards Met For GOOD": good_4,
+           "Standards Not Met For POOR": poor_4,
            "N/A": null_4
        },
        {
            name: "Parenteral Antibiotics Mother",
-           good: good_5,
-           poor: poor_5,
+           "Standards Met For GOOD": good_5,
+           "Standards Not Met For POOR": poor_5,
            "N/A": null_5
        },
        {
            name: "Parenteral Anti Convulsant",
-           good: good_6,
-           poor: poor_6,
+           "Standards Met For GOOD": good_6,
+           "Standards Not Met For POOR": poor_6,
            "N/A": null_6
        },
        {
            name: "Removal Of Retained Products",
-           good: good_7,
-           poor: poor_7,
+           "Standards Met For GOOD": good_7,
+           "Standards Not Met For POOR": poor_7,
            "N/A": null_7
        },
    ]
