@@ -147,7 +147,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={300}
+                height={400}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -171,7 +171,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={300}
+          height={400}
           data={data}
         >
           <CartesianGrid strokeDasharray="9 9" />

@@ -148,7 +148,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={300}
+                height={400}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -173,7 +173,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={300}
+          height={400}
           data={bcQualityDomain}
         >
           <CartesianGrid strokeDasharray="9 9" />

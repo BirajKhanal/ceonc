@@ -148,7 +148,7 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={300}
+                height={400}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -173,7 +173,7 @@ const CeoncQualityDomain = ({graphWidth, data3, dataType3}) => {
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={300}
+          height={400}
           data={data}
         >
           <CartesianGrid strokeDasharray="9 9" />
