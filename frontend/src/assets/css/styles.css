@@ -169,11 +169,16 @@ ul {
     max-width: 30rem;
 }
 
+.onsite_box {
+    width: 13.9rem;
+}
 .box_container {
     display: flex;
+    width: 100%;
 }
 .box_big {
     margin-bottom: 0.1rem;
+    width: 100%;
     padding: 1rem;
     text-align: center;
     color: var(--white);

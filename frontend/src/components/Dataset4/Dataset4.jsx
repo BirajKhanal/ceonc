@@ -3,11 +3,9 @@ import Select from 'react-select';
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css"
 
-import Delivery from './Delivery'
 import GrpSize from './GrpSize'
 import OverallCSRate from './OverallCSRate'
 import { nameSort } from '../../utils';
-import { yearList } from '../../utils';
 import { host } from '../../utils';
 import GrpCsRate from './GrpCsRate';
 import AbsltCs from './AbsltCs';
@@ -30,16 +28,16 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
   const [startDate, endDate] = dateRange
 
 
-  const requestOptions = {
-      method: 'GET',
-      headers: {
-          "Content-Type": "application/json",
-      },
-      mode: 'cors'
-  }
-
   useEffect(() => {
     let dismount = false
+
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        mode: 'cors'
+    }
 
     // const getRequestYear = async () => {
     //   let res = await fetch('/bebeonc/qualitydomain/year', requestOptions)

@@ -11,17 +11,15 @@ export const Dashboard = ({graphWidth}) => {
   const [data1, setData1] = useState()
   const [data2, setData2] = useState()
 
-  const requestOptions = {
-      method: 'GET',
-      headers: {
-          "Content-Type": "application/json",
-      },
-      mode: 'cors'
-  }
-
-
   useEffect(() => {
     let dismount = false
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        mode: 'cors'
+    }
 
     const getRequestBeCount = async () => {
       let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
@@ -73,13 +71,13 @@ export const Dashboard = ({graphWidth}) => {
             </div>
             <div className="box_container">
               <div className="box">
-                  BC/BEONC Sites Implemented
+                  BC/BEONC
                   <div className="dash-count">
                     {data}
                   </div>
               </div>
               <div className="box" style={{marginLeft: 2}}>
-                  CEONC Sites Implemented
+                  CEONC
                   <div className="dash-count">
                     {data1}
                   </div>
@@ -94,7 +92,7 @@ export const Dashboard = ({graphWidth}) => {
           </div>
       </div>
       <Dataset1 graphWidth={graphWidth} location="dashboard"/>
-      <Dataset3 graphWidth={graphWidth}/>
+      <Dataset3 graphWidth={graphWidth} location="dashboard"/>
       <Dataset4 graphWidth={graphWidth} location="dashboard"/>
     </div>
   )

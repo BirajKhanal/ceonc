@@ -8,7 +8,6 @@ import BcSignalFunction from './BcSignalFunction'
 import CeoncSignalFunction from './CeoncSignalFunction';
 import CeoncQualityDomain from './CeoncQualityDomain';
 import { nameSort } from '../../utils';
-import { yearList } from '../../utils';
 import { host } from '../../utils';
 
 const moment = require('moment')
@@ -28,50 +27,15 @@ const Dataset1 = ({graphWidth, data, dataType, location}) => {
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange
 
-
-  const requestOptions = {
-      method: 'GET',
-      headers: {
-          "Content-Type": "application/json",
-      },
-      mode: 'cors'
-  }
-
   useEffect(() => {
     let dismount = false
-
-    // const getRequestYear = async () => {
-    //   let res = await fetch('/bebeonc/qualitydomain/year', requestOptions)
-    //   let data = await res.json()
-
-    //   if (!dismount) {
-    //     if (res.ok) {
-    //       setDataSortYear(yearList(data))
-    //     }
-    //   }
-    // }
-
-    // const getRequestProvince = async () => {
-    //   let res = await fetch('/bebeonc/qualitydomain/province', requestOptions)
-    //   let data = await res.json()
-
-    //   if (!dismount) {
-    //     if (res.ok) {
-    //       setDataSortProvince(nameSort(data))
-    //     }
-    //   }
-    // }
-
-    // const getRequestPalika = async () => {
-    //   let res = await fetch('/bebeonc/qualitydomain/palika', requestOptions)
-    //   let data = await res.json()
-
-    //   if (!dismount) {
-    //     if (res.ok) {
-    //       setDataSortPalika(nameSort(data))
-    //     }
-    //   }
-    // }
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        mode: 'cors'
+    }
 
     const getRequestPalikaProvince = async () => {
       let res = await fetch(`${host}/palikaprovince`, requestOptions)

@@ -26,10 +26,6 @@ const goodMediumPoorSort = (data) => {
    let null_7 = 0 
    let null_8 = 0 
    let null_9 = 0 
-   let null_10 = 0 
-   let null_11 = 0 
-   let null_12 = 0 
-   let null_13 = 0 
 
    data.map((items) => {
        if (items["GROUP_FT6ZY60_MANUAL_REMOVAL_OF_RETAINED_PLA"] == 4) {
