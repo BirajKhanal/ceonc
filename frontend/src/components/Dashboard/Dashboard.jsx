@@ -33,7 +33,7 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestCeCount = async () => {
-      let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
+      let res = await fetch(`${host}/ceonc/qualitydomain`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
