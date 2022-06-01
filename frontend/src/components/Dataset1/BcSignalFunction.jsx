@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,PureComponent } from 'react'
 import {
     BarChart,
     Bar,
@@ -151,12 +151,12 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="name"/>
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
-                <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
+                <Bar dataKey="Standards Met" stackId="a" fill={color.color_1}/>
+                <Bar dataKey="Standards Not Met" stackId="a" fill={color.color_3}/>
               </BarChart>
             </div>
           )
@@ -175,12 +175,12 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
           data={data}
         >
           <CartesianGrid strokeDasharray="9 9" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="name"/>
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
-          <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
+          <Bar dataKey="Standards Met" stackId="a" fill={color.color_1}/>
+          <Bar dataKey="Standards Not Met" stackId="a" fill={color.color_3}/>
         </BarChart>
       </div>
     )

@@ -201,7 +201,7 @@ const AbsltCs = ({graphWidth, data4, dataType4}) => {
       </div>
         <ComposedChart
           width={dynamicGraph(graphWidth)}
-          height={300}
+          height={400}
           data={dataPlot}
         >
           <CartesianGrid strokeDasharray="9 9" />

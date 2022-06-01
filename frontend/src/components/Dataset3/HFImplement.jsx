@@ -133,11 +133,11 @@ const HFImplement = ({graphWidth, data, dataType}) => {
             <div key={index} className='graphItem'>
               <p className='text-center header-color'>{items["date"]} {items["province"]} {items["district"]} {items["palika"]} {items["facility"]}</p>
               <div>
-                <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
+                <p className="text-center header-color">No. of Clinical Coaching Mentoring Conducted</p>
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={300}
+                height={400}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -145,8 +145,8 @@ const HFImplement = ({graphWidth, data, dataType}) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_1} />
-                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_3} />
+                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_4} />
+                <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_5} />
               </BarChart>
             </div>
           )
@@ -157,11 +157,11 @@ const HFImplement = ({graphWidth, data, dataType}) => {
     return (
       <div className='graphItem'>
         <div>
-          <p className="text-center header-color">No. of HFs implemented SBA clinical coaching</p>
+          <p className="text-center header-color">No. of Clinical Coaching Mentoring Conducted</p>
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={300}
+          height={400}
           data={hfImplement}
         >
           <CartesianGrid strokeDasharray="9 9" />
@@ -169,8 +169,8 @@ const HFImplement = ({graphWidth, data, dataType}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_1} />
-          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_3} />
+          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)" fill={color.color_4} />
+          <Bar dataKey="No of Onsite Clinical Coaching Mentoring Conducted(CEONC)" fill={color.color_5} />
         </BarChart>
       </div>
     )

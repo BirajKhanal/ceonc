@@ -155,8 +155,8 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
-                <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
+                <Bar dataKey="Standards Met" stackId="a" fill={color.color_1} />
+                <Bar dataKey="Standards Not Met" stackId="a" fill={color.color_3} />
               </BarChart>
             </div>
           )
@@ -179,8 +179,8 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="Standards Met For GOOD" stackId="a" fill={color.color_1} />
-          <Bar dataKey="Standards Not Met For POOR" stackId="a" fill={color.color_3} />
+          <Bar dataKey="Standards Met" stackId="a" fill={color.color_1} />
+          <Bar dataKey="Standards Not Met" stackId="a" fill={color.color_3} />
         </BarChart>
       </div>
     )

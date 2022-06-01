@@ -25,7 +25,7 @@ const sort = (data) => {
 
     return [
         {
-            "name": "BE/BEONC",
+            "name": "BC/BEONC",
             "data": reDataBe
         },
         {

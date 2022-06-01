@@ -76,7 +76,7 @@ const formula = (data, count) => {
             "value": parseFloat(referral.toFixed(2)),
         },
         {
-            "name": "Condom Temponade",
+            "name": "Condom Tamponade",
             "value": parseFloat(condom.toFixed(2)),
         },
         {
