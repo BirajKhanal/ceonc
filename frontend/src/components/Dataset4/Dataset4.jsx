@@ -209,8 +209,8 @@ const Dataset4 = ({graphWidth, data, dataType, location}) => {
             <div className="box search-button" onClick={() => {
               setDataNew("all")
               setDataTypeNew({
-                "startDate": moment(startDate).format("YYYY-MM-DD"),
-                "endDate": moment(endDate).format("YYYY-MM-DD"),
+                "startDate": startDate ? moment(startDate).format("YYYY-MM-DD") : "",
+                "endDate": endDate ? moment(endDate).format("YYYY-MM-DD") : "",
                 "province": value1["label"] ? value1["label"] : "",
                 "district": value2["label"] ? value2["label"] : "",
                 "palika": value3["label"] ? value3["label"] : "",

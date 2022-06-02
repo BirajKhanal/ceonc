@@ -121,11 +121,7 @@ const filterDate = (data, req, kind) => {
   // console.log(moment(2022-03-30) < moment(2022-03-29))
 
   data.map((items) => {
-    if (
-      moment(items[kindDate]).format("YYYY-MM-DD") >=
-        moment(req["startDate"]).format("YYYY-MM-DD") &&
-      moment(items[kindDate]).format("YYYY-MM-DD") <=
-        moment(req["endDate"]).format("YYYY-MM-DD")
+    if ( moment(items[kindDate]).format("YYYY-MM-DD") >= moment(req["startDate"]).format("YYYY-MM-DD") && moment(items[kindDate]).format("YYYY-MM-DD") <= moment(req["endDate"]).format("YYYY-MM-DD")
     ) {
       if (req["province"] !== "") {
         let filtered1 = Object.fromEntries(
@@ -212,7 +208,8 @@ const filterDate = (data, req, kind) => {
 
         kind === "overallcs" || kind === "grpsize" || kind === "grpcsrate" || kind === "grpabsltcs" ? dateAll.push(filtered3): dateAll.push(filtered4);
       }
-    } else {
+    }
+    if (req["startDate"] === "" && req["endDate"] === "")  {
       if (req["province"] !== "") {
         let filtered1 = Object.fromEntries(
           Object.entries(items).filter(([k, v]) => k !== kindDate)

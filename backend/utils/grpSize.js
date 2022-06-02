@@ -3,43 +3,43 @@ const GrpSize = (data, type) => {
 
     let dict1 = {
         name: 1,
-        WHO: 29.3,
+        WHO: type === "grpsize" ? 29.3 : type === "grpcssize" ? 9.8 : 2.9,
     }
     let dict2 = {
         name: 2,
-        WHO: 8.8,
+        WHO: type === "grpsize" ? 8.8 : type === "grpcssize" ? 39.9 : 3.5,
     }
     let dict3 = {
         name: 3,
-        WHO: 40.1,
+        WHO: type === "grpsize" ? 40.1 : type === "grpcssize" ? 3 : 1.2,
     }
     let dict4 = {
         name: 4,
-        WHO: 6.4,
+        WHO: type === "grpsize" ? 6.4 : type === "grpcssize" ? 23.7 : 1.5,
     }
     let dict5 = {
         name: 5,
-        WHO: 7.2,
+        WHO: type === "grpsize" ? 7.2 : type === "grpcssize" ? 74.4 : 5.3,
     }
     let dict6 = {
         name: 6,
-        WHO: 1.2,
+        WHO: type === "grpsize" ? 1.2 : type === "grpcssize" ? 78.5 : 0.9,
     }
     let dict7 = {
         name: 7,
-        WHO: 1.5,
+        WHO: type === "grpsize" ? 1.5 : type === "grpcssize" ? 73.8 : 1.1,
     }
     let dict8 = {
         name: 8,
-        WHO: 0.9,
+        WHO: type === "grpsize" ? 0.9 : type === "grpcssize" ? 57.7 : 0.5,
     }
     let dict9 = {
         name: 9,
-        WHO: 0.4,
+        WHO: type === "grpsize" ? 0.4 : type === "grpcssize" ? 88.6 : 0.3,
     }
     let dict10 = {
         name: 10,
-        WHO: 4.2,
+        WHO: type === "grpsize" ? 4.2 : type === "grpcssize" ? 25.1 : 1,
     }
 
     if (type === "grpsize") {

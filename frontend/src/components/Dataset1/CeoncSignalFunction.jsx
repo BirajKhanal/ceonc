@@ -71,7 +71,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
             mode: 'cors'
         }
 
-        let res = await fetch(`${host}/ceonc/qualitydomain/filter`, requestOptionsBody)
+        let res = await fetch(`${host}/ceonc/signalfunction/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {

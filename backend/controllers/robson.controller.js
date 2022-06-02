@@ -27,7 +27,7 @@ const GrpCSRate = (request, response) => {
         if (error) {
             throw "database retrive error in robson controller in overallcsrate"
         }
-        response.status(200).json(sort1.overallCsRate(results.rows, "grpcsrate"))
+        response.status(200).json(sort1.overallCsRate(results.rows, "grpcssize"))
     })
 }
 

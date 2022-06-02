@@ -1,4 +1,4 @@
-import React, { useEffect, useState,PureComponent } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     BarChart,
     Bar,
@@ -18,11 +18,11 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
   const [dataSort, setDataSort] = useState([])
 
   const requestOptions = {
-      method: 'GET',
-      headers: {
-          "Content-Type": "application/json",
-      },
-      mode: 'cors'
+    method: 'GET',
+    headers: {
+        "Content-Type": "application/json",
+    },
+    mode: 'cors'
   }
 
   let filterType = "default"
@@ -71,7 +71,7 @@ const BcSignalFunction = ({graphWidth, data2, dataType2}) => {
             mode: 'cors'
         }
 
-        let res = await fetch(`${host}/bebeonc/qualitydomain/filter`, requestOptionsBody)
+        let res = await fetch(`${host}/bebeonc/signalfunction/filter`, requestOptionsBody)
         let data = await res.json()
 
         if (!dismount) {

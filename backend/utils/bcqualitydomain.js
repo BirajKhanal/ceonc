@@ -171,7 +171,6 @@ const goodMediumPoorSort = (data) => {
            null_13 += 1
        }
    })
-
    return [
        {
            name: "Infection Prevention",
