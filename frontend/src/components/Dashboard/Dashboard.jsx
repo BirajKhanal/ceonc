@@ -30,23 +30,23 @@ export const Dashboard = ({graphWidth}) => {
     }
 
     const getRequestBeCount = async () => {
-      let res = await fetch(`${host}/bebeonc/qualitydomain`, requestOptions)
+      let res = await fetch(`${host}/hf`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
         if (res.ok) {
-          setData(totalCount(data))
+          setData(totalCount(data, "bc"))
         }
       }
     }
 
     const getRequestCeCount = async () => {
-      let res = await fetch(`${host}/ceonc/qualitydomain`, requestOptions)
+      let res = await fetch(`${host}/hf`, requestOptions)
       let data = await res.json()
 
       if (!dismount) {
         if (res.ok) {
-          setData1(totalCount(data))
+          setData1(totalCount(data, "ceonc"))
         }
       }
     }

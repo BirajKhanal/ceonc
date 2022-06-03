@@ -1,12 +1,12 @@
-export const totalCount = (data) => {
-    let high = 0
-    let low = 0
+export const totalCount = (data, type) => {
+    let send = 0
     data.map((items) => {
-        low = items["good"] + items["medium"] + items["poor"] + items["N/A"]
-        if (low > high) {
-            high = low
+        if (type === "bc") {
+            send = items["No of Onsite Clinical Coaching Mentoring Conducted(BC/BEONC)"] + send
+        } else if (type === "ceonc") {
+            send = items["No of Onsite Clinical Coaching Mentoring Conducted(CEONC)"] + send
         }
         return null
     })
-    return high
+    return send
 }
