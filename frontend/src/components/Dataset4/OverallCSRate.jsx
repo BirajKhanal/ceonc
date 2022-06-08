@@ -100,7 +100,7 @@ const OverallCSRate = ({graphWidth, data1, dataType1}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={400}
+                height={500}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -122,7 +122,7 @@ const OverallCSRate = ({graphWidth, data1, dataType1}) => {
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={400}
+          height={500}
           data={overallCSRate}
         >
           <CartesianGrid strokeDasharray="9 9" />

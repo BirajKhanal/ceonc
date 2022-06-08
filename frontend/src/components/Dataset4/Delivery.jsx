@@ -102,7 +102,7 @@ const Delivery = ({graphWidth, data, dataType}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={300}
+                height={500}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -126,7 +126,7 @@ const Delivery = ({graphWidth, data, dataType}) => {
         </div>
         <ComposedChart
           width={dynamicGraph(graphWidth)}
-          height={400}
+          height={500}
           data={dataReq}
         >
           <CartesianGrid strokeDasharray="9 9" />

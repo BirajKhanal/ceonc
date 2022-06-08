@@ -139,7 +139,7 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                     </div>
                     <BarChart
                       width={dynamicGraph(graphWidth)}
-                      height={300}
+                      height={500}
                       data={item["data"]}
                     >
                       <CartesianGrid strokeDasharray="9 9" />
@@ -175,7 +175,7 @@ const KnowledgeSkill = ({graphWidth, data1, dataType1}) => {
                 </div>
                 <BarChart
                   width={dynamicGraph(graphWidth)}
-                  height={300}
+                  height={500}
                   data={items["data"]}
                 >
                   <CartesianGrid strokeDasharray="9 9" />

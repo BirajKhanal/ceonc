@@ -160,7 +160,7 @@ const GrpSize = ({graphWidth, data2, dataType2}) => {
               </div>
                 <ComposedChart
                   width={dynamicGraph(graphWidth)}
-                  height={300}
+                  height={500}
                   data={items["data"]}
                 >
                   <CartesianGrid strokeDasharray="9 9" />
@@ -201,7 +201,7 @@ const GrpSize = ({graphWidth, data2, dataType2}) => {
       </div>
         <ComposedChart
           width={dynamicGraph(graphWidth)}
-          height={400}
+          height={500}
           data={dataPlot}
         >
           <CartesianGrid strokeDasharray="9 9" />

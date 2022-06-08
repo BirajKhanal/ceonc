@@ -147,7 +147,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
               </div>
               <BarChart
                 width={dynamicGraph(graphWidth)}
-                height={400}
+                height={500}
                 data={items["data"]}
               >
                 <CartesianGrid strokeDasharray="9 9" />
@@ -171,7 +171,7 @@ const CeoncSignalFunction = ({graphWidth, data4, dataType4}) => {
         </div>
         <BarChart
           width={dynamicGraph(graphWidth)}
-          height={400}
+          height={500}
           data={data}
         >
           <CartesianGrid strokeDasharray="9 9" />
