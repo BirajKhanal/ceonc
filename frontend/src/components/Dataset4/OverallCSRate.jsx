@@ -6,7 +6,6 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { host } from '../../utils';

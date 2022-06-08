@@ -8,7 +8,6 @@ import {
     Tooltip,
     Legend,
     ComposedChart,
-    Scatter,
 } from "recharts";
 import { dynamicGraph } from '../../utils/dynamicGraph';
 import { host } from '../../utils';
