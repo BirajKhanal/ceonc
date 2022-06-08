@@ -156,7 +156,7 @@ const BcQualityDomain = ({graphWidth, data1, dataType1}) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="good" stackId="a" fill={color.color_1} />
+                <Bar dataKey="good" stackId="a" fill={color.color_1}/>
                 <Bar dataKey="medium" stackId="a" fill={color.color_2} />
                 <Bar dataKey="poor" stackId="a" fill={color.color_3} />
               </BarChart>

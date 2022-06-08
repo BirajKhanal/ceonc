@@ -33,21 +33,25 @@ const yearSort = (data, type, fltType) => {
 
 
     data.map((items) => {
-        if (!dateArr.includes(moment(items[fltData]).format(dateFormat))) {
-            dateArr.push(moment(items[fltData]).format(dateFormat))
+        // if (!dateArr.includes(moment(items[fltData]).format(dateFormat))) {
+        if (!dateArr.includes(20)) {
+            // dateArr.push(moment(items[fltData]).format(dateFormat))
+            dateArr.push(20)
             let filtered = items
             if (type !== "hf") {
                 filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
             }
             sortData.push(
                 {
-                    name: moment(items[fltData]).format(dateFormat),
+                    // name: moment(items[fltData]).format(dateFormat),
+                    name: 20,
                     data : [filtered]
                 }
             )
         } else {
             sortData.map((dataItems) => {
-                if (dataItems["name"] == moment(items[fltData]).format(dateFormat)) {
+                // if (dataItems["name"] == moment(items[fltData]).format(dateFormat)) {
+                if (dataItems["name"] == 20) {
                     let filtered = items
                     if (type !== "hf") {
                         filtered = Object.fromEntries(Object.entries(items).filter(([k,v]) => k !== fltData));
